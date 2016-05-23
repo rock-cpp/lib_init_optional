@@ -1,7 +1,19 @@
 rock_library(lib_init
-    SOURCES Dummy.cpp
-    HEADERS Dummy.hpp)
+    SOURCES
+        DependentTask.cpp
+        Base.cpp
+    HEADERS
+        Base.hpp
+        CameraDriver.hpp
+        Container.hpp
+        DependentTask.hpp
+        IMUDriver.hpp
+        JointDriver.hpp
+    DEPS_PKGCONFIG
+        base-lib
+        orocos_cpp_base
+        orocos_cpp
+        lib_config
+)
 
-rock_executable(lib_init_bin Main.cpp
-    DEPS lib_init)
-
+add_subdirectory(states)

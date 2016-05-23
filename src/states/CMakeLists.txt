@@ -1,0 +1,13 @@
+rock_library(init_states
+    SOURCES
+        Init.cpp
+    DEPS
+        lib_init
+    DEPS_PKGCONFIG 
+        logger-proxies
+        orocos_cpp_base
+        orocos_cpp
+        state_machine
+        lib_config
+    HEADERS
+)
