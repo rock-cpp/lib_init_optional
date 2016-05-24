@@ -47,3 +47,19 @@ optional_init(odometry-proxies
     HEADERS
         SkidOdometry.hpp
 )
+
+
+optional_init(ndlcom_device_driver-proxies
+    SOURCES
+        NDLComJointDriver.cpp
+    HEADERS
+        NDLComJointDriver.hpp
+)
+
+
+optional_init(serial_ndlcom-proxies
+    SOURCES
+        NDLComSerial.cpp
+    HEADERS
+        NDLComSerial.hpp
+)
