@@ -35,7 +35,7 @@ macro(optional_init LIB_NAME)
     endif()
 endmacro()
 
-add_subdirectory(specific)
+add_subdirectory(optional)
 
 
 message("SRC extra is ${SRC_EXTRA}")
