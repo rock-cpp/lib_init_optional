@@ -63,3 +63,13 @@ optional_init(serial_ndlcom-proxies
     HEADERS
         NDLComSerial.hpp
 )
+
+optional_init(manipulator_motion_planner-proxies
+    SOURCES
+        ArmPlannerCartesianSpace.cpp
+        ArmPlannerJointSpace.cpp
+    HEADERS
+        ArmPlanner.hpp
+        ArmPlannerCartesianSpace.hpp
+        ArmPlannerJointSpace.hpp
+)
