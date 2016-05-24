@@ -9,19 +9,20 @@ macro(optional_dep LIB_NAME ARG_LIST)
     if(MODULE_FOUND)
         rock_target_definition(${ARG_LIST} ${ARGN})
 #         message("Found ${LIB_NAME} in version ${MODULE_VERSION}")
-        SET(SRC_EXTRA ${SRC_EXTRA} ${${ARG_LIST}_SOURCES})
-        SET(HDR_EXTRA ${HDR_EXTRA} ${${ARG_LIST}_HEADERS})
-        SET(PKG_CONFIG_EXTRA ${PKG_CONFIG_EXTRA} ${LIB_NAME})
+        SET(SRC_EXTRA ${SRC_EXTRA} ${${ARG_LIST}_SOURCES} )
+        SET(HDR_EXTRA ${HDR_EXTRA} ${${ARG_LIST}_HEADERS} )
+        SET(PKG_CONFIG_EXTRA ${PKG_CONFIG_EXTRA} ${LIB_NAME} )
     endif()
 endmacro()
 
-# optional_dep(canbus-proxies 
-#     SOURCES
-#         Test.cpp    
-#     HEADERS
-# )
-# 
+optional_dep(canbus-proxies 
+    SOURCES
+        Canbus.cpp    
+    HEADERS
+        Canbus.hpp
+)
 
+message("SRC extra is ${SRC_EXTRA}")
 
 rock_library(lib_init
     SOURCES
