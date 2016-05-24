@@ -23,28 +23,22 @@ macro(optional_init LIB_NAME)
         parse(${ARG_LIST} ${ARGN})
 #         message("Found ${LIB_NAME} in version ${${LIB_NAME}_VERSION}")
 #         message("Found ${${ARG_LIST}_SOURCES}")
-        LIST(APPEND SRC_EXTRA ${${ARG_LIST}_SOURCES} )
-        SET(HDR_EXTRA ${HDR_EXTRA} ${${ARG_LIST}_HEADERS} )
+        foreach(SOURCE ${${ARG_LIST}_SOURCES})
+            LIST(APPEND SRC_EXTRA "${CMAKE_CURRENT_SOURCE_DIR}/${SOURCE}" )
+        endforeach()
+        SET(SRC_EXTRA ${SRC_EXTRA} PARENT_SCOPE)
+        foreach(HEADER ${${ARG_LIST}_HEADERS})
+            install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/${HEADER}" DESTINATION include/lib_init)
+        endforeach()
+#         SET(HDR_EXTRA ${HDR_EXTRA} ${${ARG_LIST}_HEADERS} )
         SET(PKG_CONFIG_EXTRA ${PKG_CONFIG_EXTRA} ${LIB_NAME} )
     endif()
 endmacro()
 
+add_subdirectory(specific)
 
-optional_init(hbridge-proxies 
-    SOURCES
-        HBridge.cpp    
-    HEADERS
-        HBridge.hpp    
-)
 
-optional_init(canbus-proxies 
-    SOURCES
-        Canbus.cpp    
-    HEADERS
-        Canbus.hpp
-)
-
-# message("SRC extra is ${SRC_EXTRA}")
+message("SRC extra is ${SRC_EXTRA}")
 # message("HDR_EXTRA is ${HDR_EXTRA}")
 # message("PKG_CONFIG_EXTRA is ${PKG_CONFIG_EXTRA}")
 
@@ -62,7 +56,7 @@ rock_library(lib_init
         IMUDriver.hpp
         JointDriver.hpp
         states/Init.hpp
-        ${HDR_EXTRA}
+#         ${HDR_EXTRA}
     DEPS_PKGCONFIG
         base-lib
         orocos_cpp_base
