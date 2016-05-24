@@ -1,6 +1,8 @@
 rock_library(init_states
     SOURCES
         Init.cpp
+    HEADERS
+        Init.hpp
     DEPS
         lib_init
     DEPS_PKGCONFIG 
@@ -9,5 +11,4 @@ rock_library(init_states
         orocos_cpp
         state_machine
         lib_config
-    HEADERS
 )
