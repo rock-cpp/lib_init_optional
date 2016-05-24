@@ -16,7 +16,7 @@ macro(parse TARGET_NAME)
     endforeach()
 endmacro()
 
-macro(optional_dep LIB_NAME)
+macro(optional_init LIB_NAME)
     pkg_check_modules(${LIB_NAME} ${LIB_NAME})
     if(${LIB_NAME}_FOUND)
         SET(ARG_LIST ${LIB_NAME})
@@ -30,14 +30,14 @@ macro(optional_dep LIB_NAME)
 endmacro()
 
 
-optional_dep(hbridge-proxies 
+optional_init(hbridge-proxies 
     SOURCES
         HBridge.cpp    
     HEADERS
         HBridge.hpp    
 )
 
-optional_dep(canbus-proxies 
+optional_init(canbus-proxies 
     SOURCES
         Canbus.cpp    
     HEADERS
