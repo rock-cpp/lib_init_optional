@@ -3,7 +3,6 @@
 #include <lib_init/JointDriver.hpp>
 #include "Simulator.hpp"
 #include <mars/proxies/Joints.hpp>
-#include <robot_frames/proxies/Task.hpp>
 
 namespace init
 {
