@@ -22,6 +22,13 @@ optional_dep(canbus-proxies
         Canbus.hpp
 )
 
+optional_dep(hbridge-proxies 
+    SOURCES
+        HBridge.cpp    
+    HEADERS
+        HBridge.hpp    
+)
+
 message("SRC extra is ${SRC_EXTRA}")
 
 rock_library(lib_init
