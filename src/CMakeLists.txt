@@ -46,12 +46,14 @@ rock_library(lib_init
     SOURCES
         DependentTask.cpp
         Base.cpp
+        CommonStart.cpp
         states/Init.cpp
         ${SRC_EXTRA}
     HEADERS
         Base.hpp
         CameraDriver.hpp
         Container.hpp
+        CommonStart.hpp
         DependentTask.hpp
         IMUDriver.hpp
         JointDriver.hpp
