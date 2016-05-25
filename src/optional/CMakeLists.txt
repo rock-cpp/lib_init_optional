@@ -31,12 +31,14 @@ optional_init(mars-proxies
         SimCameraDriver.cpp
         SimIMUDriver.cpp
         SimJointDriver.cpp
+        SimLaserDriver.cpp
         Simulator.cpp
         SimVelodyneDriver.cpp
     HEADERS
         SimCameraDriver.hpp
         SimIMUDriver.hpp
         SimJointDriver.hpp
+        SimLaserDriver.hpp
         Simulator.hpp
         SimVelodyneDriver.hpp
 )
@@ -78,4 +80,33 @@ optional_init(manipulator_motion_planner-proxies
         ArmPlanner.hpp
         ArmPlannerCartesianSpace.hpp
         ArmPlannerJointSpace.hpp
+)
+
+optional_init(tilt_scan-proxies
+    SOURCES
+        TiltScan.cpp
+    HEADERS
+    TiltScan.hpp
+)
+
+optional_init(laser_filter-proxies
+    SOURCES
+        ColorizedPointcloud.cpp
+    HEADERS
+        ColorizedPointcloud.hpp
+)
+
+
+optional_init(hokuyo-proxies
+    SOURCES
+        HokuyoLaserDriver.cpp
+    HEADERS
+        HokuyoLaserDriver.hpp
+)
+
+optional_init(sb_object_detection-proxies
+    SOURCES
+        ObjectDetection.cpp
+    HEADERS
+        ObjectDetection.hpp
 )

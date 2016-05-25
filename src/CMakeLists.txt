@@ -57,6 +57,7 @@ rock_library(lib_init
         DependentTask.hpp
         IMUDriver.hpp
         JointDriver.hpp
+        LaserDriver.hpp
         states/Init.hpp
 #         ${HDR_EXTRA}
     DEPS_PKGCONFIG
