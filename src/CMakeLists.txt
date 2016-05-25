@@ -30,8 +30,8 @@ macro(optional_init LIB_NAME)
         foreach(HEADER ${${ARG_LIST}_HEADERS})
             install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/${HEADER}" DESTINATION include/lib_init)
         endforeach()
-#         SET(HDR_EXTRA ${HDR_EXTRA} ${${ARG_LIST}_HEADERS} )
-        SET(PKG_CONFIG_EXTRA ${PKG_CONFIG_EXTRA} ${LIB_NAME} )
+        LIST(APPEND PKG_CONFIG_EXTRA ${LIB_NAME})
+        SET(PKG_CONFIG_EXTRA ${PKG_CONFIG_EXTRA} PARENT_SCOPE)
     endif()
 endmacro()
 
@@ -66,6 +66,7 @@ rock_library(lib_init
         lib_config
         logger-proxies
         state_machine
+        state_machine_viz
         lib_config
         ${PKG_CONFIG_EXTRA}
 )
