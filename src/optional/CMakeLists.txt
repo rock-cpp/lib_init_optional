@@ -48,6 +48,12 @@ optional_init(odometry-proxies
         SkidOdometry.hpp
 )
 
+optional_init(velodyne_lidar-proxies
+    SOURCES
+        VelodyneDriver.cpp
+    HEADERS
+        VelodyneDriver.hpp
+)
 
 optional_init(ndlcom_device_driver-proxies
     SOURCES
