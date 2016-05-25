@@ -28,7 +28,8 @@ class StartCommon
     QApplication *app;
     StateMachineWidget *widget;
 
-    void startCommon();
+    smurf::Robot *getDefaultRobot();
+    void startCommon(smurf::Robot *robot);
     int runCommon(state_machine::State *initialState, const std::vector< init::Base* >& toInit);
     
     orocos_cpp::TransformerHelper *transformerHelper;
@@ -38,11 +39,10 @@ class StartCommon
 public:
     StartCommon(int argc, char **argv);
 
-    
     template< class Startup>
-    int run(const std::function<state_machine::State *(Startup &start, std::vector<init::Base *> &toInit)> &ownstuff)
+    int run(smurf::Robot *robot, const std::function<state_machine::State *(Startup &start, std::vector<init::Base *> &toInit)> &ownstuff)
     {
-        startCommon();
+        startCommon(robot);
         
         Startup start(simulationActive);
         std::vector<init::Base *> toInit;
@@ -52,5 +52,11 @@ public:
         state_machine::State *initialState = ownstuff(start, toInit);
         
         return runCommon(initialState, toInit);
+    }
+    
+    template< class Startup>
+    int run(const std::function<state_machine::State *(Startup &start, std::vector<init::Base *> &toInit)> &ownstuff)
+    {
+        return run(getDefaultRobot(), ownstuff);
     }
 };

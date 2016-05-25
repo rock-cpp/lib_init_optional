@@ -118,13 +118,18 @@ int StartCommon::runCommon(state_machine::State *initialState, const std::vector
 
 }
 
-void StartCommon::startCommon()
+smurf::Robot* StartCommon::getDefaultRobot()
 {
     robot = new smurf::Robot;
     std::string smurfPath(libConfig::Bundle::getInstance().getConfigurationDirectory() + state_machine::Config::getConfig().getValue("robotSmurf"));
     std::cout << "Loading Smurf " << smurfPath << std::endl;
     robot->loadFromSmurf(smurfPath);
+}
 
+
+void StartCommon::startCommon(smurf::Robot *robot)
+{
+    this->robot = robot;
 
     transformerHelper = new orocos_cpp::TransformerHelper(*robot);
     configHelper = new orocos_cpp::ConfigurationHelper();
