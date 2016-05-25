@@ -124,6 +124,8 @@ smurf::Robot* StartCommon::getDefaultRobot()
     std::string smurfPath(libConfig::Bundle::getInstance().getConfigurationDirectory() + state_machine::Config::getConfig().getValue("robotSmurf"));
     std::cout << "Loading Smurf " << smurfPath << std::endl;
     robot->loadFromSmurf(smurfPath);
+    
+    return robot;
 }
 
 
