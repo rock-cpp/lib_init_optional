@@ -124,4 +124,11 @@ optional_init(trajectory_follower-proxies
     HEADERS
         TrajectoryFollower.hpp
 )
+
+optional_init(servo_dynamixel-proxies
+    SOURCES
+        Dynamixel.cpp
+    HEADERS
+        Dynamixel.hpp
+)
     
