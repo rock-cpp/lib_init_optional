@@ -1,7 +1,7 @@
 #pragma once
 
 #include <lib_init/LaserDriver.hpp>
-#include <lib_init/Simulator.hpp>
+#include "Simulator.hpp"
 
 namespace init
 {
