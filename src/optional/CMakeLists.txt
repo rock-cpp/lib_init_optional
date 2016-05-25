@@ -110,3 +110,18 @@ optional_init(sb_object_detection-proxies
     HEADERS
         ObjectDetection.hpp
 )
+
+optional_init(graph_slam-proxies
+    SOURCES
+        VelodyneSlamDriver.cpp
+    HEADERS
+        VelodyneSlamDriver.hpp
+)
+
+optional_init(trajectory_follower-proxies
+    SOURCES
+        TrajectoryFollower.cpp
+    HEADERS
+        TrajectoryFollower.hpp
+)
+    
