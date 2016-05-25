@@ -113,9 +113,9 @@ optional_init(sb_object_detection-proxies
 
 optional_init(graph_slam-proxies
     SOURCES
-        VelodyneSlamDriver.cpp
+        VelodyneSlam.cpp
     HEADERS
-        VelodyneSlamDriver.hpp
+        VelodyneSlam.hpp
 )
 
 optional_init(trajectory_follower-proxies
@@ -131,4 +131,24 @@ optional_init(servo_dynamixel-proxies
     HEADERS
         Dynamixel.hpp
 )
-    
+
+optional_init(motion_planning_libraries-proxies
+    SOURCES
+        MotionPlanner.cpp
+    HEADERS
+        MotionPlanner.hpp
+)
+
+optional_init(localization-proxies
+    SOURCES
+        PoseProvider.cpp
+    HEADERS
+        PoseProvider.hpp
+)
+
+optional_init(traversability-proxies
+    SOURCES
+        TraversabilitySimple.cpp
+    HEADERS
+        TraversabilitySimple.hpp
+)

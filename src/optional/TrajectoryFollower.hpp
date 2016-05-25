@@ -1,7 +1,8 @@
 #pragma once
 
-#include <lib_init/VelodyneSlamDriver.hpp>
+#include "VelodyneSlam.hpp"
 #include <trajectory_follower/Motion2D.hpp>
+#include <base/Trajectory.hpp>
 
 namespace trajectory_follower {
      namespace proxies {
@@ -14,13 +15,14 @@ namespace init
 
 class TrajectoryFollower : public Base {
 protected:
-    VelodyneSlamDriver &velodyneSlam;
     
 public:
     DependentTask< trajectory_follower::proxies::Task > trajectoryFollowerTask;
-    TrajectoryFollower(VelodyneSlamDriver &vsd, const std::string &trajectoryFollowerTaskName);
+    TrajectoryFollower(const std::string &trajectoryFollowerTaskName);
     virtual bool connect();
     OutputProxyPort< trajectory_follower::Motion2D >& getMotionCmdPort();
+    InputProxyPort< base::samples::RigidBodyState >& getRobotPosePort();
+    InputProxyPort< std::vector< base::Trajectory > >& getTrajectoryPort();
 };
 
 }
