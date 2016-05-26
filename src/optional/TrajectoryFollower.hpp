@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "VelodyneSlam.hpp"
 #include <trajectory_follower/Motion2D.hpp>
 #include <base/Trajectory.hpp>
@@ -25,5 +24,7 @@ public:
     InputProxyPort< base::samples::RigidBodyState >& getRobotPosePort();
     InputProxyPort< std::vector< base::Trajectory > >& getTrajectoryPort();
 };
+
+
 
 }
