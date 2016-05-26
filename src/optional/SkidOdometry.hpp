@@ -16,6 +16,7 @@ public:
     SkidOdometry(const std::string &odometryName, JointDriver &joints, IMUDriver &imu);
     virtual bool connect();
     DependentTask<odometry::proxies::Skid> skidOdometry;
+    OutputProxyPort< base::samples::RigidBodyState > getOdometrySamplesPort();
 };
 
 }

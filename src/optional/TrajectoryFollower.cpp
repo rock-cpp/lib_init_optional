@@ -5,24 +5,30 @@
 namespace init
 {
 
-TrajectoryFollower::TrajectoryFollower(VelodyneSlamDriver &vsd, const std::string &trajectoryFollowerTaskName)
+TrajectoryFollower::TrajectoryFollower(const std::string &trajectoryFollowerTaskName)
     : Base("TrajectoryFollower"),
-      trajectoryFollowerTask(this, trajectoryFollowerTaskName, "trajectory_follower::Task"),
-      velodyneSlam(vsd)
+      trajectoryFollowerTask(this, trajectoryFollowerTaskName, "trajectory_follower::Task")
 {
-    registerDependency(velodyneSlam);
 }
 
 bool TrajectoryFollower::connect()
 {
-    velodyneSlam.getPoseSamplesPort().connectTo(trajectoryFollowerTask.getConcreteProxy()->robot_pose);
     return init::Base::connect();
 }
-
 
 OutputProxyPort< trajectory_follower::Motion2D >& TrajectoryFollower::getMotionCmdPort()
 {
     return trajectoryFollowerTask.getConcreteProxy()->motion_command;
+}
+
+InputProxyPort< base::samples::RigidBodyState >& TrajectoryFollower::getRobotPosePort()
+{
+    return trajectoryFollowerTask.getConcreteProxy()->robot_pose;
+}
+
+InputProxyPort< std::vector< base::Trajectory > >& TrajectoryFollower::getTrajectoryPort()
+{
+    return trajectoryFollowerTask.getConcreteProxy()->trajectory;
 }
 
 }

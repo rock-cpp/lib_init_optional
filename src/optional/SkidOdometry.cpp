@@ -16,3 +16,8 @@ bool init::SkidOdometry::connect()
     
     return init::Base::connect();
 }
+
+OutputProxyPort< base::samples::RigidBodyState > init::SkidOdometry::getOdometrySamplesPort()
+{
+    return skidOdometry.getConcreteProxy()->odometry_samples;
+}
