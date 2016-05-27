@@ -17,8 +17,8 @@ NDLComJointDriver::NDLComJointDriver(NDLComSerial &serial, const std::string &jo
 
 bool NDLComJointDriver::connect()
 {
-    jointDriver.getConcreteProxy()->ndlcom_message_out.connectTo(serial.serial_ndlcomSender.getConcreteProxy()->ndlcom_message_in, RTT::ConnPolicy::buffer(40));
-    serial.serial_ndlcomReceiver.getConcreteProxy()->ndlcom_message_out.connectTo(jointDriver.getConcreteProxy()->ndlcom_message_in, RTT::ConnPolicy::buffer(40));
+    jointDriver.getConcreteProxy()->ndlcom_message_out.connectTo(serial.serial_ndlcom.getConcreteProxy()->ndlcom_message_in, RTT::ConnPolicy::buffer(40));
+    serial.serial_ndlcom.getConcreteProxy()->ndlcom_message_out.connectTo(jointDriver.getConcreteProxy()->ndlcom_message_in, RTT::ConnPolicy::buffer(40));
     return JointDriver::connect();
 }
 

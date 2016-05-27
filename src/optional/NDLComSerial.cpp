@@ -4,10 +4,9 @@
 namespace init 
 {
 
-NDLComSerial::NDLComSerial(const std::string &receiverTaskName, const std::string &senderTaskName) 
+NDLComSerial::NDLComSerial(const std::string &taskName) 
     : Base("NDLComSerial")
-    , serial_ndlcomReceiver(this, receiverTaskName, "serial_ndlcom::Task")
-    , serial_ndlcomSender(this, senderTaskName, "serial_ndlcom::Task")
+    , serial_ndlcom(this, taskName, "serial_ndlcom::Task")
 {
 
 }

@@ -15,10 +15,9 @@ namespace init
 class NDLComSerial : public Base
 {
 public:
-    NDLComSerial(const std::string &receiverTaskName, const std::string &senderTaskName);
+    NDLComSerial(const std::string &taskName);
     
-    DependentTask<serial_ndlcom::proxies::Task> serial_ndlcomReceiver;
-    DependentTask<serial_ndlcom::proxies::Task> serial_ndlcomSender;
+    DependentTask<serial_ndlcom::proxies::Task> serial_ndlcom;
     
 };
 
