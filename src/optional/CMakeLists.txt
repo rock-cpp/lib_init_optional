@@ -86,10 +86,10 @@ optional_init(tilt_scan-proxies
     SOURCES
         TiltScan.cpp
     HEADERS
-    TiltScan.hpp
+        TiltScan.hpp
 )
 
-optional_init(laser_filter-proxies
+optional_init(projection-proxies
     SOURCES
         ColorizedPointcloud.cpp
     HEADERS
@@ -103,6 +103,7 @@ optional_init(hokuyo-proxies
     HEADERS
         HokuyoLaserDriver.hpp
 )
+optional_init(laser_filter-proxies)
 
 optional_init(sb_object_detection-proxies
     SOURCES
