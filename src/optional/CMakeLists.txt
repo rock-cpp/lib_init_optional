@@ -168,3 +168,7 @@ optional_init(trajectory_generation-proxies
         TrajectoryGeneration.hpp
         TrajectoryGenerationVelocity.hpp
 )
+
+optional_init(kccd-proxies)
+
+optional_init(waypoint_provider-proxies)
