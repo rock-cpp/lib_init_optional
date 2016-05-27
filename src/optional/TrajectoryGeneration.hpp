@@ -1,7 +1,8 @@
 #pragma once
 
-#include <lib_init/Base.hpp>
-#include <lib_init/JointDriver.hpp>
+#include "../Base.hpp"
+#include "../JointDriver.hpp"
+#include <base/JointsTrajectory.hpp>
 
 namespace trajectory_generation {
     namespace proxies {
@@ -18,8 +19,14 @@ protected:
     
 public:
     DependentTask< trajectory_generation::proxies::Task > trajCtrlTask;
-    TrajectoryControl(JointDriver &jd, const std::string &trajCtrlTaskName);
+    TrajectoryGeneration(JointDriver &jd, const std::string &trajCtrlTaskName);
+    
     virtual bool connect();
+    
+    virtual InputProxyPort< base::samples::Joints >& getPositionTargetPort();
+    virtual InputProxyPort< base::JointsTrajectory >& getTrajectoryTargetPort();
+    
+    virtual OutputProxyPort< base::samples::Joints >& getJointStatusPort();
 };
 
 }

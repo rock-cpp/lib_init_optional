@@ -152,3 +152,19 @@ optional_init(traversability-proxies
     HEADERS
         TraversabilitySimple.hpp
 )
+
+optional_init(wbc-proxies
+    SOURCES
+        WholeBodyControl.cpp
+    HEADERS
+        WholeBodyControl.hpp
+)
+
+optional_init(trajectory_generation-proxies
+    SOURCES
+        TrajectoryGeneration.cpp
+        TrajectoryGenerationVelocity.cpp
+    HEADERS
+        TrajectoryGeneration.hpp
+        TrajectoryGenerationVelocity.hpp
+)

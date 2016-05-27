@@ -5,7 +5,7 @@ namespace init
 {
     
 TrajectoryGeneration::TrajectoryGeneration(JointDriver& jd, const std::string& trajCtrlTaskName)
-    : Base("TrajectoryControl")
+    : Base("TrajectoryGeneration")
     , jointDriver(jd)
     , trajCtrlTask(this, trajCtrlTaskName, "trajectory_generation::Task")
 {
@@ -18,6 +18,21 @@ bool TrajectoryGeneration::connect()
     trajCtrlTask.getConcreteProxy()->cmd.connectTo(jointDriver.getCommandPort());
     
     return Base::connect();
+}
+
+InputProxyPort< base::samples::Joints >& TrajectoryGeneration::getPositionTargetPort()
+{
+    return trajCtrlTask.getConcreteProxy()->position_target;
+}
+
+InputProxyPort< base::JointsTrajectory >& TrajectoryGeneration::getTrajectoryTargetPort()
+{
+    return trajCtrlTask.getConcreteProxy()->trajectory_target;
+}
+
+OutputProxyPort< base::samples::Joints >& TrajectoryGeneration::getJointStatusPort()
+{
+    return jointDriver.getStatusPort();
 }
 
 }

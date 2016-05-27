@@ -21,9 +21,12 @@ protected:
     
 public:
     DependentTask< trajectory_generation::proxies::RMLVelocityTask > trajCtrlTask;
-    TrajectoryControl(JointDriver &jd, const std::string &trajCtrlTaskName);
+    TrajectoryGenerationVelocity(JointDriver &jd, const std::string &trajCtrlTaskName);
     
-    virtual InputProxyPort< base::commands::Joints >& getVelocityTargetPort();
+    virtual InputProxyPort< base::samples::Joints >& getVelocityTargetPort();
+    virtual InputProxyPort< trajectory_generation::ConstrainedJointsCmd >& getConstrainedVelocityTargetPort();
+    
+    virtual OutputProxyPort< base::samples::Joints >& getJointStatusPort();
     
     virtual bool connect();
 };

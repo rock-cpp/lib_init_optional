@@ -25,4 +25,14 @@ InputProxyPort< base::commands::Joints >& TrajectoryGenerationVelocity::getVeloc
     return trajCtrlTask.getConcreteProxy()->velocity_target;
 }
 
+InputProxyPort< trajectory_generation::ConstrainedJointsCmd >& TrajectoryGenerationVelocity::getConstrainedVelocityTargetPort()
+{
+    return trajCtrlTask.getConcreteProxy()->constrained_velocity_target;
+}
+
+OutputProxyPort< base::samples::Joints >& TrajectoryGenerationVelocity::getJointStatusPort()
+{
+    return jointDriver.getStatusPort();
+}
+
 }
