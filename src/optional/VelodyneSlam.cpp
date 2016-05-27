@@ -7,41 +7,36 @@ namespace init
 
 VelodyneSlam::VelodyneSlam(VelodyneDriver &vd, const std::string &velodyneSlamTaskName)
     : Base("VelodyneSlam")
-    , velodyne(vd)
+    , velodyne(&vd)
+    , simVelodyne(nullptr)
     , velodyneSlamTask(this, velodyneSlamTaskName, "graph_slam::VelodyneSLAM")
 {
-    registerDependency(velodyne);
+    registerDependency(*velodyne);
 }
+
+VelodyneSlam::VelodyneSlam(SimVelodyneDriver& vd, const std::string& velodyneSlamTaskName)
+    : Base("VelodyneSlam")
+    , velodyne(nullptr)
+    , simVelodyne(&vd)
+    , velodyneSlamTask(this, velodyneSlamTaskName, "graph_slam::VelodyneSLAM")
+{
+    registerDependency(*simVelodyne);
+
+}
+
 
 bool VelodyneSlam::connect()
 {
-    velodyne.getLaserScansPort().connectTo(velodyneSlamTask.getConcreteProxy()->lidar_samples);
+    if(velodyne)
+    {
+        velodyne->getLaserScansPort().connectTo(velodyneSlamTask.getConcreteProxy()->lidar_samples, RTT::ConnPolicy::buffer(50));
+    }
+    if(simVelodyne)
+    {
+        simVelodyne->velodyneTask.getConcreteProxy()->pointcloud.connectTo(velodyneSlamTask.getConcreteProxy()->simulated_pointcloud, RTT::ConnPolicy::buffer(50));
+    }
     return init::Base::connect();
 }
 
-OutputProxyPort< base::samples::RigidBodyState >& VelodyneSlam::getPoseSamplesPort()
-{
-    return velodyneSlamTask.getConcreteProxy()->pose_samples;
-}
-
-InputProxyPort< base::samples::RigidBodyState >& VelodyneSlam::getOdometrySamplesPort()
-{
-    return velodyneSlamTask.getConcreteProxy()->odometry_samples;
-}
-
-OutputProxyPort< graph_slam::PoseProviderUpdate >& VelodyneSlam::getPoseProviderUpdatePort()
-{
-    return velodyneSlamTask.getConcreteProxy()->pose_provider_update;
-}
-
-InputProxyPort< base::samples::DepthMap >& VelodyneSlam::getLidarSamplesPort()
-{
-    return velodyneSlamTask.getConcreteProxy()->lidar_samples;
-}
-
-OutputProxyPort< RTT::extras::ReadOnlyPointer< std::vector< envire::BinaryEvent > > >& VelodyneSlam::getEnvireMapPort()
-{
-    return velodyneSlamTask.getConcreteProxy()->envire_map;
-}
 
 }
