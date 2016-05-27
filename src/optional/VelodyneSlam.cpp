@@ -6,7 +6,7 @@ namespace init
 {
 
 VelodyneSlam::VelodyneSlam(VelodyneDriver &vd, const std::string &velodyneSlamTaskName)
-    : Base("VelodyneSlam")
+    : PositionProvider("VelodyneSlam")
     , velodyne(&vd)
     , simVelodyne(nullptr)
     , velodyneSlamTask(this, velodyneSlamTaskName, "graph_slam::VelodyneSLAM")
@@ -15,7 +15,7 @@ VelodyneSlam::VelodyneSlam(VelodyneDriver &vd, const std::string &velodyneSlamTa
 }
 
 VelodyneSlam::VelodyneSlam(SimVelodyneDriver& vd, const std::string& velodyneSlamTaskName)
-    : Base("VelodyneSlam")
+    : PositionProvider("VelodyneSlam")
     , velodyne(nullptr)
     , simVelodyne(&vd)
     , velodyneSlamTask(this, velodyneSlamTaskName, "graph_slam::VelodyneSLAM")
@@ -24,6 +24,10 @@ VelodyneSlam::VelodyneSlam(SimVelodyneDriver& vd, const std::string& velodyneSla
 
 }
 
+VelodyneSlam::~VelodyneSlam()
+{
+
+}
 
 bool VelodyneSlam::connect()
 {
@@ -36,6 +40,11 @@ bool VelodyneSlam::connect()
         simVelodyne->velodyneTask.getConcreteProxy()->pointcloud.connectTo(velodyneSlamTask.getConcreteProxy()->simulated_pointcloud, RTT::ConnPolicy::buffer(50));
     }
     return init::Base::connect();
+}
+
+OutputProxyPort< base::samples::RigidBodyState >& VelodyneSlam::getPositionSamples()
+{
+    return velodyneSlamTask.getConcreteProxy()->pose_samples;
 }
 
 

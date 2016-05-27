@@ -1,6 +1,6 @@
 #pragma once
 
-#include <lib_init/Base.hpp>
+#include <lib_init/PositionProvider.hpp>
 #include "VelodyneDriver.hpp"
 #include "SimVelodyneDriver.hpp"
 #include <graph_slam/GraphSlamDebugTypes.hpp>
@@ -15,16 +15,19 @@ namespace graph_slam {
 namespace init
 {
 
-class VelodyneSlam : public Base {
+class VelodyneSlam : public PositionProvider {
 protected:
     VelodyneDriver *velodyne;
     SimVelodyneDriver *simVelodyne;
 
 public:
     DependentTask< graph_slam::proxies::VelodyneSLAM > velodyneSlamTask;
+    virtual ~VelodyneSlam();
     VelodyneSlam(VelodyneDriver &vd, const std::string &velodyneSlamTaskName);
     VelodyneSlam(SimVelodyneDriver &vd, const std::string &velodyneSlamTaskName);
     virtual bool connect();
+    
+    virtual OutputProxyPort< base::samples::RigidBodyState >& getPositionSamples();
 };
 
 }

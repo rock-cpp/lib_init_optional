@@ -1,13 +1,18 @@
 #include "SkidOdometry.hpp"
 
 init::SkidOdometry::SkidOdometry(const std::string& odometryName, init::JointDriver& jointDispatcher, init::IMUDriver& imu)
-    : Base("SkidOdometry")
+    : PositionProvider("SkidOdometry")
     , joints(jointDispatcher)
     , imu(imu)
     , skidOdometry(this, odometryName, "odometry::Skid")
 {
     registerDependency(jointDispatcher);
     registerDependency(imu);
+}
+
+init::SkidOdometry::~SkidOdometry()
+{
+
 }
 
 bool init::SkidOdometry::connect()
@@ -17,7 +22,7 @@ bool init::SkidOdometry::connect()
     return init::Base::connect();
 }
 
-OutputProxyPort< base::samples::RigidBodyState > init::SkidOdometry::getOdometrySamplesPort()
+OutputProxyPort< base::samples::RigidBodyState >& init::SkidOdometry::getPositionSamples()
 {
     return skidOdometry.getConcreteProxy()->odometry_samples;
 }
