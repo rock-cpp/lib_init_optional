@@ -58,6 +58,8 @@ rock_library(lib_init
         IMUDriver.hpp
         JointDriver.hpp
         LaserDriver.hpp
+        MotionControl2D.hpp
+        PositionProvider.hpp
         states/Init.hpp
 #         ${HDR_EXTRA}
     DEPS_PKGCONFIG
