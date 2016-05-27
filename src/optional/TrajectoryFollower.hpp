@@ -1,7 +1,6 @@
 #pragma once
 
 #include "VelodyneSlam.hpp"
-#include <trajectory_follower/Motion2D.hpp>
 #include <base/Trajectory.hpp>
 #include <lib_init/PositionProvider.hpp>
 #include <lib_init/MotionControl2D.hpp>
