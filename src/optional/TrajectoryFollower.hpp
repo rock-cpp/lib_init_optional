@@ -3,6 +3,8 @@
 #include "VelodyneSlam.hpp"
 #include <trajectory_follower/Motion2D.hpp>
 #include <base/Trajectory.hpp>
+#include <lib_init/PositionProvider.hpp>
+#include <lib_init/MotionControl2D.hpp>
 
 namespace trajectory_follower {
      namespace proxies {
@@ -15,14 +17,12 @@ namespace init
 
 class TrajectoryFollower : public Base {
 protected:
-    
+    MotionControl2D &motionControl2d;
+    PositionProvider &posProv;
 public:
     DependentTask< trajectory_follower::proxies::Task > trajectoryFollowerTask;
-    TrajectoryFollower(const std::string &trajectoryFollowerTaskName);
+    TrajectoryFollower(MotionControl2D &ctrl, PositionProvider &posProv, const std::string &trajectoryFollowerTaskName);
     virtual bool connect();
-    OutputProxyPort< trajectory_follower::Motion2D >& getMotionCmdPort();
-    InputProxyPort< base::samples::RigidBodyState >& getRobotPosePort();
-    InputProxyPort< std::vector< base::Trajectory > >& getTrajectoryPort();
 };
 
 
