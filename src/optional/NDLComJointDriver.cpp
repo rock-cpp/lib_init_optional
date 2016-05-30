@@ -22,9 +22,9 @@ bool NDLComJointDriver::connect()
     return JointDriver::connect();
 }
 
-bool NDLComJointDriver::configure(orocos_cpp::TransformerHelper& trHelper, orocos_cpp::ConfigurationHelper& confHelper)
+bool NDLComJointDriver::configure()
 {
-    jointDriver.getConcreteProxy()->addConfigBitsSet( "BLDCJoint", "CONFIG", std::vector<std::string>({"RESET_ERRORS"}), std::vector<std::string>() );
+    jointDriver.getConcreteProxy()->addConfigBitsSet( "WheelModule", "CONFIG", std::vector<std::string>({"RESET_ERRORS"}), std::vector<std::string>() );
     
     return JointDriver::configure();
 }

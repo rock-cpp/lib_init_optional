@@ -20,7 +20,7 @@ public:
     NDLComJointDriver(NDLComSerial &serial, const std::string &jointTaskName);
     //virtual void initProxies();
     virtual bool connect();
-    virtual bool configure(orocos_cpp::TransformerHelper& trHelper, orocos_cpp::ConfigurationHelper& confHelper);
+    virtual bool configure();
     virtual bool start();
     
     virtual OutputProxyPort<base::samples::Joints> &getStatusPort();
