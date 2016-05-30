@@ -52,7 +52,7 @@ namespace init {
         
         
         virtual bool connect();
-        virtual bool configure(orocos_cpp::TransformerHelper& trHelper, orocos_cpp::ConfigurationHelper& confHelper);
+        virtual bool configure();
         
         virtual InputProxyPort< base::samples::RigidBodyState >& getCartPosTargetPort();
         virtual InputProxyPort< base::samples::Joints >& getPositionTargetPort();

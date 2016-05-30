@@ -46,10 +46,10 @@ bool WholeBodyControl::connect()
     return true;
 }
 
-bool WholeBodyControl::configure(orocos_cpp::TransformerHelper& trHelper, orocos_cpp::ConfigurationHelper& confHelper)
+bool WholeBodyControl::configure()
 {
     
-    bool ret = init::Base::configure(trHelper, confHelper);
+    bool ret = init::Base::configure();
     if(!ret)
         return ret;
     

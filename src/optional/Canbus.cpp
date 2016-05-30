@@ -11,7 +11,7 @@ void init::Canbus::initProxies()
     init::Base::initProxies();
 }
 
-bool init::Canbus::configure(orocos_cpp::TransformerHelper& trHelper, orocos_cpp::ConfigurationHelper& confHelper)
+bool init::Canbus::configure()
 {
     
     bool ret = init::Base::configure();

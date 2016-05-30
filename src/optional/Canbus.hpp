@@ -29,7 +29,7 @@ public:
     virtual ~Canbus() {};
     
     virtual void initProxies();
-    virtual bool configure(orocos_cpp::TransformerHelper& trHelper, orocos_cpp::ConfigurationHelper& confHelper);
+    virtual bool configure();
     
     bool watch(const std::string& name, int id, int mask);
     InputProxyPort<canbus::Message> &getMsgInPort();
