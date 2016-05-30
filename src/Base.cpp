@@ -73,17 +73,43 @@ bool Base::connect()
 // }
 //
 
-bool Base::configure(orocos_cpp::TransformerHelper &trHelper, orocos_cpp::ConfigurationHelper &confHelper)
+bool Base::applyConfig(orocos_cpp::ConfigurationHelper& confHelper)
 {
     for(TaskWithConfig &t: allTasks)
     {
-        confHelper.applyConfig(t.proxy, t.task->getConfig());
+        if(!confHelper.applyConfig(t.proxy, t.task->getConfig()))
+        {
+            std::string msg("init::Base::Failed to applyConfig [");
+            for(const std::string &conf: t.task->getConfig())
+                msg += conf + ", ";
+            msg += "] for Task " + t.proxy->getName();
+            
+            std::cout << msg << std::endl;
+            
+            throw std::runtime_error(msg);
+        }
+    }
+        
+    return true;
+}
 
+bool Base::setupTransformer(orocos_cpp::TransformerHelper& trHelper)
+{
+    for(TaskWithConfig &t: allTasks)
+    {
         if(!trHelper.configureTransformer(t.proxy))
         {
             throw std::runtime_error("init::Base::Failed to configure transformer for task " + t.proxy->getName());
         }
+    }
+    return true;
+}
 
+
+bool Base::configure()
+{
+    for(TaskWithConfig &t: allTasks)
+    {
         std::cout << "init::Base::Configuring " << t.proxy->getName() << std::endl;
         if(!t.proxy->configure())
         {

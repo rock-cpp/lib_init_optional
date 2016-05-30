@@ -157,7 +157,9 @@ bool Init::startTasksRecursive(init::Base& toStart, std::vector<init::Base *> &s
 
     toStart.initProxies();
     toStart.connect();
-    toStart.configure(trHelper, confHelper);
+    toStart.applyConfig(confHelper);
+    toStart.setupTransformer(trHelper);
+    toStart.configure();
     toStart.start();
 
     started.push_back(&toStart);
