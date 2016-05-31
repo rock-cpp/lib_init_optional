@@ -59,6 +59,11 @@ StartCommon::StartCommon(int argc, char** argv)
     state_machine::Config *config = &(state_machine::Config::getConfig(libConfig::Bundle::getInstance().getConfigurationDirectory() + "../taskmanagement.yml"));
 }
 
+void StartCommon::setLoggingExcludes(const std::vector< std::string >& excludeList)
+{
+    logExcludeList = excludeList;
+}
+
 int StartCommon::runCommon(state_machine::State *initialState, const std::vector< init::Base* >& toInit)
 {
     init::Container all(toInit); 
@@ -105,7 +110,7 @@ int StartCommon::runCommon(state_machine::State *initialState, const std::vector
 
     if(loggingActive)
     {
-        initializer.activateLogging();
+        initializer.activateLogging(logExcludeList);
     }
         
     stateMachine.start(&initializer);

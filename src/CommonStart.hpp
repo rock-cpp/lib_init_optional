@@ -35,7 +35,7 @@ class StartCommon
     orocos_cpp::TransformerHelper *transformerHelper;
     orocos_cpp::ConfigurationHelper *configHelper;
     smurf::Robot *robot;
-    
+    std::vector<std::string> logExcludeList;
 public:
     StartCommon(int argc, char **argv);
 
@@ -53,6 +53,8 @@ public:
         
         return runCommon(initialState, toInit);
     }
+    
+    void setLoggingExcludes(const std::vector<std::string> &excludeList);
     
     template< class Startup>
     int run(const std::function<state_machine::State *(Startup &start, std::vector<init::Base *> &toInit)> &ownstuff)
