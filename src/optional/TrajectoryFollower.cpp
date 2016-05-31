@@ -13,6 +13,7 @@ TrajectoryFollower::TrajectoryFollower(PositionProvider &posProv, MotionControl2
     , trajectoryFollowerTask(this, trajectoryFollowerTaskName)
 {
     registerDependency(posProv);
+    registerDependency(motionController);
 }
 
 bool TrajectoryFollower::connect()

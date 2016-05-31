@@ -171,5 +171,5 @@ optional_init(trajectory_generation-proxies
 )
 
 optional_init(kccd-proxies)
-
+optional_init(ctrl_lib-proxies)
 optional_init(waypoint_provider-proxies)
