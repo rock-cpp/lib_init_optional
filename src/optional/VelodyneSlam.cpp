@@ -44,8 +44,6 @@ bool VelodyneSlam::connect()
         simVelodyne->velodyneTask.getConcreteProxy()->pointcloud.connectTo(velodyneSlamTask.getConcreteProxy()->simulated_pointcloud, RTT::ConnPolicy::buffer(50));
     }
     
-    odometry.getPositionSamples().connectTo(velodyneSlamTask.getConcreteProxy()->odometry_samples);
-    
     return init::Base::connect();
 }
 
