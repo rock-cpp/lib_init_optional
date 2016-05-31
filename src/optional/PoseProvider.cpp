@@ -1,6 +1,7 @@
 #include "PoseProvider.hpp"
 
 #include <localization/proxies/PoseProvider.hpp>
+#include <graph_slam/proxies/VelodyneSLAM.hpp>
 
 namespace init
 {
@@ -18,7 +19,7 @@ PoseProvider::PoseProvider(VelodyneSlam &slam, PositionProvider &odometry, const
 
 bool PoseProvider::connect()
 {
-    slam.getPoseProviderUpdatePort().connectTo(poseProviderTask.getConcreteProxy()->pose_provider_update);
+    slam.velodyneSlamTask.getConcreteProxy()->pose_provider_update.connectTo(poseProviderTask.getConcreteProxy()->pose_provider_update);
     odometry.getPositionSamples().connectTo(poseProviderTask.getConcreteProxy()->odometry_samples);
     
     return init::Base::connect();

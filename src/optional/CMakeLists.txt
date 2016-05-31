@@ -160,6 +160,10 @@ optional_init(wbc-proxies
     HEADERS
         WholeBodyControl.hpp
 )
+optional_init(kccd-proxies)
+optional_init(ctrl_lib-proxies)
+optional_init(waypoint_provider-proxies)
+
 
 optional_init(trajectory_generation-proxies
     SOURCES
@@ -169,7 +173,3 @@ optional_init(trajectory_generation-proxies
         TrajectoryGeneration.hpp
         TrajectoryGenerationVelocity.hpp
 )
-
-optional_init(kccd-proxies)
-optional_init(ctrl_lib-proxies)
-optional_init(waypoint_provider-proxies)

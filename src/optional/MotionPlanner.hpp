@@ -2,7 +2,7 @@
 
 #include <lib_init/DependentTask.hpp>
 #include <lib_init/MotionPlannerProvider.hpp>
-#include <lib_init/PoseProvider.hpp>
+#include "PoseProvider.hpp"
 #include <lib_init/TraversabilityMapProvider.hpp>
 #include <orocos_cpp_base/ProxyPort.hpp>
 #include <base/Trajectory.hpp>

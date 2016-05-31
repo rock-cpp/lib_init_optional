@@ -3,7 +3,6 @@
 #include <lib_init/DependentTask.hpp>
 #include <lib_init/Base.hpp>
 #include <orocos_cpp_base/ProxyPort.hpp>
-#include <graph_slam/GraphSlamDebugTypes.hpp>
 #include <lib_init/PositionProvider.hpp>
 #include <lib_init/VelodyneSlam.hpp>
 

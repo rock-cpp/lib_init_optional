@@ -1,6 +1,7 @@
 #include "TraversabilitySimple.hpp"
 
 #include <traversability/proxies/Simple.hpp>
+#include <graph_slam/proxies/VelodyneSLAM.hpp>
 
 namespace init
 {
@@ -15,7 +16,7 @@ TraversabilitySimple::TraversabilitySimple(VelodyneSlam& slam, const std::string
 
 bool TraversabilitySimple::connect()
 {
-    slam.getMap().connectTo(traversabilityTask.getConcreteProxy()->mls_map);
+    slam.velodyneSlamTask.getConcreteProxy()->envire_map.connectTo(traversabilityTask.getConcreteProxy()->mls_map);
     return init::Base::connect();
 }
 
