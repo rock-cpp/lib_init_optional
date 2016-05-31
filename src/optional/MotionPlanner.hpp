@@ -1,7 +1,9 @@
 #pragma once
 
 #include <lib_init/DependentTask.hpp>
-#include <lib_init/Base.hpp>
+#include <lib_init/MotionPlannerProvider.hpp>
+#include <lib_init/PoseProvider.hpp>
+#include <lib_init/TraversabilityMapProvider.hpp>
 #include <orocos_cpp_base/ProxyPort.hpp>
 #include <base/Trajectory.hpp>
 #include <envire/core/EventTypes.hpp>
@@ -15,16 +17,15 @@ namespace motion_planning_libraries {
 namespace init
 {
 
-class MotionPlanner : public Base {
-protected:
+class MotionPlanner : public MotionPlannerProvider {
+    PoseProvider &poseProvider;
+    TraversabilityMapProvider &travMapProvider;
     
 public:
     DependentTask< motion_planning_libraries::proxies::Task > motionPlanningTask;
-    MotionPlanner(const std::string &motionPlanningTaskName);
+    MotionPlanner(PoseProvider &poseProvider, TraversabilityMapProvider &travMapProvider, const std::string &motionPlanningTaskName);
     virtual bool connect();
-    OutputProxyPort< std::vector< base::Trajectory > >& getTrajectoryPort();
-    InputProxyPort< base::samples::RigidBodyState >& getStartPoseSamplesPort();
-    InputProxyPort< RTT::extras::ReadOnlyPointer< std::vector< envire::BinaryEvent > > >& getTraversabilityMapPort();
+    virtual OutputProxyPort< std::vector< base::Trajectory > >& getTrajectories();
 };
 
 }

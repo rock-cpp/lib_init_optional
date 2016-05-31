@@ -4,6 +4,8 @@
 #include <lib_init/Base.hpp>
 #include <orocos_cpp_base/ProxyPort.hpp>
 #include <graph_slam/GraphSlamDebugTypes.hpp>
+#include <lib_init/PositionProvider.hpp>
+#include <lib_init/VelodyneSlam.hpp>
 
 namespace localization {
      namespace proxies {
@@ -14,16 +16,16 @@ namespace localization {
 namespace init
 {
 
-class PoseProvider : public Base {
+class PoseProvider : public PositionProvider {
 protected:
+    VelodyneSlam &slam;
+    PositionProvider &odometry;
     
 public:
     DependentTask< localization::proxies::PoseProvider > poseProviderTask;
-    PoseProvider(const std::string &poseProviderTaskName);
+    PoseProvider(VelodyneSlam &slam, PositionProvider &odometry, const std::string &poseProviderTaskName);
     virtual bool connect();
-    OutputProxyPort< base::samples::RigidBodyState >& getPoseSamplesPort();
-    InputProxyPort< base::samples::RigidBodyState >& getOdometrySamplesPort();
-    InputProxyPort< graph_slam::PoseProviderUpdate >& getPoseProviderUpdatePort();
+    virtual OutputProxyPort< base::samples::RigidBodyState >& getPositionSamples();
 };
 
 }

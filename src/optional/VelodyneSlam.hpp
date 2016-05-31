@@ -19,15 +19,19 @@ class VelodyneSlam : public PositionProvider {
 protected:
     VelodyneDriver *velodyne;
     SimVelodyneDriver *simVelodyne;
+    PositionProvider &odometry;
 
 public:
     DependentTask< graph_slam::proxies::VelodyneSLAM > velodyneSlamTask;
     virtual ~VelodyneSlam();
-    VelodyneSlam(VelodyneDriver &vd, const std::string &velodyneSlamTaskName);
-    VelodyneSlam(SimVelodyneDriver &vd, const std::string &velodyneSlamTaskName);
+    VelodyneSlam(VelodyneDriver &vd, PositionProvider &odometry, const std::string &velodyneSlamTaskName);
+    VelodyneSlam(SimVelodyneDriver &vd, PositionProvider &odometry, const std::string &velodyneSlamTaskName);
     virtual bool connect();
     
     virtual OutputProxyPort< base::samples::RigidBodyState >& getPositionSamples();
+    virtual OutputProxyPort<RTT::extras::ReadOnlyPointer<envire::BinaryEvents>> &getMap();
+    virtual OutputProxyPort<graph_slam::PoseProviderUpdate> &getPoseProviderUpdatePort();
+    bool generateMap();
 };
 
 }

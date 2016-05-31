@@ -18,7 +18,6 @@ init::SkidOdometry::~SkidOdometry()
 bool init::SkidOdometry::connect()
 {
     joints.getStatusPort().connectTo(skidOdometry.getConcreteProxy()->actuator_samples);
-    
     return init::Base::connect();
 }
 

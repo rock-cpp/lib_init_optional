@@ -15,12 +15,14 @@ namespace init
 
 class TrajectoryFollower : public Base {
 protected:
-    MotionControl2D &motionControl2d;
     PositionProvider &posProv;
+    MotionControl2D &motionController;
+    
 public:
     DependentTask< trajectory_follower::proxies::Task > trajectoryFollowerTask;
-    TrajectoryFollower(MotionControl2D &ctrl, PositionProvider &posProv, const std::string &trajectoryFollowerTaskName);
+    TrajectoryFollower(PositionProvider &posProv,  MotionControl2D &motionController, const std::string &trajectoryFollowerTaskName);
     virtual bool connect();
+    virtual OutputProxyPort<base::commands::Motion2D> &getCommandOut();
 };
 
 

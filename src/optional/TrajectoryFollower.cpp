@@ -6,20 +6,25 @@ namespace init
 {
 
     
-TrajectoryFollower::TrajectoryFollower(MotionControl2D &ctrl, PositionProvider &posProv, const std::string &trajectoryFollowerTaskName)
+TrajectoryFollower::TrajectoryFollower(PositionProvider &posProv, MotionControl2D &motionController, const std::string &trajectoryFollowerTaskName)
     : Base("TrajectoryFollower")
-    , motionControl2d(ctrl)
     , posProv(posProv)
+    , motionController(motionController)
     , trajectoryFollowerTask(this, trajectoryFollowerTaskName)
 {
+    registerDependency(posProv);
 }
 
 bool TrajectoryFollower::connect()
 {
-    trajectoryFollowerTask.getConcreteProxy()->motion_command.connectTo(motionControl2d.getCommand2DPort());
     posProv.getPositionSamples().connectTo(trajectoryFollowerTask.getConcreteProxy()->robot_pose);
-    
+    trajectoryFollowerTask.getConcreteProxy()->motion_command.connectTo(motionController.getCommand2DPort());    
     return init::Base::connect();
+}
+
+OutputProxyPort< base::commands::Motion2D >& TrajectoryFollower::getCommandOut()
+{
+    return trajectoryFollowerTask.getConcreteProxy()->motion_command;
 }
 
 

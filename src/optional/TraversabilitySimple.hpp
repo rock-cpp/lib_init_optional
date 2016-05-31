@@ -1,9 +1,7 @@
 #pragma once
 
-#include <lib_init/Base.hpp>
-#include <envire/core/EventTypes.hpp>
-#include <rtt/extras/ReadOnlyPointer.hpp>
-#include <orocos_cpp_base/ProxyPort.hpp>
+#include <lib_init/TraversabilityMapProvider.hpp>
+#include <lib_init/VelodyneSlam.hpp>
 
 namespace traversability {
      namespace proxies {
@@ -11,18 +9,19 @@ namespace traversability {
      }
 }
 
+
 namespace init
 {
 
-class TraversabilitySimple : public Base {
-protected:
-
+class TraversabilitySimple : public TraversabilityMapProvider {
+    VelodyneSlam &slam;
+    
 public:
     DependentTask< traversability::proxies::Simple > traversabilityTask;
-    TraversabilitySimple(const std::string &traversabilityTaskName);
+    TraversabilitySimple(VelodyneSlam &slam, const std::string &traversabilityTaskName);
+    
+    virtual OutputProxyPort< RTT::extras::ReadOnlyPointer< envire::BinaryEvents > >& getTraversabilityMapPort();
     virtual bool connect();
-    InputProxyPort< RTT::extras::ReadOnlyPointer< ::std::vector< ::envire::BinaryEvent > > >& getMLSMapPort();
-    OutputProxyPort< RTT::extras::ReadOnlyPointer< ::std::vector< ::envire::BinaryEvent > > >& getTraversabilityMapPort();
 };
 
 }

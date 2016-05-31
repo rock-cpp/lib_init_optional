@@ -59,8 +59,10 @@ rock_library(lib_init
         JointDriver.hpp
         LaserDriver.hpp
         MotionControl2D.hpp
+        MotionPlannerProvider.hpp
         PositionProvider.hpp
         states/Init.hpp
+        TraversabilityMapProvider.hpp
 #         ${HDR_EXTRA}
     DEPS_PKGCONFIG
         base-lib

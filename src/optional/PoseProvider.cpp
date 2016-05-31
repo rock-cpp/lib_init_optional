@@ -5,28 +5,27 @@
 namespace init
 {
 
-PoseProvider::PoseProvider(const std::string &poseProviderTaskName)
-    : Base("PoseProvider"),
-      poseProviderTask(this, poseProviderTaskName)
+
+PoseProvider::PoseProvider(VelodyneSlam &slam, PositionProvider &odometry, const std::string &poseProviderTaskName)
+    : PositionProvider("PoseProvider")
+    , slam(slam)
+    , odometry(odometry)
+    , poseProviderTask(this, poseProviderTaskName)
 {
+    registerDependency(slam);
+    registerDependency(odometry);
 }
 
 bool PoseProvider::connect()
 {
+    slam.getPoseProviderUpdatePort().connectTo(poseProviderTask.getConcreteProxy()->pose_provider_update);
+    odometry.getPositionSamples().connectTo(poseProviderTask.getConcreteProxy()->odometry_samples);
+    
     return init::Base::connect();
 }
 
-InputProxyPort< base::samples::RigidBodyState >& PoseProvider::getOdometrySamplesPort()
-{
-    return poseProviderTask.getConcreteProxy()->odometry_samples;
-}
 
-InputProxyPort< graph_slam::PoseProviderUpdate >& PoseProvider::getPoseProviderUpdatePort()
-{
-    return poseProviderTask.getConcreteProxy()->pose_provider_update;
-}
-
-OutputProxyPort< base::samples::RigidBodyState >& PoseProvider::getPoseSamplesPort()
+OutputProxyPort< base::samples::RigidBodyState >& PoseProvider::getPositionSamples()
 {
     return poseProviderTask.getConcreteProxy()->pose_samples;
 }

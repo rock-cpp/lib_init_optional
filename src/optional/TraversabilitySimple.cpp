@@ -5,21 +5,18 @@
 namespace init
 {
 
-TraversabilitySimple::TraversabilitySimple(const std::string& traversabilityTaskName)
-    : Base("TraversabilitySimple"),
-      traversabilityTask(this, traversabilityTaskName)
+TraversabilitySimple::TraversabilitySimple(VelodyneSlam& slam, const std::string& traversabilityTaskName)
+    : TraversabilityMapProvider("TraversabilitySimple")
+    , slam(slam)
+    , traversabilityTask(this, traversabilityTaskName)
 {
-
+    registerDependency(slam);
 }
 
 bool TraversabilitySimple::connect()
 {
+    slam.getMap().connectTo(traversabilityTask.getConcreteProxy()->mls_map);
     return init::Base::connect();
-}
-
-InputProxyPort< RTT::extras::ReadOnlyPointer< std::vector< envire::BinaryEvent > > >& TraversabilitySimple::getMLSMapPort()
-{
-    return traversabilityTask.getConcreteProxy()->mls_map;
 }
 
 OutputProxyPort< RTT::extras::ReadOnlyPointer< std::vector< envire::BinaryEvent > > >& TraversabilitySimple::getTraversabilityMapPort()

@@ -6,23 +6,26 @@
 namespace init
 {
 
-VelodyneSlam::VelodyneSlam(VelodyneDriver &vd, const std::string &velodyneSlamTaskName)
+VelodyneSlam::VelodyneSlam(VelodyneDriver &vd, PositionProvider &odometry, const std::string &velodyneSlamTaskName)
     : PositionProvider("VelodyneSlam")
     , velodyne(&vd)
     , simVelodyne(nullptr)
+    , odometry(odometry)
     , velodyneSlamTask(this, velodyneSlamTaskName)
 {
     registerDependency(*velodyne);
+    registerDependency(odometry);
 }
 
-VelodyneSlam::VelodyneSlam(SimVelodyneDriver& vd, const std::string& velodyneSlamTaskName)
+VelodyneSlam::VelodyneSlam(SimVelodyneDriver& vd, PositionProvider &odometry, const std::string& velodyneSlamTaskName)
     : PositionProvider("VelodyneSlam")
     , velodyne(nullptr)
     , simVelodyne(&vd)
+    , odometry(odometry)
     , velodyneSlamTask(this, velodyneSlamTaskName)
 {
     registerDependency(*simVelodyne);
-
+    registerDependency(odometry);
 }
 
 VelodyneSlam::~VelodyneSlam()
@@ -40,6 +43,9 @@ bool VelodyneSlam::connect()
     {
         simVelodyne->velodyneTask.getConcreteProxy()->pointcloud.connectTo(velodyneSlamTask.getConcreteProxy()->simulated_pointcloud, RTT::ConnPolicy::buffer(50));
     }
+    
+    odometry.getPositionSamples().connectTo(velodyneSlamTask.getConcreteProxy()->odometry_samples);
+    
     return init::Base::connect();
 }
 
@@ -47,6 +53,22 @@ OutputProxyPort< base::samples::RigidBodyState >& VelodyneSlam::getPositionSampl
 {
     return velodyneSlamTask.getConcreteProxy()->pose_samples;
 }
+
+OutputProxyPort< RTT::extras::ReadOnlyPointer< envire::BinaryEvents > >& VelodyneSlam::getMap()
+{
+    return velodyneSlamTask.getConcreteProxy()->envire_map;
+}
+
+OutputProxyPort< graph_slam::PoseProviderUpdate >& VelodyneSlam::getPoseProviderUpdatePort()
+{
+    return velodyneSlamTask.getConcreteProxy()->pose_provider_update;
+}
+
+bool VelodyneSlam::generateMap()
+{
+    return velodyneSlamTask.getConcreteProxy()->generateMap();
+}
+
 
 
 }
