@@ -29,9 +29,6 @@ public:
     virtual bool connect();
     
     virtual OutputProxyPort< base::samples::RigidBodyState >& getPositionSamples();
-    virtual OutputProxyPort<RTT::extras::ReadOnlyPointer<envire::BinaryEvents>> &getMap();
-    virtual OutputProxyPort<graph_slam::PoseProviderUpdate> &getPoseProviderUpdatePort();
-    bool generateMap();
 };
 
 }

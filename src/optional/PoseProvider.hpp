@@ -4,7 +4,7 @@
 #include <lib_init/Base.hpp>
 #include <orocos_cpp_base/ProxyPort.hpp>
 #include <lib_init/PositionProvider.hpp>
-#include <lib_init/VelodyneSlam.hpp>
+#include "VelodyneSlam.hpp"
 
 namespace localization {
      namespace proxies {

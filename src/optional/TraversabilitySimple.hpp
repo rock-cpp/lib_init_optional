@@ -1,7 +1,7 @@
 #pragma once
 
 #include <lib_init/TraversabilityMapProvider.hpp>
-#include <lib_init/VelodyneSlam.hpp>
+#include "VelodyneSlam.hpp"
 
 namespace traversability {
      namespace proxies {

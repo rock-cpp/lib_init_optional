@@ -52,21 +52,5 @@ OutputProxyPort< base::samples::RigidBodyState >& VelodyneSlam::getPositionSampl
     return velodyneSlamTask.getConcreteProxy()->pose_samples;
 }
 
-OutputProxyPort< RTT::extras::ReadOnlyPointer< envire::BinaryEvents > >& VelodyneSlam::getMap()
-{
-    return velodyneSlamTask.getConcreteProxy()->envire_map;
-}
-
-OutputProxyPort< graph_slam::PoseProviderUpdate >& VelodyneSlam::getPoseProviderUpdatePort()
-{
-    return velodyneSlamTask.getConcreteProxy()->pose_provider_update;
-}
-
-bool VelodyneSlam::generateMap()
-{
-    return velodyneSlamTask.getConcreteProxy()->generateMap();
-}
-
-
 
 }
