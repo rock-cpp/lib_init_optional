@@ -8,7 +8,7 @@ namespace init
  
 ArmPlannerJointSpace::ArmPlannerJointSpace(const std::string& armPlannerName)
     : ArmPlanner("ArmPlannerJointSpace")
-    , jointSpacePlanner(this, armPlannerName, "manipulator_motion_planner::JointSpaceTask")
+    , jointSpacePlanner(this, armPlannerName)
 {
 }
 

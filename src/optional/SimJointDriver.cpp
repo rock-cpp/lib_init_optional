@@ -4,7 +4,7 @@
 namespace init
 {
 
-SimJointDriver::SimJointDriver(Simulator& sim, const std::string &marsJointTaskName) : JointDriver("SimJointDriver"), jointTask(this, marsJointTaskName, "mars::Joints")
+SimJointDriver::SimJointDriver(Simulator& sim, const std::string &marsJointTaskName) : JointDriver("SimJointDriver"), jointTask(this, marsJointTaskName)
 {
     jointTask.setDeployment(sim.simulator.getDeployment());
     registerDependency(sim);

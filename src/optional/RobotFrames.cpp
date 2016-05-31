@@ -1,6 +1,9 @@
 #include "RobotFrames.hpp"
 
-init::RobotFrames::RobotFrames(const std::string& taskName, const std::vector< init::JointDriver* >& joints) : Base("RobotFrames"), joints(joints), robotFrames(this, taskName, "robot_frames::Task")
+init::RobotFrames::RobotFrames(const std::string& taskName, const std::vector< init::JointDriver* >& joints) : 
+    Base("RobotFrames")
+    , joints(joints)
+    , robotFrames(this, taskName)
 {
     for(JointDriver *d : joints)
     {

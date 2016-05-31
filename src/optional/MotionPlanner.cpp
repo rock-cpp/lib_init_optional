@@ -7,7 +7,7 @@ namespace init
 
 MotionPlanner::MotionPlanner(const std::string &motionPlanningTaskName)
     : Base("MotionPlanner"),
-      motionPlanningTask(this, motionPlanningTaskName, "motion_planning_libraries::Task")
+      motionPlanningTask(this, motionPlanningTaskName)
 {
 }
 

@@ -1,6 +1,6 @@
 #include "Dynamixel.hpp"
 
-init::Dynamixel::Dynamixel(const std::string& taskName) : JointDriver("Dynamixel"), dynamixel(this, taskName, "servo_dynamixel::Task")
+init::Dynamixel::Dynamixel(const std::string& taskName) : JointDriver("Dynamixel"), dynamixel(this, taskName)
 {
     
 }

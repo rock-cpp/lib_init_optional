@@ -5,7 +5,7 @@ namespace init
 
 SimLaserDriver::SimLaserDriver(Simulator &sim, const std::string& taskName) 
     : LaserDriver("SimLaserDriver")
-    , laserTask(this, taskName, "mars::LaserRangeFinder")
+    , laserTask(this, taskName)
 {
     laserTask.setDeployment(sim.simulator.getDeployment());
     registerDependency(sim);
@@ -14,12 +14,11 @@ SimLaserDriver::SimLaserDriver(Simulator &sim, const std::string& taskName)
 void SimLaserDriver::initProxies()
 {
     Base::initProxies();
-    laserPort = new OutputProxyPort< base::samples::LaserScan >(laserTask.getProxy()->getPort("scans"));
 }
 
 
 OutputProxyPort< base::samples::LaserScan >& SimLaserDriver::getLaserReadingsPort()
 {
-    return *laserPort;
+    return laserTask.getConcreteProxy()->scans;
 }
 }

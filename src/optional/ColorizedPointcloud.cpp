@@ -9,7 +9,7 @@ ColorizedPointcloud::ColorizedPointcloud(TiltScan &tSc, CameraDriver &camFront, 
     , tiltScan(tSc)
     , camFront(camFront)
     , camTower(camTower)
-    , colorizePointcloudMultiCamTask(this, colorizePointcloudMultiCamTaskName, "projection::ColorizePointcloudMultiCam")
+    , colorizePointcloudMultiCamTask(this, colorizePointcloudMultiCamTaskName)
 {
     registerDependency(tiltScan);
     registerDependency(camFront);

@@ -3,7 +3,7 @@
 namespace init
 {
     
-SimCameraDriver::SimCameraDriver(Simulator& sim, const std::string& taskName) : CameraDriver("SimCameraDriver"), cameraTask(this, taskName, "mars::Camera")
+SimCameraDriver::SimCameraDriver(Simulator& sim, const std::string& taskName) : CameraDriver("SimCameraDriver"), cameraTask(this, taskName)
 {
     cameraTask.setDeployment(sim.simulator.getDeployment());
     registerDependency(sim);
@@ -12,12 +12,11 @@ SimCameraDriver::SimCameraDriver(Simulator& sim, const std::string& taskName) : 
 void SimCameraDriver::initProxies()
 {
     init::Base::initProxies();
-    framePort = new OutputProxyPort< RTT::extras::ReadOnlyPointer< base::samples::frame::Frame > >(cameraTask.getProxy()->getPort("frame"));
 }
 
 OutputProxyPort< RTT::extras::ReadOnlyPointer< base::samples::frame::Frame > >& SimCameraDriver::getFramePort()
 {
-    return *framePort;
+    return cameraTask.getConcreteProxy()->frame;
 }
 
 }

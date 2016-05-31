@@ -10,7 +10,7 @@ TrajectoryFollower::TrajectoryFollower(MotionControl2D &ctrl, PositionProvider &
     : Base("TrajectoryFollower")
     , motionControl2d(ctrl)
     , posProv(posProv)
-    , trajectoryFollowerTask(this, trajectoryFollowerTaskName, "trajectory_follower::Task")
+    , trajectoryFollowerTask(this, trajectoryFollowerTaskName)
 {
 }
 

@@ -3,7 +3,7 @@
 namespace init
 {
 
-HokuyoLaserDriver::HokuyoLaserDriver(const std::string &hokuyoTaskName, const std::string &filterTaskName) : LaserDriver("HokuyoLaserDriver"), laserTask(this, hokuyoTaskName, "hokuyo::Task"), filterTask(this, filterTaskName, "laser_filter::Task")
+HokuyoLaserDriver::HokuyoLaserDriver(const std::string &hokuyoTaskName, const std::string &filterTaskName) : LaserDriver("HokuyoLaserDriver"), laserTask(this, hokuyoTaskName), filterTask(this, filterTaskName)
 {
 
 }

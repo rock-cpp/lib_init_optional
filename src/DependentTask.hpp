@@ -67,7 +67,7 @@ template <class TASK>
 class DependentTask : public DependentTaskBase
 {
 public:
-    DependentTask(Base *parent, const std::string &taskName, const std::string &taskModelName) : DependentTaskBase(parent, taskName, taskModelName)
+    DependentTask(Base *parent, const std::string &taskName) : DependentTaskBase(parent, taskName, TASK::ModelName)
     {
     }
     

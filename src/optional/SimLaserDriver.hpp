@@ -1,6 +1,7 @@
 #pragma once
 
 #include <lib_init/LaserDriver.hpp>
+#include <mars/proxies/LaserRangeFinder.hpp>
 #include "Simulator.hpp"
 
 namespace init
@@ -15,7 +16,6 @@ public:
 
     virtual OutputProxyPort< base::samples::LaserScan >& getLaserReadingsPort();
 protected:
-    DependentTaskBase laserTask;
-    OutputProxyPort< base::samples::LaserScan > *laserPort;
+    DependentTask<mars::proxies::LaserRangeFinder> laserTask;
 };
 }

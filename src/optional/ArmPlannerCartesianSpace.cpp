@@ -9,7 +9,7 @@ namespace init
 ArmPlannerCartesianSpace::ArmPlannerCartesianSpace(init::JointDriver& jointDispatcher, const std::string& armPlannerName)
     : ArmPlanner("ArmPlannerCartesianSpace")
     , jointDispatcher(jointDispatcher)
-    , cartesianSpacePlanner(this, armPlannerName, "manipulator_motion_planner::CartesianSpaceTask")
+    , cartesianSpacePlanner(this, armPlannerName)
 {
     registerDependency(jointDispatcher);
 }

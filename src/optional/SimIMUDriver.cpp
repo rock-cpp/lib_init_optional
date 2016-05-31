@@ -1,6 +1,6 @@
 #include "SimIMUDriver.hpp"
 
-init::SimIMUDriver::SimIMUDriver(const std::string &imuTaskName, init::Simulator& sim) : IMUDriver("SimIMUDriver"), imuTask(this, imuTaskName, "mars::IMU")
+init::SimIMUDriver::SimIMUDriver(const std::string &imuTaskName, init::Simulator& sim) : IMUDriver("SimIMUDriver"), imuTask(this, imuTaskName)
 {
     imuTask.setDeployment(sim.simulator.getDeployment());
     registerDependency(sim);

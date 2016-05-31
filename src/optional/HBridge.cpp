@@ -4,8 +4,8 @@
 init::HBridge::HBridge(const std::string& sensorReaderName, const std::string& commandWriterName, init::Canbus& canbus)
     : JointDriver("HBridge")
     , canbus(canbus)
-    , sensorReader(this, sensorReaderName, "hbridge::SensorReader")
-    , commandWriter(this, commandWriterName, "hbridge::CommandWriter")
+    , sensorReader(this, sensorReaderName)
+    , commandWriter(this, commandWriterName)
 {
     canbus.watch(sensorReader.getTaskName(), 0, 0);
     canbus.watch(commandWriter.getTaskName(), 0, 0);

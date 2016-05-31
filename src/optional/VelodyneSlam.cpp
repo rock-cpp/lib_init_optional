@@ -1,6 +1,7 @@
 #include "VelodyneSlam.hpp"
 
 #include <graph_slam/proxies/VelodyneSLAM.hpp>
+#include <velodyne_lidar/proxies/LaserScanner.hpp>
 
 namespace init
 {
@@ -9,7 +10,7 @@ VelodyneSlam::VelodyneSlam(VelodyneDriver &vd, const std::string &velodyneSlamTa
     : PositionProvider("VelodyneSlam")
     , velodyne(&vd)
     , simVelodyne(nullptr)
-    , velodyneSlamTask(this, velodyneSlamTaskName, "graph_slam::VelodyneSLAM")
+    , velodyneSlamTask(this, velodyneSlamTaskName)
 {
     registerDependency(*velodyne);
 }
@@ -18,7 +19,7 @@ VelodyneSlam::VelodyneSlam(SimVelodyneDriver& vd, const std::string& velodyneSla
     : PositionProvider("VelodyneSlam")
     , velodyne(nullptr)
     , simVelodyne(&vd)
-    , velodyneSlamTask(this, velodyneSlamTaskName, "graph_slam::VelodyneSLAM")
+    , velodyneSlamTask(this, velodyneSlamTaskName)
 {
     registerDependency(*simVelodyne);
 

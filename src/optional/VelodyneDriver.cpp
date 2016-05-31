@@ -1,12 +1,11 @@
 #include "VelodyneDriver.hpp"
 
-#include <velodyne_lidar/proxies/LaserScanner.hpp>
 
 namespace init
 {
 
 VelodyneDriver::VelodyneDriver(const std::string &velodyneTaskName) : Base("VelodyneDriver"),
-    velodyneTask(this, velodyneTaskName, "velodyne_lidar::LaserScanner")
+    velodyneTask(this, velodyneTaskName)
 {
 
 }

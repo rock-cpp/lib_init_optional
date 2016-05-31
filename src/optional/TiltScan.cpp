@@ -8,7 +8,7 @@ TiltScan::TiltScan(LaserDriver& ld, JointDriver& jd, const std::string& tiltTask
     : Base("TiltScan")
     , laserDriver(ld)
     , jointDriver(jd)
-    , tiltTask(this, tiltTaskName, "tilt_scan::Task")
+    , tiltTask(this, tiltTaskName)
 {
     registerDependency(laserDriver);
     registerDependency(jointDriver);

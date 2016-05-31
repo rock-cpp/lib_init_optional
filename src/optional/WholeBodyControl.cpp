@@ -5,6 +5,7 @@
 #include <kccd/proxies/SelfCollisionCheck.hpp>
 #include <kccd/proxies/SelfCollisionCtrl.hpp>
 #include <waypoint_provider/proxies/JointWaypointProviderTrajectoryInput.hpp>
+
 namespace init 
 {
     
@@ -17,12 +18,12 @@ WholeBodyControl::WholeBodyControl(TrajectoryGenerationVelocity& trajCtrl,
                                    const std::string& waypointProvTaskName) 
     : Base("WholeBodyControl")
     , trajCtrl(trajCtrl)
-    , wbcTask(this, wbcTaskName, "wbc::WbcVelocityTask")
-    , cartPosCtrlTask(this, cartPosCtrlTaskName, "ctrl_lib::CartesianPositionController")
-    , jointPosCtrlTask(this, jointPosCtrlTaskName, "ctrl_lib::JointPositionController")
-    , kccdCheckTask(this, kccdCheckTaskName, "kccd::SelfCollisionCheck")
-    , kccdCtrlTask(this, kccdCtrlTaskName, "kccd::SelfCollisionCtrl")
-    , waypointProvTask(this, waypointProvTaskName, "waypoint_provider::JointsWaypointProviderTrajectoryInput")
+    , wbcTask(this, wbcTaskName)
+    , cartPosCtrlTask(this, cartPosCtrlTaskName)
+    , jointPosCtrlTask(this, jointPosCtrlTaskName)
+    , kccdCheckTask(this, kccdCheckTaskName)
+    , kccdCtrlTask(this, kccdCtrlTaskName)
+    , waypointProvTask(this, waypointProvTaskName)
     { 
         
         registerDependency(trajCtrl);

@@ -7,7 +7,7 @@ namespace init
 TrajectoryGenerationVelocity::TrajectoryGenerationVelocity(JointDriver& jd, const std::string& trajCtrlTaskName)
     : Base("TrajectoryControl")
     , jointDriver(jd)
-    , trajCtrlTask(this, trajCtrlTaskName, "trajectory_generation::RMLVelocityTask")
+    , trajCtrlTask(this, trajCtrlTaskName)
 {
     registerDependency(jointDriver);
 }

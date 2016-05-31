@@ -7,7 +7,7 @@ namespace init
 
 PoseProvider::PoseProvider(const std::string &poseProviderTaskName)
     : Base("PoseProvider"),
-      poseProviderTask(this, poseProviderTaskName, "localization::PoseProvider")
+      poseProviderTask(this, poseProviderTaskName)
 {
 }
 

@@ -10,7 +10,7 @@ namespace init
 NDLComJointDriver::NDLComJointDriver(NDLComSerial &serial, const std::string &jointTaskName) 
     : JointDriver("NDLComJointDriver")
     , serial(serial)
-    , jointDriver(this, jointTaskName, "ndlcom_wheelmodules::WheelModuleTask")
+    , jointDriver(this, jointTaskName)
 {
     registerDependency(serial);
 }

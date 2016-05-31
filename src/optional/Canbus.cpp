@@ -1,7 +1,7 @@
 #include "Canbus.hpp"
 
 
-init::Canbus::Canbus(const std::string& canbusName) : Base("CanBus"), canbus(this, canbusName, "canbus::Task")
+init::Canbus::Canbus(const std::string& canbusName) : Base("CanBus"), canbus(this, canbusName)
 {
    
 }

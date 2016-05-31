@@ -7,7 +7,7 @@ namespace init
 
 TraversabilitySimple::TraversabilitySimple(const std::string& traversabilityTaskName)
     : Base("TraversabilitySimple"),
-      traversabilityTask(this, traversabilityTaskName, "traversability::Simple")
+      traversabilityTask(this, traversabilityTaskName)
 {
 
 }

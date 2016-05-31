@@ -5,7 +5,7 @@
 namespace init
 {
 
-Simulator::Simulator(const std::string &simTaskName, boost::shared_ptr<orocos_cpp::Deployment> &simDeployment) : Base("Simulator"), simulator(this, simTaskName, "mars::Task")
+Simulator::Simulator(const std::string &simTaskName, boost::shared_ptr<orocos_cpp::Deployment> &simDeployment) : Base("Simulator"), simulator(this, simTaskName)
 {
     simulator.setDeployment(simDeployment);
 }

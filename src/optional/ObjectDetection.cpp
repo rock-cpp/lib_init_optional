@@ -7,7 +7,7 @@ namespace init
 ObjectDetection::ObjectDetection(ColorizedPointcloud &colorPCl, const std::string &objectDetectionTaskName)
      : Base("ObjectDetection")
      , colorizedPointcloud(colorPCl)
-     , objectDetectionTask(this, objectDetectionTaskName, "sb_object_detection::Task")
+     , objectDetectionTask(this, objectDetectionTaskName)
 {
      registerDependency(colorizedPointcloud);
 }

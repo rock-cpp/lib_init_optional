@@ -4,7 +4,7 @@ namespace init
 {
 
 SimVelodyneDriver::SimVelodyneDriver(Simulator &sim, const std::string& velodyneTaskName) : Base("SimVelodyneDriver"),
-    velodyneTask(this, velodyneTaskName, "mars::RotatingLaserRangeFinder")
+    velodyneTask(this, velodyneTaskName)
 {
     velodyneTask.setDeployment(sim.simulator.getDeployment());
     registerDependency(sim);

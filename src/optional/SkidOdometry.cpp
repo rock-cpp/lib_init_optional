@@ -4,7 +4,7 @@ init::SkidOdometry::SkidOdometry(const std::string& odometryName, init::JointDri
     : PositionProvider("SkidOdometry")
     , joints(jointDispatcher)
     , imu(imu)
-    , skidOdometry(this, odometryName, "odometry::Skid")
+    , skidOdometry(this, odometryName)
 {
     registerDependency(jointDispatcher);
     registerDependency(imu);
