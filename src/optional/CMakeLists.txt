@@ -177,11 +177,7 @@ optional_init(trajectory_generation-proxies
 
 optional_init(pgpg_sampler-proxies
     SOURCES
-        ScanPoseGenerator.cpp
-        GraspPoseGenerator.cpp
-        GraspOffsetGenerator.cpp
+        PGPGSampler.cpp
     HEADERS
-        ScanPoseGenerator.hpp
-        GraspPoseGenerator.hpp
-        GraspOffsetGenerator.hpp
+        PGPGSampler.hpp
 )
