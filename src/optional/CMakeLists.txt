@@ -191,6 +191,14 @@ optional_init(ndlcom_aila_joints-proxies
         AILAJointDriver.hpp
 )
 
+optional_init(spacebot_gripper-proxies
+    SOURCES
+        GripperDriver.cpp
+    HEADERS
+        GripperDriver.hpp
+)
+
+
 optional_init(pgpg_sampler-proxies
     SOURCES
         PGPGSampler.cpp
