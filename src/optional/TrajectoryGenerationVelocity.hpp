@@ -1,7 +1,8 @@
 #pragma once
 
-#include "../Base.hpp"
-#include "../JointDriver.hpp"
+#include <lib_init/Base.hpp>
+#include <lib_init/JointDriver.hpp>
+#include <lib_init/TrajectoryControl.hpp>
 #include <trajectory_generation/ConstrainedJointsTrajectory.hpp>
 #include <trajectory_generation/trajectory_generationTypes.hpp>
 #include <orocos_cpp_base/ProxyPort.hpp>
@@ -15,10 +16,9 @@ namespace trajectory_generation {
 namespace init
 {
 
-class TrajectoryGenerationVelocity : public Base {
+class TrajectoryGenerationVelocity : public TrajectoryControl {   
 protected:
-    JointDriver &jointDriver;
-    
+    JointDriver &jointDriver; 
 public:
     DependentTask< trajectory_generation::proxies::RMLVelocityTask > trajCtrlTask;
     TrajectoryGenerationVelocity(JointDriver &jd, const std::string &trajCtrlTaskName);

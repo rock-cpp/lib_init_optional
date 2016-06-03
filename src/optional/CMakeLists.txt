@@ -110,6 +110,7 @@ optional_init(hokuyo-proxies
     HEADERS
         HokuyoLaserDriver.hpp
 )
+
 optional_init(laser_filter-proxies)
 
 optional_init(sb_object_detection-proxies
@@ -168,7 +169,9 @@ optional_init(wbc-proxies
         WholeBodyControl.hpp
 )
 optional_init(kccd-proxies)
+
 optional_init(ctrl_lib-proxies)
+
 optional_init(waypoint_provider-proxies)
 
 
@@ -181,6 +184,12 @@ optional_init(trajectory_generation-proxies
         TrajectoryGenerationVelocity.hpp
 )
 
+optional_init(ndlcom_aila_joints-proxies
+    SOURCES
+        AILAJointDriver.cpp
+    HEADERS
+        AILAJointDriver.hpp
+)
 
 optional_init(pgpg_sampler-proxies
     SOURCES

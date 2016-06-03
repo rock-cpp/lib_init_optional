@@ -61,6 +61,7 @@ rock_library(lib_init
         MotionControl2D.hpp
         MotionPlannerProvider.hpp
         PositionProvider.hpp
+        TrajectoryControl.hpp
         states/Init.hpp
         TraversabilityMapProvider.hpp
 #         ${HDR_EXTRA}

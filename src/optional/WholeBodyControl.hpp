@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Base.hpp"
+#include <lib_init/Base.hpp>
 #include "TrajectoryGenerationVelocity.hpp"
 #include <orocos_cpp_base/ProxyPort.hpp>
 #include <base/commands/joints.h>
@@ -32,16 +32,16 @@ namespace waypoint_provider {
 
 namespace init {
     class WholeBodyControl : public Base {
-        TrajectoryGenerationVelocity &trajCtrl;
+        TrajectoryControl& trajCtrl;
     public:
-        WholeBodyControl(TrajectoryGenerationVelocity& trajCtrl,
+        WholeBodyControl(TrajectoryControl& trajCtrl,
                          const std::string& wbcTaskName, 
                          const std::string& cartPosCtrlTaskName, 
                          const std::string& jointPosCtrlTaskName,
                          const std::string& kccdCheckTaskName,
                          const std::string& kccdCtrlTaskName,
-                         const std::string& waypointProvTaskName
-                         );
+                         const std::string& waypointProvTaskName);
+        
         
         DependentTask< wbc::proxies::WbcVelocityTask > wbcTask;
         DependentTask< ctrl_lib::proxies::CartesianPositionController > cartPosCtrlTask;
@@ -58,6 +58,7 @@ namespace init {
         virtual InputProxyPort< base::samples::Joints >& getPositionTargetPort();
         virtual InputProxyPort< base::JointsTrajectory >& getTrajectoryTargetPort();
     
-        virtual OutputProxyPort< base::samples::Joints >& getJointStatusPort();
+        virtual OutputProxyPort< trajectory_generation::ConstrainedJointsCmd >& getConstrainedCommandOutPort();
+        virtual OutputProxyPort< base::samples::Joints > getCommandOutPort();
     };
 }

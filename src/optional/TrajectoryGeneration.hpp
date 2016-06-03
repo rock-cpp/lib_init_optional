@@ -1,7 +1,8 @@
 #pragma once
 
-#include "../Base.hpp"
-#include "../JointDriver.hpp"
+#include <lib_init/Base.hpp>
+#include <lib_init/JointDriver.hpp>
+#include <lib_init/TrajectoryControl.hpp>
 #include <base/JointsTrajectory.hpp>
 
 namespace trajectory_generation {
@@ -13,10 +14,9 @@ namespace trajectory_generation {
 namespace init
 {
 
-class TrajectoryGeneration : public Base {
+class TrajectoryGeneration : public TrajectoryControl {
 protected:
     JointDriver &jointDriver;
-    
 public:
     DependentTask< trajectory_generation::proxies::Task > trajCtrlTask;
     TrajectoryGeneration(JointDriver &jd, const std::string &trajCtrlTaskName);
