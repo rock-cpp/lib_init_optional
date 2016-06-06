@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../Base.hpp"
-#include "../JointDriver.hpp"
+#include <lib_init/Base.hpp>
+#include <lib_init/JointDriver.hpp>
 #include <base/JointsTrajectory.hpp>
 #include <spacebot_gripper/Types.hpp>
 
