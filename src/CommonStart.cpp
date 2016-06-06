@@ -12,15 +12,20 @@
 
 #include <rtt/typekit/RealTimeTypekit.hpp>
 #include <rtt/transports/corba/TransportPlugin.hpp>
+#include <rtt/transports/corba/TaskContextServer.hpp>
 #include <rtt/transports/mqueue/TransportPlugin.hpp>
 #include <QApplication>
 #include <state_machine/StateMachineWidget.hpp>
 #include <smurf/Robot.hpp>
+#include <orocos_cpp_base/OrocosHelpers.hpp>
 
 
 
 StartCommon::StartCommon(int argc, char** argv)
 {
+    RTT::corba::TaskContextServer::InitOrb(argc, argv);
+    
+    OrocosHelpers::initClientTask("taskManagement");
     loggingActive = false;
     simulationActive = false;
 
