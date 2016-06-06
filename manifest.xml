@@ -10,5 +10,6 @@
   <depend package="base/types" />
   <depend package="tools/lib_config" />
   <depend package="tools/state_machine" />
+  <depend package="tools/state_machine_tk" />
   <depend package="tools/orocos_cpp" />
 </package>

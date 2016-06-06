@@ -14,18 +14,21 @@
 #include <rtt/transports/corba/TransportPlugin.hpp>
 #include <rtt/transports/corba/TaskContextServer.hpp>
 #include <rtt/transports/mqueue/TransportPlugin.hpp>
+#include <rtt/OutputPort.hpp>
 #include <QApplication>
 #include <state_machine/StateMachineWidget.hpp>
 #include <smurf/Robot.hpp>
 #include <orocos_cpp_base/OrocosHelpers.hpp>
-
-
+#include <orocos_cpp/PluginHelper.hpp>
 
 StartCommon::StartCommon(int argc, char** argv)
 {
     RTT::corba::TaskContextServer::InitOrb(argc, argv);
     
     OrocosHelpers::initClientTask("taskManagement");
+    
+    orocos_cpp::PluginHelper::loadTypekitAndTransports("state_machine_tk");
+        
     loggingActive = false;
     simulationActive = false;
 
@@ -78,30 +81,54 @@ int StartCommon::runCommon(state_machine::State *initialState, const std::vector
 
     state_machine::StateMachine &stateMachine(state_machine::StateMachine::getInstance());
 
+    RTT::TaskContext *clientTask = OrocosHelpers::getClientTask();
+    RTT::OutputPort<state_machine::serialization::Event> *eventPort = new RTT::OutputPort<state_machine::serialization::Event>();
+    RTT::OutputPort<state_machine::serialization::StateMachine> *dumpPort = new RTT::OutputPort<state_machine::serialization::StateMachine>();
+    
+    clientTask->addPort("stateMachine_Events", *eventPort);
+    clientTask->addPort("stateMachine_Dump", *dumpPort);
 
-    if(simulationActive)
-    {
-//         state_machine::serialization::StateMachine smDump(stateMachine);
+    state_machine::serialization::StateMachine smDump(stateMachine);
+
+//     if(simulationActive)
+//     {
 //         
 //         widget->update(smDump);
 //         widget->repaint();
 //         app->processEvents();
-    }    
+//     }    
+
+    int cnt = 0;
+    
     stateMachine.setExecuteCallback([&](){
         
-        if(simulationActive)
+        if(cnt >= 10)
         {
-//             //Events for state_machine visualisation + state_machine
-//             std::vector<state_machine::serialization::Event> newEvents = stateMachine.getNewEvents();
-//             for(auto e: newEvents)
-//             {
-//                     //update widget
-//                     widget->update(e);
-//                     widget->repaint();
-//             }
-// 
-//             app->processEvents();
+            cnt = 0;
+            
+            dumpPort->write(smDump);
         }
+        
+        cnt++;
+
+        //Events for state_machine visualisation + state_machine
+        std::vector<state_machine::serialization::Event> newEvents = stateMachine.getNewEvents();
+        for(auto e: newEvents)
+        {
+            eventPort->write(e);
+            
+//             if(simulationActive)
+//             {
+//                 //update widget
+//                 widget->update(e);
+//                 widget->repaint();
+//             }
+        }
+        
+//         if(simulationActive)
+//         {
+//             app->processEvents();
+//         }
         
         std::string debugMsgs = stateMachine.getDebugStream().str();
         stateMachine.getDebugStream().str(std::string());
