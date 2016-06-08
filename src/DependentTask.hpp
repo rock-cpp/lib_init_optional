@@ -21,7 +21,7 @@ protected:
 public:
     DependentTaskBase(Base *parent, const std::string &taskName, const std::string &taskModelName);
     
-    virtual ~DependentTaskBase() {};
+    virtual ~DependentTaskBase();
     
     const std::string &getTaskName() const
     {

@@ -12,6 +12,11 @@ DependentTaskBase::DependentTaskBase(Base *parent, const std::string &taskName, 
     parent->registerTask(this);
 }
 
+DependentTaskBase::~DependentTaskBase()
+{
+
+}
+
 RTT::corba::TaskContextProxy* DependentTaskBase::getProxy()
 {
     if(!proxy)
