@@ -1,7 +1,7 @@
 #pragma once
 
 #include <lib_init/JointDriver.hpp>
-#include <lib_init/NDLComSerial.hpp>
+#include "NDLComSerial.hpp"
 #include <ndlcom_aila_joints/proxies/AILAJointTask.hpp>
 
 
