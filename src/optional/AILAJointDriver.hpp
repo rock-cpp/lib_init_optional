@@ -16,6 +16,7 @@ public:
     AILAJointDriver(init::NDLComSerial&, const std::string &AILAJointsTaskName);
     
     virtual bool connect();
+    virtual bool start();
 
     virtual OutputProxyPort<base::samples::Joints> &getStatusPort();
     virtual InputProxyPort<base::commands::Joints> &getCommandPort();

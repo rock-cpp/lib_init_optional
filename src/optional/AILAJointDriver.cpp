@@ -15,9 +15,15 @@ AILAJointDriver::AILAJointDriver(init::NDLComSerial& ndlcomSerial, const std::st
 
 bool AILAJointDriver::connect()
 {
-    ndlcomSerial.serial_ndlcom.getConcreteProxy()->ndlcom_message_out.connectTo(jointTask.getConcreteProxy()->ndlcom_message_in);
-    jointTask.getConcreteProxy()->ndlcom_message_out.connectTo(ndlcomSerial.serial_ndlcom.getConcreteProxy()->ndlcom_message_in);
-    return init::Base::connect();
+    ndlcomSerial.serial_ndlcom.getConcreteProxy()->ndlcom_message_out.connectTo(jointTask.getConcreteProxy()->ndlcom_message_in, RTT::ConnPolicy::buffer(200));
+    jointTask.getConcreteProxy()->ndlcom_message_out.connectTo(ndlcomSerial.serial_ndlcom.getConcreteProxy()->ndlcom_message_in, RTT::ConnPolicy::buffer(200));
+    return init::JointDriver::connect();
+}
+
+bool AILAJointDriver::start()
+{
+    jointTask.getConcreteProxy()->enable();
+    return init::JointDriver::start();
 }
 
 InputProxyPort< base::commands::Joints >& AILAJointDriver::getCommandPort()
