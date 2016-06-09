@@ -33,15 +33,17 @@ bool WholeBodyControl::connect()
 {
     waypointProvTask.getConcreteProxy()->current_target.connectTo(jointPosCtrlTask.getConcreteProxy()->setpoint);
     
-    wbcTask.getConcreteProxy()->ctrl_out.connectTo(kccdCtrlTask.getConcreteProxy()->command);
-    kccdCheckTask.getConcreteProxy()->collision_info.connectTo(kccdCtrlTask.getConcreteProxy()->collision_info);
+//     wbcTask.getConcreteProxy()->ctrl_out.connectTo(kccdCtrlTask.getConcreteProxy()->command);3
+    TrajectoryGenerationVelocity *traj = (TrajectoryGenerationVelocity*) &trajCtrl;
+    wbcTask.getConcreteProxy()->ctrl_out.connectTo(traj->getVelocityTargetPort());
+//     kccdCheckTask.getConcreteProxy()->collision_info.connectTo(kccdCtrlTask.getConcreteProxy()->collision_info);
     trajCtrl.getJointStatusPort().connectTo(kccdCtrlTask.getConcreteProxy()->joint_state);
 
     
     trajCtrl.getJointStatusPort().connectTo(jointPosCtrlTask.getConcreteProxy()->feedback);
     trajCtrl.getJointStatusPort().connectTo(wbcTask.getConcreteProxy()->joint_state);
     trajCtrl.getJointStatusPort().connectTo(waypointProvTask.getConcreteProxy()->current_position);
-    trajCtrl.getJointStatusPort().connectTo(kccdCheckTask.getConcreteProxy()->joint_state);
+//     trajCtrl.getJointStatusPort().connectTo(kccdCheckTask.getConcreteProxy()->joint_state);
     
     return true;
 }
