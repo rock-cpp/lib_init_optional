@@ -6,15 +6,18 @@
 #include <pgpg_sampler/proxies/GraspPoseGenerator.hpp>
 #include <pgpg_sampler/proxies/GraspOffsetGenerator.hpp>
 #include <pgpg_sampler/proxies/Introspection.hpp>
+#include <lib_init/PositionProvider.hpp>
+#include <lib_init/TraversabilityMapProvider.hpp>
 
 namespace init
 {
 
 class PGPGSampler : public Base {
 
-    
+    PositionProvider &robotPosProvider;
+    TraversabilityMapProvider &trMap;
 public:
-    PGPGSampler(const std::string &scanPoseGeneratorName, const std::string &graspPoseGeneratorName, const std::string &graspOffsetGeneratorName, const std::string &introspectionName);
+    PGPGSampler(PositionProvider &robotPosProvider, TraversabilityMapProvider &trMap, const std::string &scanPoseGeneratorName, const std::string &graspPoseGeneratorName, const std::string &graspOffsetGeneratorName, const std::string &introspectionName);
     virtual bool connect();
     void setDeployment(boost::shared_ptr<orocos_cpp::Deployment> deployment);
     
