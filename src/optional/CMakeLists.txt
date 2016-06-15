@@ -113,13 +113,6 @@ optional_init(hokuyo-proxies
 
 optional_init(laser_filter-proxies)
 
-optional_init(sb_object_detection-proxies
-    SOURCES
-        ObjectDetection.cpp
-    HEADERS
-        ObjectDetection.hpp
-)
-
 optional_init(graph_slam-proxies
     SOURCES
         VelodyneSlam.cpp
@@ -189,19 +182,4 @@ optional_init(ndlcom_aila_joints-proxies
         AILAJointDriver.cpp
     HEADERS
         AILAJointDriver.hpp
-)
-
-optional_init(spacebot_gripper-proxies
-    SOURCES
-        GripperDriver.cpp
-    HEADERS
-        GripperDriver.hpp
-)
-
-
-optional_init(pgpg_sampler-proxies
-    SOURCES
-        PGPGSampler.cpp
-    HEADERS
-        PGPGSampler.hpp
 )
