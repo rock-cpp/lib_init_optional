@@ -6,7 +6,7 @@
 namespace init
 {
 
-TraversabilitySimple::TraversabilitySimple(VelodyneSlam& slam, const std::string& traversabilityTaskName)
+TraversabilitySimple::TraversabilitySimple(MapProvider& slam, const std::string& traversabilityTaskName)
     : TraversabilityMapProvider("TraversabilitySimple")
     , slam(slam)
     , traversabilityTask(this, traversabilityTaskName)
@@ -16,7 +16,7 @@ TraversabilitySimple::TraversabilitySimple(VelodyneSlam& slam, const std::string
 
 bool TraversabilitySimple::connect()
 {
-    slam.velodyneSlamTask.getConcreteProxy()->envire_map.connectTo(traversabilityTask.getConcreteProxy()->mls_map);
+    slam.getMapPort().connectTo(traversabilityTask.getConcreteProxy()->mls_map);
     return init::Base::connect();
 }
 
