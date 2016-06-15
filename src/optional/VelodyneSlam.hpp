@@ -1,6 +1,7 @@
 #pragma once
 
 #include <lib_init/PositionProvider.hpp>
+#include <lib_init/MapProvider.hpp>
 #include "VelodyneDriver.hpp"
 #include "SimVelodyneDriver.hpp"
 #include <graph_slam/GraphSlamDebugTypes.hpp>
@@ -15,7 +16,8 @@ namespace graph_slam {
 namespace init
 {
 
-class VelodyneSlam : public PositionProvider {
+class VelodyneSlam : public PositionProvider, public MapProvider
+{
 protected:
     VelodyneDriver *velodyne;
     SimVelodyneDriver *simVelodyne;

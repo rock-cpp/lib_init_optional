@@ -44,9 +44,11 @@ message("SRC extra is ${SRC_EXTRA}")
 
 rock_library(lib_init
     SOURCES
-        DependentTask.cpp
         Base.cpp
         CommonStart.cpp
+        DependentTask.cpp
+        MapProvider.cpp
+        PointCloudProvider.cpp
         states/Init.cpp
         ${SRC_EXTRA}
     HEADERS
@@ -58,8 +60,10 @@ rock_library(lib_init
         IMUDriver.hpp
         JointDriver.hpp
         LaserDriver.hpp
+        MapProvider.hpp
         MotionControl2D.hpp
         MotionPlannerProvider.hpp
+        PointCloudProvider.hpp
         PositionProvider.hpp
         TrajectoryControl.hpp
         states/Init.hpp

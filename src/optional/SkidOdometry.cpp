@@ -2,6 +2,7 @@
 
 init::SkidOdometry::SkidOdometry(const std::string& odometryName, init::JointDriver& jointDispatcher, init::IMUDriver& imu)
     : PositionProvider("SkidOdometry")
+    , Base("SkidOdometry")
     , joints(jointDispatcher)
     , imu(imu)
     , skidOdometry(this, odometryName)
