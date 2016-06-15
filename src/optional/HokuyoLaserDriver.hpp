@@ -11,12 +11,12 @@ class HokuyoLaserDriver : public LaserDriver
 {
 public: 
     DependentTask<hokuyo::proxies::Task> laserTask;
+    DependentTask<laser_filter::proxies::Task> filterTask;
     HokuyoLaserDriver(const std::string &hokuyoTaskName, const std::string &filterTaskName);
 
     virtual bool connect();
 
     virtual OutputProxyPort< base::samples::LaserScan >& getLaserReadingsPort();
 protected:
-    DependentTask<laser_filter::proxies::Task> filterTask;
 };
 }
