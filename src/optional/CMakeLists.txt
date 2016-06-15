@@ -183,3 +183,12 @@ optional_init(ndlcom_aila_joints-proxies
     HEADERS
         AILAJointDriver.hpp
 )
+
+optional_init(slam3d-proxies
+    SOURCES
+        Slam3d.cpp
+        DepthMapToPCLConverter.cpp
+    HEADERS
+        DepthMapToPCLConverter.hpp
+        Slam3d.hpp
+)
