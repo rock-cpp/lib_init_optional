@@ -9,6 +9,7 @@ namespace init
 
 PoseProvider::PoseProvider(VelodyneSlam &slam, PositionProvider &odometry, const std::string &poseProviderTaskName)
     : PositionProvider("PoseProvider")
+    , Base("PoseProvider")
     , slam(slam)
     , odometry(odometry)
     , poseProviderTask(this, poseProviderTaskName)
