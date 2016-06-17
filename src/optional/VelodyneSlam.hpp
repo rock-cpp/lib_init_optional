@@ -31,6 +31,7 @@ public:
     virtual bool connect();
     
     virtual OutputProxyPort< base::samples::RigidBodyState >& getPositionSamples();
+    virtual OutputProxyPort< RTT::extras::ReadOnlyPointer< envire::BinaryEvents > >& getMapPort();
 };
 
 }
