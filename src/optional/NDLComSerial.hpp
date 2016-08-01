@@ -2,12 +2,7 @@
 
 #include <lib_init/DependentTask.hpp>
 #include <lib_init/Base.hpp>
-
-namespace serial_ndlcom {
-    namespace proxies {
-        class Task;
-    }
-}
+#include <serial_ndlcom/proxies/Task.hpp>
 
 namespace init
 {
