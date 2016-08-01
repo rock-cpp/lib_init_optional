@@ -11,7 +11,7 @@ class Simulator : public Base
 {
 protected:
 public:
-    Simulator(const std::string& simTaskName, boost::shared_ptr< orocos_cpp::Deployment >& simDeployment);
+    Simulator(const std::string& simTaskName, const boost::shared_ptr< orocos_cpp::Deployment >& simDeployment);
     
     DependentTask<mars::proxies::Task> simulator;
 };
