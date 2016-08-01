@@ -18,6 +18,7 @@ init::Slam3d::~Slam3d()
 
 bool init::Slam3d::connect()
 {
+    pclProv.getPointCloudPort().connectTo(mapper.getConcreteProxy()->scan, RTT::ConnPolicy::buffer(20));
     return init::Base::connect();
 }
 
