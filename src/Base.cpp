@@ -17,6 +17,9 @@ Base::~Base()
 
 void Base::registerDependency(Base& dependency)
 {
+    if(&dependency == nullptr)
+        throw std::runtime_error("init::Base::registerDependency: Error, tried to register a nullptr on init object with name '" + name + "'");
+    
     dependencies.push_back(&dependency);
 }
 
@@ -35,6 +38,9 @@ void Base::registerDependency(Base& dependency)
 
 void Base::registerTask(DependentTaskBase* task)
 {
+    if(task == nullptr)
+        throw std::runtime_error("init::Base::registerTask: Error, tried to register a nullptr on init object with name '" + name + "'");
+        
     TaskWithConfig t(task);
     allTasks.push_back(t);
 

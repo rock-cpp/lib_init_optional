@@ -38,10 +38,7 @@ public:
         taskName = newName;
     }
     
-    void setDeployment(const boost::shared_ptr<orocos_cpp::Deployment> &newDeployment)
-    {
-        deployment = newDeployment;
-    }
+    void setDeployment(const boost::shared_ptr<orocos_cpp::Deployment> &newDeployment);
 
     const boost::shared_ptr<orocos_cpp::Deployment> &getDeployment() const
     {

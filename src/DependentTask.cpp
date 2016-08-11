@@ -1,5 +1,6 @@
 #include "DependentTask.hpp"
 #include "Base.hpp"
+#include <stdexcept>
 
 namespace init 
 {
@@ -27,6 +28,14 @@ RTT::corba::TaskContextProxy* DependentTaskBase::getProxy()
     return proxy;
 }
 
+
+void DependentTaskBase::setDeployment(const boost::shared_ptr< orocos_cpp::Deployment >& newDeployment)
+{
+    if(!newDeployment)
+        throw std::runtime_error("init::DependentTaskBase::setDeployment: Error, deployment contains nullptr");
+    
+    deployment = newDeployment;
+}
 
 void DependentTaskBase::setConfig(const std::vector< std::string >& configs)
 {
