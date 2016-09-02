@@ -87,20 +87,20 @@ bool Init::startDeploymentRecursive(init::Base& toStart, std::vector<orocos_cpp:
 
 
     //start all tasks of this unit
-    for(init::Base::TaskWithConfig &twc : toStart.getAllTasks())
+    for(init::DependentTaskBase *dtb : toStart.getDependendTasks())
     {
-        if(contains(twc.task->getDeployment().get(), started))
+        if(contains(dtb->getDeployment().get(), started))
             continue;
         
-        started.push_back(twc.task->getDeployment().get());
+        started.push_back(dtb->getDeployment().get());
 
-        std::cout << "Init::startDeploymentRecursive : Starting deployment " << twc.task->getDeployment()->getName() << "Pointer is " << twc.task->getDeployment() << std::endl;
-        for(const std::string &tk : twc.task->getDeployment()->getNeededTypekits())
+        std::cout << "Init::startDeploymentRecursive : Starting deployment " << dtb->getDeployment()->getName() << "Pointer is " << dtb->getDeployment() << std::endl;
+        for(const std::string &tk : dtb->getDeployment()->getNeededTypekits())
         {
             helper.loadTypekitAndTransports(tk);
         }
 
-        spawner.spawnDeployment(twc.task->getDeployment().get());
+        spawner.spawnDeployment(dtb->getDeployment().get());
     }
 
     return true;

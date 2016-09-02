@@ -23,48 +23,20 @@ void Base::registerDependency(Base& dependency)
     dependencies.push_back(&dependency);
 }
 
-// void Base::registerTask(RTT::TaskContext* task)
-// {
-//     std::vector< std::string > configs;
-//     configs.push_back("default");
-// 
-//     TaskWithConfig t;
-//     t.proxy = task;
-//     t.config = configs;
-//     t.name = task->getName();
-// 
-//     allTasks.push_back(t);
-// }
-
 void Base::registerTask(DependentTaskBase* task)
 {
     if(task == nullptr)
         throw std::runtime_error("init::Base::registerTask: Error, tried to register a nullptr on init object with name '" + name + "'");
         
-    TaskWithConfig t(task);
-    allTasks.push_back(t);
+    dependendTasks.push_back(task);
 
 }
 
-// void Base::registerTask(const std::string name, orocos_cpp::Deployment* deployment)
-// {
-//     std::vector< std::string > configs;
-//     configs.push_back("default");
-// 
-//     TaskWithConfig t;
-//     t.config = configs;
-//     t.name = name;
-//     t.dpl = deployment;
-// 
-//     allTasks.push_back(t);
-// 
-// }
-
 void Base::initProxies()
 {
-    for(TaskWithConfig &t: allTasks)
+    for(DependentTaskBase*  &t: dependendTasks)
     {
-        t.proxy = t.task->getProxy();
+        t->getProxy();
     }
 }
 
@@ -73,22 +45,16 @@ bool Base::connect()
     return true;
 }
 
-// bool Base::setup()
-// {
-//     return true;
-// }
-//
-
 bool Base::applyConfig(orocos_cpp::ConfigurationHelper& confHelper)
 {
-    for(TaskWithConfig &t: allTasks)
+    for(DependentTaskBase* t: dependendTasks)
     {
-        if(!confHelper.applyConfig(t.proxy, t.task->getConfig()))
+        if(!confHelper.applyConfig(t->getProxy(), t->getConfig()))
         {
             std::string msg("init::Base::Failed to applyConfig [");
-            for(const std::string &conf: t.task->getConfig())
+            for(const std::string &conf: t->getConfig())
                 msg += conf + ", ";
-            msg += "] for Task " + t.proxy->getName();
+            msg += "] for Task " + t->getTaskName();
             
             std::cout << msg << std::endl;
             
@@ -101,11 +67,11 @@ bool Base::applyConfig(orocos_cpp::ConfigurationHelper& confHelper)
 
 bool Base::setupTransformer(orocos_cpp::TransformerHelper& trHelper)
 {
-    for(TaskWithConfig &t: allTasks)
+    for(DependentTaskBase* t: dependendTasks)
     {
-        if(!trHelper.configureTransformer(t.proxy))
+        if(!trHelper.configureTransformer(t->getProxy()))
         {
-            throw std::runtime_error("init::Base::Failed to configure transformer for task " + t.proxy->getName());
+            throw std::runtime_error("init::Base::Failed to configure transformer for task " + t->getTaskName());
         }
     }
     return true;
@@ -114,21 +80,21 @@ bool Base::setupTransformer(orocos_cpp::TransformerHelper& trHelper)
 
 bool Base::configure()
 {
-    for(TaskWithConfig &t: allTasks)
+    for(DependentTaskBase* t: dependendTasks)
     {
-        std::cout << "init::Base::Configuring " << t.proxy->getName() << std::endl;
-        if(!t.proxy->configure())
+        std::cout << "init::Base::Configuring " << t->getTaskName() << std::endl;
+        if(!t->getProxy()->configure())
         {
             std::string config = "[";
-            for(auto conf: t.task->getConfig())
+            for(auto conf: t->getConfig())
             {
                 config += conf + ", ";
             }
             config += "]";
-            throw std::runtime_error("init::Base::Failed to configure task " + t.proxy->getName() + " with configuration " + config);
+            throw std::runtime_error("init::Base::Failed to configure task " + t->getTaskName() + " with configuration " + config);
         }
 
-        std::cout << "init::Base::Configured " << t.proxy->getName() << std::endl;
+        std::cout << "init::Base::Configured " << t->getTaskName() << std::endl;
 
     }
     return true;
@@ -136,13 +102,13 @@ bool Base::configure()
 
 bool Base::start()
 {
-    for(TaskWithConfig &t: allTasks)
+    for(DependentTaskBase* t: dependendTasks)
     {
-        if(!t.proxy->start())
+        if(!t->getProxy()->start())
         {
-            throw std::runtime_error("init::Base::Failed to start task " + t.proxy->getName());
+            throw std::runtime_error("init::Base::Failed to start task " + t->getTaskName());
         }
-        std::cout << "init::Base::Started " << t.proxy->getName() << std::endl;
+        std::cout << "init::Base::Started " << t->getTaskName() << std::endl;
 
     }
 
