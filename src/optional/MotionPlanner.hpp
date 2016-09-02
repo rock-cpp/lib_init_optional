@@ -4,9 +4,6 @@
 #include <lib_init/MotionPlannerProvider.hpp>
 #include "PoseProvider.hpp"
 #include <lib_init/TraversabilityMapProvider.hpp>
-#include <orocos_cpp_base/ProxyPort.hpp>
-#include <base/Trajectory.hpp>
-#include <envire/core/EventTypes.hpp>
 
 namespace motion_planning_libraries {
      namespace proxies {

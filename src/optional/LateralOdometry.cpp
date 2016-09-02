@@ -1,8 +1,8 @@
 #include "LateralOdometry.hpp"
 
 init::LateralOdometry::LateralOdometry(const std::string& odometryName, init::JointDriver& jointDispatcher, init::IMUDriver& imu)
-    : PositionProvider("LateralOdometry")
-    , Base("LateralOdometry")
+    : Base("LateralOdometry")
+    , PositionProvider("LateralOdometry")
     , joints(jointDispatcher)
     , imu(imu)
     , lateralOdometry(this, odometryName)

@@ -7,8 +7,8 @@ namespace init
 
 AILAJointDriver::AILAJointDriver(init::NDLComSerial& ndlcomSerial, const std::string &AILAJointsTaskName) 
     : JointDriver("AILAJointDriver")
-    , jointTask(this, AILAJointsTaskName)
     , ndlcomSerial(ndlcomSerial)
+    , jointTask(this, AILAJointsTaskName)
 {
     registerDependency(ndlcomSerial);
 }

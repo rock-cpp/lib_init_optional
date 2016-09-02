@@ -2,7 +2,6 @@
 
 #include <lib_init/DependentTask.hpp>
 #include <lib_init/Base.hpp>
-#include <orocos_cpp_base/ProxyPort.hpp>
 #include <lib_init/PositionProvider.hpp>
 #include "VelodyneSlam.hpp"
 

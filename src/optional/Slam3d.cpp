@@ -1,8 +1,8 @@
 #include "Slam3d.hpp"
 
 init::Slam3d::Slam3d(init::PositionProvider& odometry, init::PointCloudProvider& pclProv, const std::string &mapperTaskName): 
-    PositionProvider("Slam3d")
-    , Base("Slam3d")
+    Base("Slam3d")
+    , PositionProvider("Slam3d")
     , odometry(odometry)
     , pclProv(pclProv)
     , mapper(this, mapperTaskName)

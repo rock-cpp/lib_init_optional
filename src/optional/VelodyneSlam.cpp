@@ -7,9 +7,9 @@ namespace init
 {
 
 VelodyneSlam::VelodyneSlam(VelodyneDriver &vd, PositionProvider &odometry, const std::string &velodyneSlamTaskName)
-    : PositionProvider("VelodyneSlam")
+    : Base("VelodyneSlam")
+    , PositionProvider("VelodyneSlam")
     , MapProvider("VelodyneSlam")
-    , Base("VelodyneSlam")
     , velodyne(&vd)
     , simVelodyne(nullptr)
     , odometry(odometry)
@@ -20,9 +20,9 @@ VelodyneSlam::VelodyneSlam(VelodyneDriver &vd, PositionProvider &odometry, const
 }
 
 VelodyneSlam::VelodyneSlam(SimVelodyneDriver& vd, PositionProvider &odometry, const std::string& velodyneSlamTaskName)
-    : PositionProvider("VelodyneSlam")
+    : Base("VelodyneSlam")
+    , PositionProvider("VelodyneSlam")
     , MapProvider("VelodyneSlam")
-    , Base("VelodyneSlam")
     , velodyne(nullptr)
     , simVelodyne(&vd)
     , odometry(odometry)
