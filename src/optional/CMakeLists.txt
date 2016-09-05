@@ -19,6 +19,11 @@ optional_init(canbus-proxies
         Canbus.hpp
 )
 
+optional_init(envire_maps    
+    HEADERS
+        MLSProvider.hpp
+)
+
 optional_init(imu_xsens-proxies
     SOURCES
         IMUXsensDriver.cpp
@@ -134,6 +139,13 @@ optional_init(servo_dynamixel-proxies
         Dynamixel.cpp
     HEADERS
         Dynamixel.hpp
+)
+
+optional_init(ugv_nav4d-proxies 
+    SOURCES
+        UGVNav4d.cpp    
+    HEADERS
+        UGVNav4d.hpp    
 )
 
 optional_init(motion_planning_libraries-proxies
