@@ -4,7 +4,7 @@
 #include <orocos_cpp_base/ProxyPort.hpp>
 #include <rtt/extras/ReadOnlyPointer.hpp>
 #include <maps/grid/MLSMap.hpp>
-
+#include <envire_core/items/SpatioTemporal.hpp>
 namespace init
 {
 
@@ -14,7 +14,7 @@ public:
     MLSProvider(const std::string& name);
     virtual ~MLSProvider();
     
-    virtual OutputProxyPort<RTT::extras::ReadOnlyPointer<maps::grid::MLSMapSloped> >& getMapPort() = 0;    
+    virtual OutputProxyPort<RTT::extras::ReadOnlyPointer<envire::core::SpatioTemporal<maps::grid::MLSMapKalman > > >& getMapPort() = 0;    
 };
 
 }
