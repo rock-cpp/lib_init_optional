@@ -9,11 +9,11 @@ namespace init
 
 class Slam3d : public PositionProvider
 {
-    PositionProvider &odometry;
     PointCloudProvider &pclProv;
-    
+
 public:
     Slam3d(PositionProvider &odometry, PointCloudProvider &pclProv, const std::string &mapperTaskName);
+    Slam3d(PointCloudProvider &pclProv, const std::string &mapperTaskName);
     virtual ~Slam3d();
     
     virtual bool connect();

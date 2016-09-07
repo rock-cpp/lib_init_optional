@@ -3,11 +3,19 @@
 init::Slam3d::Slam3d(init::PositionProvider& odometry, init::PointCloudProvider& pclProv, const std::string &mapperTaskName): 
     Base("Slam3d")
     , PositionProvider("Slam3d")
-    , odometry(odometry)
     , pclProv(pclProv)
     , mapper(this, mapperTaskName)
 {
     registerDependency(odometry);
+    registerDependency(pclProv);
+}
+
+init::Slam3d::Slam3d(init::PointCloudProvider& pclProv, const std::string& mapperTaskName) :
+    Base("Slam3d"),
+    PositionProvider("Slam3d"),
+    pclProv(pclProv),
+    mapper(this, mapperTaskName)
+{
     registerDependency(pclProv);
 }
 
