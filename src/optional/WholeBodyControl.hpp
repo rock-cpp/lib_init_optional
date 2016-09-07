@@ -3,7 +3,7 @@
 #include <lib_init/Base.hpp>
 #include "TrajectoryGenerationVelocity.hpp"
 #include <orocos_cpp_base/ProxyPort.hpp>
-#include <base/commands/joints.h>
+#include <base/commands/Joints.hpp>
 #include <wbc/Constraint.hpp>
 #include <ctrl_lib/ControllerTask.hpp>
 
