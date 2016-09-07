@@ -61,6 +61,7 @@ rock_library(lib_init
         JointDriver.hpp
         LaserDriver.hpp
         MapProvider.hpp
+        DepthMapProvider.hpp
         MotionControl2D.hpp
         MotionPlannerProvider.hpp
         PointCloudProvider.hpp

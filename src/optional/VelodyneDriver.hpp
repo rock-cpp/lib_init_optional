@@ -1,6 +1,6 @@
 #pragma once
 
-#include <lib_init/Base.hpp>
+#include <lib_init/DepthMapProvider.hpp>
 #include <base/samples/DepthMap.hpp>
 #include <orocos_cpp_base/ProxyPort.hpp>
 #include <velodyne_lidar/proxies/LaserScanner.hpp>
@@ -8,7 +8,7 @@
 namespace init
 {
 
-class VelodyneDriver : public Base {
+class VelodyneDriver : public DepthMapProvider {
 protected:
     virtual bool connect();
 
@@ -17,6 +17,7 @@ public:
     virtual ~VelodyneDriver() {};
     DependentTask< velodyne_lidar::proxies::LaserScanner > velodyneTask;
     OutputProxyPort< base::samples::DepthMap >& getLaserScansPort();
+    OutputProxyPort< base::samples::DepthMap >& getDepthMapPort();
 };
 
 }

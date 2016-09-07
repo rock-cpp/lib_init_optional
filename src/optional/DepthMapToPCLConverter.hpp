@@ -1,8 +1,7 @@
 #pragma once
 
 #include <lib_init/PointCloudProvider.hpp>
-
-#include "VelodyneDriver.hpp"
+#include <lib_init/DepthMapProvider.hpp>
 #include <slam3d/proxies/ScanConverter.hpp>
 
 namespace init 
@@ -10,9 +9,9 @@ namespace init
 
 class DepthMapToPCLConverter : public PointCloudProvider
 {
-    VelodyneDriver &velodyne;
+    DepthMapProvider &velodyne;
 public:
-    DepthMapToPCLConverter(VelodyneDriver &velodyne, const std::string &converterTaskName);
+    DepthMapToPCLConverter(DepthMapProvider &velodyne, const std::string &converterTaskName);
     virtual ~DepthMapToPCLConverter();
     virtual bool connect();
     
