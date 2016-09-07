@@ -14,7 +14,7 @@ public:
     MLSProvider(const std::string& name);
     virtual ~MLSProvider();
     
-    virtual OutputProxyPort<RTT::extras::ReadOnlyPointer<envire::core::SpatioTemporal<maps::grid::MLSMapKalman > > >& getMapPort() = 0;    
+    virtual OutputProxyPort<envire::core::SpatioTemporal<maps::grid::MLSMapKalman > >& getMapPort() = 0;    
 };
 
 }

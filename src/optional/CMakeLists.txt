@@ -20,6 +20,8 @@ optional_init(canbus-proxies
 )
 
 optional_init(envire_maps    
+    SOURCES
+        MLSProvider.cpp
     HEADERS
         MLSProvider.hpp
 )
