@@ -3,18 +3,20 @@
 #include <lib_init/Base.hpp>
 #include <ndlcom_force_torque_sensor/proxies/Task.hpp>
 #include "NDLComSerial.hpp"
+#include <lib_init/ForceTorqueSensor.hpp>
 
 namespace init
 {
-class ForceTorqueSensor : public Base {
+class NDLComForceTorqueSensor : public ForceTorqueSensor {
 protected:
     NDLComSerial &ndlcomSerial;
 
 public:
     DependentTask< ndlcom_force_torque_sensor::proxies::Task > forceTorqueSensorTask;
 
-    ForceTorqueSensor(NDLComSerial &ndlcomSerial, const std::string &forceTorqueSensorTaskName);
+    NDLComForceTorqueSensor(NDLComSerial &ndlcomSerial, const std::string &forceTorqueSensorTaskName);
     virtual bool connect();
+    virtual OutputProxyPort<base::samples::Wrenches> &getStatusPort();
 };
 
 }

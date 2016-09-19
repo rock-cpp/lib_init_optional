@@ -1,9 +1,9 @@
 
 optional_init(ndlcom_force_torque_sensor-proxies 
     SOURCES
-        ForceTorqueSensor.cpp
+        NDLComForceTorqueSensor.cpp
     HEADERS
-        ForceTorqueSensor.hpp
+        NDLComForceTorqueSensor.hpp
 )
 
 optional_init(hbridge-proxies 
