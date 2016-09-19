@@ -51,6 +51,7 @@ optional_init(robot_frames-proxies
 optional_init(mars-proxies
     SOURCES
         SimCameraDriver.cpp
+        SimForceTorqueSensor.cpp
         SimIMUDriver.cpp
         SimJointDriver.cpp
         SimLaserDriver.cpp
@@ -58,6 +59,7 @@ optional_init(mars-proxies
         SimVelodyneDriver.cpp
     HEADERS
         SimCameraDriver.hpp
+        SimForceTorqueSensor.hpp
         SimIMUDriver.hpp
         SimJointDriver.hpp
         SimLaserDriver.hpp
