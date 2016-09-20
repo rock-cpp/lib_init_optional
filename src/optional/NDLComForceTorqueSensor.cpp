@@ -10,6 +10,7 @@ NDLComForceTorqueSensor::NDLComForceTorqueSensor(NDLComSerial &ndlcomSerial, con
      , ndlcomSerial(ndlcomSerial)
      , forceTorqueSensorTask(this, forceTorqueSensorTaskName)
 {
+    registerDependency(ndlcomSerial);
 }
      
 bool NDLComForceTorqueSensor::connect()
