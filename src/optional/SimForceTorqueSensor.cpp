@@ -5,7 +5,8 @@ init::SimForceTorqueSensor::SimForceTorqueSensor(init::Simulator& sim, const std
     sim(sim),
     sensorTask(this, taskName)
 {
-
+    registerDependency(sim);
+    sensorTask.setDeployment(sim.simulator.getDeployment());
 }
 
 OutputProxyPort< base::samples::Wrenches >& init::SimForceTorqueSensor::getStatusPort()
