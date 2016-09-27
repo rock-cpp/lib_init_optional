@@ -213,8 +213,13 @@ optional_init(ndlcom_aila_joints-proxies
 optional_init(slam3d-proxies
     SOURCES
         Slam3d.cpp
+    HEADERS
+        Slam3d.hpp
+)
+
+optional_init(depth_map_preprocessing-proxies
+    SOURCES
         DepthMapToPCLConverter.cpp
     HEADERS
         DepthMapToPCLConverter.hpp
-        Slam3d.hpp
 )

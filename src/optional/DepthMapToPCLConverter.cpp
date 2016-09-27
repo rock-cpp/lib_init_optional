@@ -20,5 +20,5 @@ bool init::DepthMapToPCLConverter::connect()
 
 OutputProxyPort< base::samples::Pointcloud >& init::DepthMapToPCLConverter::getPointCloudPort()
 {
-    return converter.getConcreteProxy()->cloud;
+    return converter.getConcreteProxy()->pointcloud;
 }

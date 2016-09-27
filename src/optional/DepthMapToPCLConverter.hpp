@@ -2,7 +2,7 @@
 
 #include <lib_init/PointCloudProvider.hpp>
 #include <lib_init/DepthMapProvider.hpp>
-#include <slam3d/proxies/ScanConverter.hpp>
+#include <depth_map_preprocessing/proxies/PointcloudConverter.hpp>
 
 namespace init 
 {
@@ -16,7 +16,7 @@ public:
     virtual bool connect();
     
     virtual OutputProxyPort< base::samples::Pointcloud >& getPointCloudPort();
-    DependentTask<slam3d::proxies::ScanConverter> converter;
+    DependentTask<depth_map_preprocessing::proxies::PointcloudConverter> converter;
 };
 
 }
