@@ -71,9 +71,12 @@ optional_init(odometry-proxies
     SOURCES
         SkidOdometry.cpp
         LateralOdometry.cpp
+        ContactPointOdometry.cpp
     HEADERS
+        BodyContactsProvider.hpp
         SkidOdometry.hpp
         LateralOdometry.hpp
+        ContactPointOdometry.hpp
 )
 
 optional_init(velodyne_lidar-proxies
