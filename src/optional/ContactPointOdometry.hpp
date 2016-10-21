@@ -2,7 +2,7 @@
 
 #include <lib_init/PositionProvider.hpp>
 #include <odometry/proxies/ContactPointTask.hpp>
-#include <lib_init/BodyContactsProvider.hpp>
+#include "BodyContactsProvider.hpp"
 #include <lib_init/IMUDriver.hpp>
 
 namespace init
