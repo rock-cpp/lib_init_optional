@@ -14,7 +14,7 @@ init::DepthMapToPCLConverter::~DepthMapToPCLConverter()
 
 bool init::DepthMapToPCLConverter::connect()
 {
-    velodyne.getDepthMapPort().connectTo(converter.getConcreteProxy()->depth_map, RTT::ConnPolicy::buffer(10));
+    velodyne.getDepthMapPort().connectTo(converter.getConcreteProxy()->depth_map);
     return init::PointCloudProvider::connect();
 }
 
