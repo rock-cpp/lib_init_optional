@@ -170,7 +170,9 @@ optional_init(motion_planning_libraries-proxies
         MotionPlanner.hpp
 )
 
-optional_init(localization-proxies
+optional_init(localization-proxies)
+
+optional_init(simple_pose_integrator-proxies
     SOURCES
         PoseProvider.cpp
     HEADERS
@@ -195,7 +197,6 @@ optional_init(kccd-proxies)
 optional_init(ctrl_lib-proxies)
 
 optional_init(waypoint_provider-proxies)
-
 
 optional_init(trajectory_generation-proxies
     SOURCES

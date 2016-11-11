@@ -1,28 +1,22 @@
 #include "PoseProvider.hpp"
 
-#include <localization/proxies/PoseProvider.hpp>
-#include <graph_slam/proxies/VelodyneSLAM.hpp>
+#include <simple_pose_integrator/proxies/Task.hpp>
 
 namespace init
 {
 
-
-PoseProvider::PoseProvider(VelodyneSlam &slam, PositionProvider &odometry, const std::string &poseProviderTaskName)
+PoseProvider::PoseProvider(PositionProvider &irregular_pose_provider, const std::string &poseProviderTaskName)
     : PositionProvider("PoseProvider")
     , Base("PoseProvider")
-    , slam(slam)
-    , odometry(odometry)
+    , irregular_pose_provider(irregular_pose_provider)
     , poseProviderTask(this, poseProviderTaskName)
 {
-    registerDependency(slam);
-    registerDependency(odometry);
+    registerDependency(irregular_pose_provider);
 }
 
 bool PoseProvider::connect()
 {
-    slam.velodyneSlamTask.getConcreteProxy()->pose_provider_update.connectTo(poseProviderTask.getConcreteProxy()->pose_provider_update);
-    odometry.getPositionSamples().connectTo(poseProviderTask.getConcreteProxy()->odometry_samples);
-    
+    irregular_pose_provider.getPositionSamples().connectTo(poseProviderTask.getConcreteProxy()->pose_samples_in);
     return init::Base::connect();
 }
 
