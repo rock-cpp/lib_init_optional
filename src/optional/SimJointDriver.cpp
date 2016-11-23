@@ -18,6 +18,6 @@ InputProxyPort< base::commands::Joints >& SimJointDriver::getCommandPort()
 
 OutputProxyPort< base::samples::Joints >& SimJointDriver::getStatusPort()
 {
-    return jointTask.getConcreteProxy()->status_samples;
+    return jointTask.getConcreteProxy()->joints_status;
 }
 }
