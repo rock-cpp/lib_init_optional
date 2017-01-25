@@ -7,7 +7,7 @@
 namespace init
 {
 
-class MotionControl2D : public Base
+class MotionControl2D : public virtual Base
 {
 public:
     MotionControl2D(const std::string& name): Base(name) {};
