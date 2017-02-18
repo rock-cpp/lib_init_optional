@@ -64,6 +64,7 @@ rock_library(lib_init
         MapProvider.hpp
         DepthMapProvider.hpp
         MotionControl2D.hpp
+        MotionControl2DProvider.hpp
         MotionPlannerProvider.hpp
         PointCloudProvider.hpp
         PositionProvider.hpp
