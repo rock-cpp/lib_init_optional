@@ -90,13 +90,13 @@ int StartCommon::runCommon(state_machine::State *initialState, const std::vector
 
     state_machine::serialization::StateMachine smDump(stateMachine);
 
-//     if(simulationActive)
-//     {
-//         
-//         widget->update(smDump);
+    if(simulationActive)
+    {
+        
+        widget->update(smDump);
 //         widget->repaint();
-//         app->processEvents();
-//     }    
+        app->processEvents();
+    }    
 
     int cnt = 0;
     
@@ -117,18 +117,18 @@ int StartCommon::runCommon(state_machine::State *initialState, const std::vector
         {
             eventPort->write(e);
             
-//             if(simulationActive)
-//             {
-//                 //update widget
-//                 widget->update(e);
+            if(simulationActive)
+            {
+                //update widget
+                widget->update(e);
 //                 widget->repaint();
-//             }
+            }
         }
         
-//         if(simulationActive)
-//         {
-//             app->processEvents();
-//         }
+        if(simulationActive)
+        {
+            app->processEvents();
+        }
         
         std::string debugMsgs = stateMachine.getDebugStream().str();
         stateMachine.getDebugStream().str(std::string());
