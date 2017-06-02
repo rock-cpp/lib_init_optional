@@ -2,7 +2,7 @@
 
 #include <lib_init/Base.hpp>
 #include <lib_init/DependentTask.hpp>
-#include <ugv_nav4d/proxies/Task.hpp>
+#include <ugv_nav4d/proxies/PathPlanner.hpp>
 #include "MLSProvider.hpp"
 
 namespace init 
@@ -17,7 +17,7 @@ public:
     
     virtual bool connect();
     
-    DependentTask<ugv_nav4d::proxies::Task> planner;
+    DependentTask<ugv_nav4d::proxies::PathPlanner> planner;
 };
 
 }
