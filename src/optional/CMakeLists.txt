@@ -222,6 +222,8 @@ optional_init(slam3d-proxies
 optional_init(depth_map_preprocessing-proxies
     SOURCES
         DepthMapToPCLConverter.cpp
+        OutlierFilter.cpp
     HEADERS
         DepthMapToPCLConverter.hpp
+        OutlierFilter.hpp
 )
