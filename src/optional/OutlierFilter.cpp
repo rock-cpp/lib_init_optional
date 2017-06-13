@@ -1,18 +1,18 @@
 #include "OutlierFilter.hpp"
 
-init::OutlierFilter::OutlierFilter(const std::string& taskName, DepthMapProvider &input): 
+init::OutlierFilter::OutlierFilter(const std::string& taskName, DepthMapProvider &inputp): 
     DepthMapProvider(taskName), 
-    input(input),
+    input(inputp),
     filterTask(this, taskName)
 {
-
+    registerDependency(input);
 }
 
 bool init::OutlierFilter::connect()
 {
     input.getDepthMapPort().connectTo(filterTask.getConcreteProxy()->depth_map, RTT::ConnPolicy::buffer(20));
     
-    return init::Base::connect();
+    return DepthMapProvider::connect();
 }
 
 OutputProxyPort< base::samples::DepthMap >& init::OutlierFilter::getDepthMapPort()
