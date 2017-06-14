@@ -48,16 +48,16 @@ StartCommon::StartCommon(int argc, char** argv)
     }
 
 
-    if(simulationActive)
-    {
-        std::cout << "Created App" << std::endl;
-        
-        app = new QApplication(argc, argv);
-    
-        widget = new StateMachineWidget();
-        widget->show();
-        widget->resize(800,600);
-    }
+//     if(simulationActive)
+//     {
+//         std::cout << "Created App" << std::endl;
+//         
+//         app = new QApplication(argc, argv);
+//     
+//         widget = new StateMachineWidget();
+//         widget->show();
+//         widget->resize(800,600);
+//     }
     
     //FIXME, we should not need this to be hardcoded here !!!
     RTT::types::TypekitRepository::Import(new RTT::types::RealTimeTypekitPlugin);
@@ -90,13 +90,13 @@ int StartCommon::runCommon(state_machine::State *initialState, const std::vector
 
     state_machine::serialization::StateMachine smDump(stateMachine);
 
-    if(simulationActive)
-    {
-        
-        widget->update(smDump);
-//         widget->repaint();
-        app->processEvents();
-    }    
+//     if(simulationActive)
+//     {
+//         
+//         widget->update(smDump);
+// //         widget->repaint();
+//         app->processEvents();
+//     }    
 
     int cnt = 0;
     
@@ -117,18 +117,18 @@ int StartCommon::runCommon(state_machine::State *initialState, const std::vector
         {
             eventPort->write(e);
             
-            if(simulationActive)
-            {
-                //update widget
-                widget->update(e);
-//                 widget->repaint();
-            }
+//             if(simulationActive)
+//             {
+//                 //update widget
+//                 widget->update(e);
+// //                 widget->repaint();
+//             }
         }
-        
-        if(simulationActive)
-        {
-            app->processEvents();
-        }
+//         
+//         if(simulationActive)
+//         {
+//             app->processEvents();
+//         }
         
         std::string debugMsgs = stateMachine.getDebugStream().str();
         stateMachine.getDebugStream().str(std::string());
