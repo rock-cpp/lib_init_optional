@@ -227,3 +227,11 @@ optional_init(depth_map_preprocessing-proxies
         DepthMapToPCLConverter.hpp
         OutlierFilter.hpp
 )
+
+optional_init(localization-proxies
+    SOURCES
+        Localization.cpp
+    HEADERS
+        Localization.hpp
+)
+
