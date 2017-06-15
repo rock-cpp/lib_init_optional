@@ -238,8 +238,10 @@ optional_init(localization-proxies
 optional_init(envire_exporters-proxies
     SOURCES
         MLSMapKalmanExporter.cpp
+        MLSMapPrecalculatedExporter.cpp
     HEADERS
         MLSMapKalmanExporter.hpp
+        MLSMapPrecalculatedExporter.hpp
 )
 
 
