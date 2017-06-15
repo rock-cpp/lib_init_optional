@@ -6,13 +6,13 @@
 
 namespace init {
 
-class MLSMapPrecalculatedExporter : public MLSProvider
+class MLSMapPrecalculatedExporter : public MLSPrecalculatedProvider
 {
     
 public:
     MLSMapPrecalculatedExporter(const std::string& taskName);
     virtual bool generateMap();
-    virtual OutputProxyPort< envire::core::SpatioTemporal< maps::grid::MLSMapKalman > >& getMapPort();
+    virtual OutputProxyPort< envire::core::SpatioTemporal< maps::grid::MLSMapPrecalculated > >& getMapPort();
 
     DependentTask<envire_exporters::proxies::MLSMapPrecalculatedExporter> exporter;
 };
