@@ -156,8 +156,10 @@ optional_init(servo_dynamixel-proxies
 
 optional_init(ugv_nav4d-proxies 
     SOURCES
+        UGVAreaExploration.cpp
         UGVNav4d.cpp    
     HEADERS
+        UGVAreaExploration.hpp
         UGVNav4d.hpp    
 )
 
