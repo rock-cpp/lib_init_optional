@@ -246,4 +246,10 @@ optional_init(envire_exporters-proxies
         MLSMapPrecalculatedExporter.hpp
 )
 
+optional_init(tofcamera_picoflex-proxies
+    SOURCES
+        TOFPicoFlex.cpp
+    HEADERS
+        TOFPicoFlex.hpp
+)
 
