@@ -78,6 +78,7 @@ rock_library(lib_init
         orocos_cpp
         lib_config
         logger-proxies
+        logger-tasks-gnulinux
         state_machine
         state_machine_viz
         lib_config

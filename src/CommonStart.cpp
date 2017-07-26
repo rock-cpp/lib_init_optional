@@ -20,6 +20,9 @@
 #include <smurf/Robot.hpp>
 #include <orocos_cpp_base/OrocosHelpers.hpp>
 #include <orocos_cpp/PluginHelper.hpp>
+#include <orocos_cpp/LoggingHelper.hpp>
+#include <logger/Logger.hpp>
+#include <rtt/transports/corba/CorbaDispatcher.hpp>
 
 StartCommon::StartCommon(int argc, char** argv)
 {
@@ -90,6 +93,31 @@ int StartCommon::runCommon(state_machine::State *initialState, const std::vector
 
     state_machine::serialization::StateMachine smDump(stateMachine);
 
+    if(loggingActive)
+    {
+        const std::string loggerName("taskManagement_logger");
+        RTT::TaskContext *logger = new logger::Logger(loggerName);
+        RTT::corba::TaskContextServer::Create( logger );
+        RTT::corba::CorbaDispatcher::Instance( logger->ports(), ORO_SCHED_OTHER, RTT::os::LowestPriority );
+        RTT::Activity* activity_Logger = new RTT::Activity(
+            ORO_SCHED_OTHER,
+            RTT::os::LowestPriority,
+            0,
+            logger->engine(),
+            "taskManagement_logger");
+
+    
+        { RTT::os::Thread* thread = dynamic_cast<RTT::os::Thread*>(activity_Logger);
+            if (thread)
+                thread->setStopTimeout(10);
+        }
+        logger->setActivity(activity_Logger);
+
+        orocos_cpp::LoggingHelper lHelper;
+        lHelper.logAllPorts(clientTask, loggerName, {}, false);
+        
+    }
+    
 //     if(simulationActive)
 //     {
 //         
