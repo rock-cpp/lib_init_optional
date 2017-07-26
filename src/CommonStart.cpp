@@ -87,9 +87,11 @@ int StartCommon::runCommon(state_machine::State *initialState, const std::vector
     RTT::TaskContext *clientTask = OrocosHelpers::getClientTask();
     RTT::OutputPort<state_machine::serialization::Event> *eventPort = new RTT::OutputPort<state_machine::serialization::Event>();
     RTT::OutputPort<state_machine::serialization::StateMachine> *dumpPort = new RTT::OutputPort<state_machine::serialization::StateMachine>();
+    RTT::OutputPort<std::string> *debugMessages = new RTT::OutputPort<std::string>();
     
     clientTask->addPort("stateMachine_Events", *eventPort);
     clientTask->addPort("stateMachine_Dump", *dumpPort);
+    clientTask->addPort("stateMachine_Msg", *debugMessages);
 
     state_machine::serialization::StateMachine smDump(stateMachine);
 
@@ -164,6 +166,7 @@ int StartCommon::runCommon(state_machine::State *initialState, const std::vector
         if(!debugMsgs.empty())
         {
             std::cout << debugMsgs;
+            debugMessages->write(debugMsgs);
         }
     }
     );
