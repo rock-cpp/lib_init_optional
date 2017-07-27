@@ -58,6 +58,7 @@ rock_library(lib_init
         CommonStart.hpp
         DependentTask.hpp
         ForceTorqueSensor.hpp
+        GenericTask.hpp
         IMUDriver.hpp
         JointDriver.hpp
         LaserDriver.hpp
