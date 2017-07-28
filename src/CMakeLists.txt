@@ -53,6 +53,9 @@ rock_library(lib_init
         states/Init.cpp
         ${SRC_EXTRA}
         
+        log_replay/ReplayTask.cpp
+        log_replay/ReplayPort.cpp
+        log_replay/PointCloudProvider.cpp
         log_replay/PointCloudProvider.cpp
         log_replay/PositionProvider.cpp
     HEADERS
@@ -78,6 +81,8 @@ rock_library(lib_init
         states/Init.hpp
         TraversabilityMapProvider.hpp
 #         ${HDR_EXTRA}
+        log_replay/ReplayTask.hpp
+        log_replay/ReplayPort.hpp
         log_replay/PointCloudProvider.hpp
         log_replay/PositionProvider.hpp
     DEPS_PKGCONFIG
@@ -92,3 +97,5 @@ rock_library(lib_init
         lib_config
         ${PKG_CONFIG_EXTRA}
 )
+
+# add_subdirectory(log_replay)
