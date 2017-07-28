@@ -45,16 +45,21 @@ message("SRC extra is ${SRC_EXTRA}")
 rock_library(lib_init
     SOURCES
         Base.cpp
+        CommonReplay.cpp
         CommonStart.cpp
         DependentTask.cpp
         MapProvider.cpp
         PointCloudProvider.cpp
         states/Init.cpp
         ${SRC_EXTRA}
+        
+        log_replay/PointCloudProvider.cpp
+        log_replay/PositionProvider.cpp
     HEADERS
         Base.hpp
         CameraDriver.hpp
         Container.hpp
+        CommonReplay.hpp
         CommonStart.hpp
         DependentTask.hpp
         ForceTorqueSensor.hpp
@@ -73,6 +78,8 @@ rock_library(lib_init
         states/Init.hpp
         TraversabilityMapProvider.hpp
 #         ${HDR_EXTRA}
+        log_replay/PointCloudProvider.hpp
+        log_replay/PositionProvider.hpp
     DEPS_PKGCONFIG
         base-lib
         orocos_cpp_base
