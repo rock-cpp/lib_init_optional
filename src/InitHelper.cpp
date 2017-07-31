@@ -42,24 +42,23 @@ bool InitHelper::start(init::Base& toStart)
 bool InitHelper::start(init::Base& toStart, int argc, char** argv)
 {
     Typelib::PluginManager::self manager;
-    ReplayHandler replay;
+    ReplayHandler *replay = new ReplayHandler();
 
     QApplication a(argc, argv);
     ReplayGui gui;
     
+    startReplayRecursive(toStart, *replay);
     
-    gui.initReplayHandler(&replay, "CommonReplay");
+    replay->loadStreams(argc, argv, ReplayHandler::WHITELIST);
+
+    start(toStart);
+
+    //note, the gui takes ownership of the replay handler
+    gui.initReplayHandler(replay, "CommonReplay");
     
     gui.updateTaskView();
     gui.show();    
-
     
-    startReplayRecursive(toStart, replay);
-    
-    replay.loadStreams(argc, argv, ReplayHandler::WHITELIST);
-    
-    start(toStart);
-
     return a.exec();    
 }
 
