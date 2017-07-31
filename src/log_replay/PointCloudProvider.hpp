@@ -13,7 +13,6 @@ class PointCloudProvider : public init::PointCloudProvider
     ReplayPort<base::samples::Pointcloud> port;
 public:
     PointCloudProvider(const std::string& Taskname, const std::string &portName);
-    virtual void initProxies();
     virtual OutputProxyPort< base::samples::Pointcloud >& getPointCloudPort();
 };
 

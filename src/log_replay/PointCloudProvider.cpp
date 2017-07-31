@@ -9,12 +9,6 @@ PointCloudProvider::PointCloudProvider(const std::string& Taskname, const std::s
     
 }
 
-void PointCloudProvider::initProxies()
-{
-    port.initPort();
-    init::Base::initProxies();
-}
-
 OutputProxyPort< base::samples::Pointcloud >& PointCloudProvider::getPointCloudPort()
 {
     return port.getPort();

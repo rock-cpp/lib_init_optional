@@ -1,6 +1,7 @@
 #include "Base.hpp"
 #include <rtt/transports/corba/TaskContextProxy.hpp>
 #include "DependentTask.hpp"
+#include "log_replay/ReplayTask.hpp"
 
 namespace init
 {
@@ -32,11 +33,25 @@ void Base::registerTask(DependentTaskBase* task)
 
 }
 
+void Base::registerReplayTask(log_replay::ReplayTask* task)
+{
+    if(task == nullptr)
+        throw std::runtime_error("init::Base::registerReplayTask: Error, tried to register a nullptr on init object with name '" + name + "'");
+        
+    replayTasks.push_back(task);
+}
+
+
 void Base::initProxies()
 {
     for(DependentTaskBase*  &t: dependendTasks)
     {
         t->getProxy();
+    }
+
+    for(log_replay::ReplayTask* t: replayTasks)
+    {
+        t->init();
     }
 }
 

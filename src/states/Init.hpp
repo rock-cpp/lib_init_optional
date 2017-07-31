@@ -1,8 +1,7 @@
 #pragma once
 
 #include <state_machine/State.hpp>
-#include "../Base.hpp"
-#include <orocos_cpp/TransformerHelper.hpp>
+#include "../InitHelper.hpp"
 
 class Init : public state_machine::State
 {
@@ -19,14 +18,5 @@ public:
 
 protected:
     init::Base *toStart;
-    bool startDeploymentRecursive(init::Base &toStart, std::vector<orocos_cpp::Deployment *> &started);
-    bool startTasksRecursive(init::Base &toStart, std::vector<init::Base *> &started);
-    
-    void printDependencies(init::Base &toStart, int level);
-    
-    orocos_cpp::TransformerHelper &trHelper;
-    orocos_cpp::ConfigurationHelper &confHelper;
-
-    bool loggingActive;
-    std::vector<std::string> excludeList;
+    InitHelper helper;
 };

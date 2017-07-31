@@ -16,6 +16,8 @@ public:
     ReplayPortBase(ReplayTask &task, const std::string &portName);
     virtual ~ReplayPortBase();
     virtual void initPort() = 0;
+    
+    const std::string &getName() const;
 };
 
 template<typename TYPE>

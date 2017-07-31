@@ -11,6 +11,11 @@ class TaskContextProxy;
 }
 }
 
+namespace log_replay
+{
+class ReplayTask;
+}
+
 namespace init
 {
 
@@ -19,6 +24,7 @@ class DependentTaskBase;
 class Base
 {
     friend class DependentTaskBase;
+    friend class log_replay::ReplayTask;
     
 private:
     std::string name;
@@ -28,11 +34,17 @@ public:
     Base(const std::string &name);
     virtual ~Base();
 
-    std::vector<DependentTaskBase *> getDependendTasks() {
+    std::vector<DependentTaskBase *> getDependendTasks()  const
+    {
         return dependendTasks;
     }
 
-    std::vector<Base *> getDependencies()
+    std::vector<log_replay::ReplayTask *> getReplayTasks() const
+    {
+        return replayTasks;
+    }
+    
+    std::vector<Base *> getDependencies() const
     {
         return dependencies;
     };
@@ -92,9 +104,11 @@ public:
     };
 protected:
     void registerTask(DependentTaskBase *task);
+    void registerReplayTask(log_replay::ReplayTask *task);
     void registerDependency(Base &dependency);
 
     std::vector<DependentTaskBase *> dependendTasks;
+    std::vector<log_replay::ReplayTask *> replayTasks;
     std::vector<Base *> dependencies;
 };
 

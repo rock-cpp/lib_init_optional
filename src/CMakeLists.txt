@@ -45,14 +45,15 @@ message("SRC extra is ${SRC_EXTRA}")
 rock_library(lib_init
     SOURCES
         Base.cpp
-        CommonReplay.cpp
         CommonStart.cpp
         DependentTask.cpp
+        InitHelper.cpp
         MapProvider.cpp
         PointCloudProvider.cpp
         states/Init.cpp
         ${SRC_EXTRA}
         
+        log_replay/CommonReplay.cpp
         log_replay/ReplayTask.cpp
         log_replay/ReplayPort.cpp
         log_replay/PointCloudProvider.cpp
@@ -62,12 +63,12 @@ rock_library(lib_init
         Base.hpp
         CameraDriver.hpp
         Container.hpp
-        CommonReplay.hpp
         CommonStart.hpp
         DependentTask.hpp
         ForceTorqueSensor.hpp
         GenericTask.hpp
         IMUDriver.hpp
+        InitHelper.hpp
         JointDriver.hpp
         LaserDriver.hpp
         MapProvider.hpp
@@ -81,6 +82,7 @@ rock_library(lib_init
         states/Init.hpp
         TraversabilityMapProvider.hpp
 #         ${HDR_EXTRA}
+        log_replay/CommonReplay.hpp
         log_replay/ReplayTask.hpp
         log_replay/ReplayPort.hpp
         log_replay/PointCloudProvider.hpp
@@ -95,6 +97,7 @@ rock_library(lib_init
         state_machine
         state_machine_viz
         lib_config
+        rock_replay
         ${PKG_CONFIG_EXTRA}
 )
 

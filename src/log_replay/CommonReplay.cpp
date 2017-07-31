@@ -2,10 +2,12 @@
 #include <rtt/transports/corba/TaskContextServer.hpp>
 #include <state_machine/Config.hpp>
 #include <lib_config/Bundle.hpp>
-#include "states/Init.hpp"
-#include "Container.hpp"
+#include "../Container.hpp"
+#include "../InitHelper.hpp"
 
-CommonReplay::CommonReplay(int argc, char** argv)
+namespace log_replay
+{
+CommonReplay::CommonReplay(int argc, char** argv) : argc(argc), argv(argv)
 {
     RTT::corba::TaskContextServer::InitOrb(argc, argv);
         
@@ -19,7 +21,9 @@ CommonReplay::CommonReplay(int argc, char** argv)
             std::cout << "Logging enabled" << std::endl;
         }
     }
-    state_machine::Config *config = &(state_machine::Config::getConfig(libConfig::Bundle::getInstance().getConfigurationDirectory() + "../taskmanagement.yml"));
+    //Initialize the config
+    //FIXME this config thing is shitty
+    (state_machine::Config::getConfig(libConfig::Bundle::getInstance().getConfigurationDirectory() + "../taskmanagement.yml"));
 }
 
 
@@ -29,23 +33,20 @@ int CommonReplay::runCommon(const smurf::Robot &robot, const std::vector< init::
     orocos_cpp::ConfigurationHelper configHelper;
     orocos_cpp::TransformerHelper transformerHelper(robot);
 
-    //various init transitions
-    Init initializer(transformerHelper, configHelper, all, nullptr);
-
-    int cnt = 0;
-
+    InitHelper initializer(transformerHelper, configHelper);
+    
     if(loggingActive)
     {
         initializer.activateLogging(logExcludeList);
     }
         
-    initializer.executeFunction();
+    initializer.start(all, argc, argv);
 
     return 0;
-
 }
 
 void CommonReplay::setLoggingExcludes(const std::vector< std::string >& excludeList)
 {
     logExcludeList = excludeList;
+}
 }

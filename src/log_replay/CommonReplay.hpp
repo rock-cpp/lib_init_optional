@@ -1,11 +1,16 @@
 #pragma once
 #include <vector>
-#include "Base.hpp"
+#include "../Base.hpp"
+
+namespace log_replay
+{
 
 class CommonReplay
 {
     bool loggingActive;
     std::vector<std::string> logExcludeList;
+    int argc;
+    char **argv;
 public:
     CommonReplay(int argc, char **argv);
     
@@ -15,3 +20,4 @@ public:
     void setLoggingExcludes(const std::vector<std::string> &excludeList);    
 };
 
+}
