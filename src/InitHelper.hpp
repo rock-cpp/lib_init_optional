@@ -15,7 +15,7 @@ public:
     InitHelper(orocos_cpp::TransformerHelper &trHelper, orocos_cpp::ConfigurationHelper &confHelper);
     
     bool start(init::Base &toStart);
-    bool start(init::Base& toStart, int argc, char** argv);
+    bool start(init::Base& toStart, int argc, char** argv, ReplayHandler &replay);
     
     bool startDeploymentRecursive(init::Base &toStart, std::vector<orocos_cpp::Deployment *> &started);
     bool startReplayRecursive(init::Base &toStart, ReplayHandler &replay);

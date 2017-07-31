@@ -4,6 +4,10 @@
 #include <lib_config/Bundle.hpp>
 #include "../Container.hpp"
 #include "../InitHelper.hpp"
+#include <rock_replay/ReplayHandler.hpp>
+#include <rock_replay/ReplayGUI.h>
+#include <typelib/pluginmanager.hh>
+#include <thread>
 
 namespace log_replay
 {
@@ -27,8 +31,14 @@ CommonReplay::CommonReplay(int argc, char** argv) : argc(argc), argv(argv)
 }
 
 
-int CommonReplay::runCommon(const smurf::Robot &robot, const std::vector< init::Base* >& toInit)
+int CommonReplay::runCommon(const smurf::Robot &robot, const std::vector< init::Base* >& toInit, std::function<void (void)> hook)
 {
+    Typelib::PluginManager::self manager;
+    ReplayHandler *replay = new ReplayHandler();
+
+    QApplication a(argc, argv);
+    ReplayGui gui;    
+
     init::Container all(toInit); 
     orocos_cpp::ConfigurationHelper configHelper;
     orocos_cpp::TransformerHelper transformerHelper(robot);
@@ -40,9 +50,25 @@ int CommonReplay::runCommon(const smurf::Robot &robot, const std::vector< init::
         initializer.activateLogging(logExcludeList);
     }
         
-    initializer.start(all, argc, argv);
+    initializer.start(all, argc, argv, *replay);
+    
+    //note, the gui takes ownership of the replay handler
+    gui.initReplayHandler(replay, "CommonReplay");
+    
+    gui.updateTaskView();
+    gui.show();    
+    std::thread *thread;
+    
+    if(hook)
+    {
+        std::cout << "starting thread" << std::endl;
+        thread = new std::thread(hook);
+        std::cout << "starting thread done" << std::endl;
+    }
+    
+    a.setQuitOnLastWindowClosed(true);
 
-    return 0;
+    return a.exec();
 }
 
 void CommonReplay::setLoggingExcludes(const std::vector< std::string >& excludeList)

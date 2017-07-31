@@ -5,8 +5,6 @@
 #include "log_replay/ReplayTask.hpp"
 #include "log_replay/ReplayPort.hpp"
 #include <rock_replay/ReplayHandler.hpp>
-#include <rock_replay/ReplayGUI.h>
-#include <typelib/pluginmanager.hh>
 
 InitHelper::InitHelper(orocos_cpp::TransformerHelper& trHelper, orocos_cpp::ConfigurationHelper& confHelper) :
     trHelper(trHelper),
@@ -39,27 +37,13 @@ bool InitHelper::start(init::Base& toStart)
     return true;
 }
 
-bool InitHelper::start(init::Base& toStart, int argc, char** argv)
+bool InitHelper::start(init::Base& toStart, int argc, char** argv, ReplayHandler &replay)
 {
-    Typelib::PluginManager::self manager;
-    ReplayHandler *replay = new ReplayHandler();
+    startReplayRecursive(toStart, replay);
+    
+    replay.loadStreams(argc, argv, ReplayHandler::WHITELIST);
 
-    QApplication a(argc, argv);
-    ReplayGui gui;
-    
-    startReplayRecursive(toStart, *replay);
-    
-    replay->loadStreams(argc, argv, ReplayHandler::WHITELIST);
-
-    start(toStart);
-
-    //note, the gui takes ownership of the replay handler
-    gui.initReplayHandler(replay, "CommonReplay");
-    
-    gui.updateTaskView();
-    gui.show();    
-    
-    return a.exec();    
+    return start(toStart);
 }
 
 
