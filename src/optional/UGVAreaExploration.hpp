@@ -3,7 +3,7 @@
 #include <lib_init/Base.hpp>
 #include <lib_init/DependentTask.hpp>
 #include <ugv_nav4d/proxies/AreaExploration.hpp>
-#include "MLSProvider.hpp"
+#include <lib_init/MLSProvider.hpp>
 #include <lib_init/PositionProvider.hpp>
 
 namespace init 

@@ -27,10 +27,6 @@ optional_init(canbus-proxies
         Canbus.hpp
 )
 
-optional_init(envire_maps    
-    HEADERS
-        MLSProvider.hpp
-)
 
 optional_init(imu_xsens-proxies
     SOURCES

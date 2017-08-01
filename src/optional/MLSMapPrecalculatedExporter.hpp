@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "MLSProvider.hpp"
+#include <lib_init/MLSProvider.hpp>
 #include <envire_exporters/proxies/MLSMapPrecalculatedExporter.hpp>
 
 namespace init {

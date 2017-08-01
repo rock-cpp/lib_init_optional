@@ -36,7 +36,12 @@ macro(optional_init LIB_NAME)
 endmacro()
 
 add_subdirectory(optional)
+# add_subdirectory(log_replay)
 
+optional_init(envire_maps    
+    HEADERS
+        MLSProvider.hpp
+)
 
 message("SRC extra is ${SRC_EXTRA}")
 # message("HDR_EXTRA is ${HDR_EXTRA}")
@@ -102,4 +107,3 @@ rock_library(lib_init
         ${PKG_CONFIG_EXTRA}
 )
 
-# add_subdirectory(log_replay)
