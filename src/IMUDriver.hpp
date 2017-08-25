@@ -6,7 +6,7 @@
 #include <base/samples/IMUSensors.hpp>
 namespace init
 {
-    class IMUDriver : public Base
+    class IMUDriver : public virtual Base
     {
     public:
         IMUDriver(const std::string& name) : Base(name) {};

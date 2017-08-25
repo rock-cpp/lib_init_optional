@@ -1,6 +1,6 @@
 #include "IMUXsensDriver.hpp"
 
-init::IMUXsensDriver::IMUXsensDriver(const std::string imuTaskName) : IMUDriver("IMUXsensDriver"), imuTask(this, imuTaskName)
+init::IMUXsensDriver::IMUXsensDriver(const std::string imuTaskName) : Base("IMUXsensDriver"), IMUDriver("IMUXsensDriver"), imuTask(this, imuTaskName)
 {
 }
 
