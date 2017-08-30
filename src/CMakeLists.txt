@@ -78,6 +78,7 @@ rock_library(lib_init
         LaserDriver.hpp
         MapProvider.hpp
         DepthMapProvider.hpp
+        DistanceImageProvider.hpp
         MotionControl2D.hpp
         MotionControl2DProvider.hpp
         MotionPlannerProvider.hpp
