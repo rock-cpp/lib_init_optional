@@ -3,17 +3,17 @@
 #include <lib_init/Base.hpp>
 #include <lib_init/DependentTask.hpp>
 #include <tofcamera_picoflex/proxies/Task.hpp>
-#include <lib_init/PointCloudProvider.hpp>
+#include <lib_init/DistanceImageProvider.hpp>
 
 namespace init 
 {
 
-class TOFPicoFlex : public PointCloudProvider
+class TOFPicoFlex : public DistanceImageProvider
 {
 public:
     TOFPicoFlex(const std::string& taskName);
     
-    virtual OutputProxyPort< base::samples::Pointcloud >& getPointCloudPort();
+    virtual OutputProxyPort<base::samples::DistanceImage> &getDistanceImagePort();
     
     DependentTask<tofcamera_picoflex::proxies::Task> driver;
 };

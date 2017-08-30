@@ -2,21 +2,17 @@
 
 namespace init 
 {
-    
+
 TOFPicoFlex::TOFPicoFlex(const std::string& taskName): 
-    PointCloudProvider("TOFPicoFlex"),
+    DistanceImageProvider("TOFPicoFlex"),
     driver(this, taskName)
 {
 
 }
 
-OutputProxyPort< base::samples::Pointcloud >& TOFPicoFlex::getPointCloudPort()
+OutputProxyPort< base::samples::DistanceImage >& TOFPicoFlex::getDistanceImagePort()
 {
-    return driver.getConcreteProxy()->pointcloud;
+    return driver.getConcreteProxy()->distance_image;
 }
 
-    
-    
-    
-    
 };
