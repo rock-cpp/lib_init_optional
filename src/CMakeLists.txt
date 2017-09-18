@@ -59,6 +59,7 @@ rock_library(lib_init
         ${SRC_EXTRA}
         
         log_replay/CommonReplay.cpp
+        log_replay/DepthMapProvider.cpp
         log_replay/MLSProvider.cpp
         log_replay/ReplayTask.cpp
         log_replay/ReplayPort.cpp
@@ -89,6 +90,7 @@ rock_library(lib_init
         TraversabilityMapProvider.hpp
 #         ${HDR_EXTRA}
         log_replay/CommonReplay.hpp
+        log_replay/DepthMapProvider.hpp
         log_replay/MLSProvider.hpp
         log_replay/ReplayTask.hpp
         log_replay/ReplayPort.hpp
