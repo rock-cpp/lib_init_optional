@@ -18,6 +18,7 @@ TrajectoryFollowerWithSafeGuard::TrajectoryFollowerWithSafeGuard(PositionProvide
     
 bool TrajectoryFollowerWithSafeGuard::connect()
 {
+    trajectoryFollowerTask.getConcreteProxy()->current_trajectory.connectTo(poseWatchdog.getTrajectoryIn());
     //TODO posewatchdog output and safetyController connecten, wenn es den gibt
     return init::TrajectoryFollower::connect();
 }

@@ -4,6 +4,7 @@
 #include <lib_init/MLSProvider.hpp>
 #include <trajectory_follower/proxies/PoseWatchdog.hpp>
 #include <lib_init/MLTraversabilityMapProvider.hpp>
+#include <trajectory_follower/SubTrajectory.hpp>
 
 namespace init
 { 
@@ -19,6 +20,7 @@ public:
     
     PoseWatchdog(PositionProvider &poseProvider, MLTraversabilityMapProvider& mlMapProvider, const std::string &taskname);
     virtual bool connect();
+    virtual InputProxyPort<std::vector<trajectory_follower::SubTrajectory>> &getTrajectoryIn();
 //     virtual OutputProxyPort<base::commands::Motion2D> &getCommandOut();
 };
 
