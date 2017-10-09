@@ -4,11 +4,12 @@
 #include <lib_init/DependentTask.hpp>
 #include <ugv_nav4d/proxies/PathPlanner.hpp>
 #include <lib_init/MLSProvider.hpp>
+#include <lib_init/MLTraversabilityMapProvider.hpp>
 
 namespace init 
 {
 
-class UGVNav4d : public Base
+class UGVNav4d : public MLTraversabilityMapProvider
 {
     MLSProvider &mlsprovider;
 public:
@@ -16,6 +17,8 @@ public:
     virtual ~UGVNav4d();
     
     virtual bool connect();
+  
+    virtual OutputProxyPort<envire::core::SpatioTemporal<maps::grid::TraversabilityBaseMap3d>>& getTraversabilityMapPort();
     
     DependentTask<ugv_nav4d::proxies::PathPlanner> planner;
 };

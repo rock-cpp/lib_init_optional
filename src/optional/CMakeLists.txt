@@ -139,8 +139,12 @@ optional_init(graph_slam-proxies
 optional_init(trajectory_follower-proxies
     SOURCES
         TrajectoryFollower.cpp
+        TrajectoryFollowerWithSafeGuard.cpp
+        PoseWatchdog.cpp
     HEADERS
         TrajectoryFollower.hpp
+        TrajectoryFollowerWithSafeGuard.hpp
+        PoseWatchdog.hpp
 )
 
 optional_init(servo_dynamixel-proxies
@@ -231,6 +235,13 @@ optional_init(localization-proxies
         Localization.cpp
     HEADERS
         Localization.hpp
+)
+
+optional_init(safety_control-proxies
+    SOURCES
+        SafetyController.cpp
+    HEADERS
+        SafetyController.hpp
 )
 
 optional_init(envire_exporters-proxies

@@ -6,6 +6,7 @@
 namespace init {
 
 class PositionProvider : public virtual Base
+
 {
 public:
     PositionProvider(const std::string& name) : Base(name) {};

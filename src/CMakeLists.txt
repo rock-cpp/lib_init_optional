@@ -41,8 +41,9 @@ add_subdirectory(optional)
 optional_init(envire_maps    
     HEADERS
         MLSProvider.hpp
+        MLTraversabilityMapProvider.hpp
 )
-
+ 
 message("SRC extra is ${SRC_EXTRA}")
 # message("HDR_EXTRA is ${HDR_EXTRA}")
 # message("PKG_CONFIG_EXTRA is ${PKG_CONFIG_EXTRA}")
