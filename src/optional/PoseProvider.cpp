@@ -6,8 +6,8 @@ namespace init
 {
 
 PoseProvider::PoseProvider(PositionProvider &irregular_pose_provider, const std::string &poseProviderTaskName)
-    : PositionProvider("PoseProvider")
-    , Base("PoseProvider")
+    : Base("PoseProvider")
+    , PositionProvider("PoseProvider")
     , irregular_pose_provider(irregular_pose_provider)
     , poseProviderTask(this, poseProviderTaskName)
 {
