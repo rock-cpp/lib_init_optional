@@ -260,3 +260,10 @@ optional_init(tofcamera_picoflex-proxies
         TOFPicoFlex.hpp
 )
 
+optional_init(realtime_urdf_filter-proxies
+    SOURCES
+        RealtimeUrdfFilter.cpp
+    HEADERS
+        RealtimeUrdfFilter.hpp
+)
+
