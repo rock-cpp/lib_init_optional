@@ -267,3 +267,9 @@ optional_init(realtime_urdf_filter-proxies
         RealtimeUrdfFilter.hpp
 )
 
+optional_init(tagger-proxies
+    SOURCES
+        LogTagger.cpp
+    HEADERS
+        LogTagger.hpp
+)
