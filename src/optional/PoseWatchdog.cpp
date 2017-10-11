@@ -32,10 +32,10 @@ InputProxyPort<std::vector<trajectory_follower::SubTrajectory>>& PoseWatchdog::g
 }
 
 
-// OutputProxyPort< base::commands::Motion2D >& PoseWatchdog::getCommandOut()
-// {
-//     return trajectoryFollowerTask.getConcreteProxy()->motion_command;
-// }
+OutputProxyPort< base::commands::Motion2D >& PoseWatchdog::getOverrideMotionCommand()
+{
+    return watchdogTask.getConcreteProxy()->motion_command_override;
+}
 
 
 }

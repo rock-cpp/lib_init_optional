@@ -21,7 +21,7 @@ public:
     PoseWatchdog(PositionProvider &poseProvider, MLTraversabilityMapProvider& mlMapProvider, const std::string &taskname);
     virtual bool connect();
     virtual InputProxyPort<std::vector<trajectory_follower::SubTrajectory>> &getTrajectoryIn();
-//     virtual OutputProxyPort<base::commands::Motion2D> &getCommandOut();
+    virtual OutputProxyPort<base::commands::Motion2D> &getOverrideMotionCommand();
 };
 
 

@@ -19,8 +19,13 @@ TrajectoryFollowerWithSafeGuard::TrajectoryFollowerWithSafeGuard(PositionProvide
 bool TrajectoryFollowerWithSafeGuard::connect()
 {
     trajectoryFollowerTask.getConcreteProxy()->current_trajectory.connectTo(poseWatchdog.getTrajectoryIn());
-    //TODO posewatchdog output and safetyController connecten, wenn es den gibt
-    return init::TrajectoryFollower::connect();
+    poseWatchdog.getOverrideMotionCommand().connectTo(safetyController.getOverrideCommandPort());
+    posProv.getPositionSamples().connectTo(trajectoryFollowerTask.getConcreteProxy()->robot_pose);
+    trajectoryFollowerTask.getConcreteProxy()->motion_command.connectTo(safetyController.getCommand2DPort());  
+
+    //NOTE we do not call  TrajectoryFollower::connect() here on purpose because
+    //     it connects the trajectoryFollowerTask directly to motionController, which is not what we want.
+    return init::Base::connect();
 }
 
     
