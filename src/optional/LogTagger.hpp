@@ -2,13 +2,7 @@
 
 #include <lib_init/Base.hpp>
 #include <lib_init/DependentTask.hpp>
-
-namespace tagger {
-    namespace proxies {
-        class Tagger;
-    }
-}
-
+#include <tagger/proxies/Tagger.hpp>
 
 namespace init
 {        

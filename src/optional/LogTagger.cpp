@@ -1,5 +1,4 @@
 #include "LogTagger.hpp"
-#include <tagger/proxies/Tagger.hpp>
 
 namespace init
 {
