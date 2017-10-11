@@ -19,7 +19,7 @@ TrajectoryFollowerWithSafeGuard::TrajectoryFollowerWithSafeGuard(PositionProvide
 bool TrajectoryFollowerWithSafeGuard::connect()
 {
     trajectoryFollowerTask.getConcreteProxy()->current_trajectory.connectTo(poseWatchdog.getTrajectoryIn());
-    poseWatchdog.getOverrideMotionCommand().connectTo(safetyController.getOverrideCommandPort());
+    poseWatchdog.getOverrideMotionCommand().connectTo(safetyController.getPoseWatchdogOverrideCommandPort());
     posProv.getPositionSamples().connectTo(trajectoryFollowerTask.getConcreteProxy()->robot_pose);
     trajectoryFollowerTask.getConcreteProxy()->motion_command.connectTo(safetyController.getCommand2DPort());  
 

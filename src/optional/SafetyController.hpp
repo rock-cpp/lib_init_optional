@@ -22,7 +22,9 @@ public:
     virtual ~SafetyController();
     virtual bool connect();
     InputProxyPort<base::commands::Motion2D> &getCommand2DPort();
-    InputProxyPort<base::commands::Motion2D> &getOverrideCommandPort();
+    InputProxyPort<base::commands::Motion2D> &getDofcOverrideCommandPort();
+    InputProxyPort<base::commands::Motion2D> &getPoseWatchdogOverrideCommandPort();
+    InputProxyPort<base::commands::Motion2D> &getSafetyOverrideCommandPort();
 
     DependentTask<safety_control::proxies::Task> safetyControlTask;
 };

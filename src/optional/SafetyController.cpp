@@ -26,9 +26,20 @@ InputProxyPort< base::commands::Motion2D >& SafetyController::getCommand2DPort()
     return safetyControlTask.getConcreteProxy()->motion_command_in;
 }
 
-InputProxyPort< base::commands::Motion2D >& SafetyController::getOverrideCommandPort()
+
+InputProxyPort< base::commands::Motion2D >& SafetyController::getPoseWatchdogOverrideCommandPort()
 {
-    return safetyControlTask.getConcreteProxy()->motion_command_safey;
+    return safetyControlTask.getConcreteProxy()->posewatchdog_in;
+}
+
+InputProxyPort< base::commands::Motion2D >& SafetyController::getDofcOverrideCommandPort()
+{
+    return safetyControlTask.getConcreteProxy()->dofc_in;
+}
+
+InputProxyPort< base::commands::Motion2D >& SafetyController::getSafetyOverrideCommandPort()
+{
+    return safetyControlTask.getConcreteProxy()->motion_command_safety;
 }
 
 SafetyController::~SafetyController()
