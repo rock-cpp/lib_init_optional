@@ -273,3 +273,10 @@ optional_init(tagger-proxies
     HEADERS
         LogTagger.hpp
 )
+
+optional_init(dcdl-proxies
+    SOURCES
+        DCDL.cpp
+    HEADERS
+        DCDL.hpp
+)
