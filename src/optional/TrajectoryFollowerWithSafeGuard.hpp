@@ -13,8 +13,7 @@ protected:
     PoseWatchdog &poseWatchdog;
     
 public:
-    TrajectoryFollowerWithSafeGuard(PositionProvider &posProv,  MotionControl2D &motionController,
-                                    SafetyController &safetyController, PoseWatchdog &poseWatchdog,
+    TrajectoryFollowerWithSafeGuard(PositionProvider &posProv, SafetyController &safetyController, PoseWatchdog &poseWatchdog,
                                     const std::string &taskName);
     virtual bool connect();
     
