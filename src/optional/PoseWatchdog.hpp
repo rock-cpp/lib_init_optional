@@ -2,7 +2,7 @@
 
 #include <lib_init/PositionProvider.hpp>
 #include <lib_init/MLSProvider.hpp>
-#include <trajectory_follower/proxies/PoseWatchdog.hpp>
+#include <ugv_nav4d/proxies/PoseWatchdog.hpp>
 #include <lib_init/MLTraversabilityMapProvider.hpp>
 #include <trajectory_follower/SubTrajectory.hpp>
 
@@ -16,7 +16,7 @@ protected:
 //     MotionControl2D &motionController;
     
 public:
-    DependentTask< trajectory_follower::proxies::PoseWatchdog > watchdogTask;
+    DependentTask< ugv_nav4d::proxies::PoseWatchdog > watchdogTask;
     
     PoseWatchdog(PositionProvider &poseProvider, MLTraversabilityMapProvider& mlMapProvider, const std::string &taskname);
     virtual bool connect();
