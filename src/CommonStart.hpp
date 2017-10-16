@@ -53,6 +53,21 @@ public:
         
         return runCommon(initialState, toInit);
     }
+
+    template< class Startup, class StartupConfig>
+    int run(smurf::Robot *robot, StartupConfig &config, const std::function<state_machine::State *(Startup &start, std::vector<init::Base *> &toInit)> &ownstuff)
+    {
+        startCommon(robot);
+        
+        Startup start(config, simulationActive);
+        std::vector<init::Base *> toInit;
+        
+//         startUp = &start;
+        
+        state_machine::State *initialState = ownstuff(start, toInit);
+        
+        return runCommon(initialState, toInit);
+    }    
     
     void setLoggingExcludes(const std::vector<std::string> &excludeList);
     
