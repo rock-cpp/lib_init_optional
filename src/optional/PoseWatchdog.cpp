@@ -5,24 +5,20 @@ namespace init
 {
 
     
-PoseWatchdog::PoseWatchdog(PositionProvider &posProv, MLTraversabilityMapProvider& mlMapProvider, const std::string &taskname)
+PoseWatchdog::PoseWatchdog(PositionProvider &posProv, MLSProvider& mapProvider, const std::string &taskname)
     : Base("PoseWatchdog")
     , posProv(posProv)
-    , mlMapProv(mlMapProvider)
-//     , motionController(motionController)
+    , mapProvider(mapProvider)
     , watchdogTask(this, taskname)
 {
     registerDependency(posProv);
-    registerDependency(mlMapProvider);
-//     registerDependency(motionController);
+    registerDependency(mapProvider);
 }
 
 bool PoseWatchdog::connect()
 {
     posProv.getPositionSamples().connectTo(watchdogTask.getConcreteProxy()->robot_pose);
-    mlMapProv.getTraversabilityMapPort().connectTo(watchdogTask.getConcreteProxy()->tr_map);
-    
-//     trajectoryFollowerTask.getConcreteProxy()->motion_command.connectTo(motionController.getCommand2DPort());    
+    mapProvider.getMapPort().connectTo(watchdogTask.getConcreteProxy()->map);
     return init::Base::connect();
 }
 
