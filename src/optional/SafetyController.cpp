@@ -5,13 +5,16 @@
 namespace init
 {
 
-SafetyController::SafetyController(MotionControl2D& motionControl, const std::string& taskName)
+SafetyController::SafetyController(MotionControl2D& motionControl, std::vector<MotionControl2DProvider*> dependencies,
+                                   const std::string& taskName)
     : Base("SafetyController"),
       MotionControl2D("SafetyController"),
       motionControl(motionControl),
       safetyControlTask(this, taskName)
 {
     registerDependency(motionControl);
+    for(MotionControl2DProvider* control : dependencies)
+        registerDependency(*control);
 }
 
  
