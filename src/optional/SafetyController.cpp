@@ -1,36 +1,23 @@
 #include "SafetyController.hpp"
 #include <safety_control/proxies/Task.hpp>
 
+
 namespace init
 {
 
-    
 SafetyController::SafetyController(MotionControl2D& motionControl, const std::string& taskName)
-  : SafetyController(motionControl, nullptr, taskName)
-{
-}
-
-SafetyController::SafetyController(MotionControl2D& motionControl, MotionControl2DProvider *joypad, const std::string& taskName)
     : Base("SafetyController"),
       MotionControl2D("SafetyController"),
       motionControl(motionControl),
-      joyPtr(joypad),
       safetyControlTask(this, taskName)
 {
     registerDependency(motionControl);
-    if(joyPtr)
-      registerDependency(*joyPtr);
-      
 }
 
  
   
 bool SafetyController::connect()
 {
-    std::cout << "CONNECTING SAFETY OUTPUT TO MOTIONCONTROL INPUT"<<std::endl;
-    safetyControlTask.getConcreteProxy()->motion_command.connectTo(motionControl.getCommand2DPort());
-    if(joyPtr)
-      joyPtr->getCommand2DPort().connectTo(safetyControlTask.getConcreteProxy()->motion_command_safety);
     safetyControlTask.getConcreteProxy()->motion_command.connectTo(motionControl.getCommand2DPort());
     return init::Base::connect();
 }
@@ -40,26 +27,22 @@ InputProxyPort< base::commands::Motion2D >& SafetyController::getCommand2DPort()
     return safetyControlTask.getConcreteProxy()->motion_command_in;
 }
 
-
-InputProxyPort< base::commands::Motion2D >& SafetyController::getPoseWatchdogOverrideCommandPort()
+RTT::base::PortInterface* SafetyController::addOverridePort(const std::string& portName, int priority)
 {
-    return safetyControlTask.getConcreteProxy()->posewatchdog_in;
+    if(safetyControlTask.getConcreteProxy()->addSafetyPort(portName, priority) != 0)
+    {
+        throw std::runtime_error("Failed to add port to safety_control");
+    }
+    safetyControlTask.getConcreteProxy()->synchronize();
+    RTT::base::PortInterface *port = safetyControlTask.getConcreteProxy()->getPort(portName);
+    if(port == nullptr)
+        throw std::runtime_error("Failed to add port to safety_control. [nullptr] returned");
+    return port;
 }
 
-InputProxyPort< base::commands::Motion2D >& SafetyController::getDofcOverrideCommandPort()
-{
-    return safetyControlTask.getConcreteProxy()->dofc_in;
-}
-
-InputProxyPort< base::commands::Motion2D >& SafetyController::getSafetyOverrideCommandPort()
-{
-    return safetyControlTask.getConcreteProxy()->motion_command_safety;
-}
 
 SafetyController::~SafetyController()
-{
-
-}
+{}
 
 
 

@@ -17,16 +17,12 @@ class SafetyController : public MotionControl2D
 {
 protected:
     MotionControl2D &motionControl;
-    MotionControl2DProvider *joyPtr;
 public:
     SafetyController(MotionControl2D& motionControl, const std::string& taskName);
-    SafetyController(MotionControl2D& motionControl, MotionControl2DProvider *joypad, const std::string& taskName);
     virtual ~SafetyController();
     virtual bool connect();
     InputProxyPort<base::commands::Motion2D> &getCommand2DPort();
-    InputProxyPort<base::commands::Motion2D> &getDofcOverrideCommandPort();
-    InputProxyPort<base::commands::Motion2D> &getPoseWatchdogOverrideCommandPort();
-    InputProxyPort<base::commands::Motion2D> &getSafetyOverrideCommandPort();
+    RTT::base::PortInterface* addOverridePort(const std::string& portName, int priority);
 
     DependentTask<safety_control::proxies::Task> safetyControlTask;
 };

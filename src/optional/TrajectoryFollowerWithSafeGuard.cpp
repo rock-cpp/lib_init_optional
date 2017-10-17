@@ -18,7 +18,10 @@ TrajectoryFollowerWithSafeGuard::TrajectoryFollowerWithSafeGuard(PositionProvide
 bool TrajectoryFollowerWithSafeGuard::connect()
 {
     trajectoryFollowerTask.getConcreteProxy()->current_trajectory.connectTo(poseWatchdog.getTrajectoryIn());
-    poseWatchdog.getOverrideMotionCommand().connectTo(safetyController.safetyControlTask.getConcreteProxy()->posewatchdog_in);
+    
+    RTT::base::PortInterface* poseWatchdogInput = safetyController.addOverridePort("PoseWatchdog_input", 3);
+    
+    poseWatchdog.getOverrideMotionCommand().getPortInterface()->connectTo(poseWatchdogInput);
     posProv.getPositionSamples().connectTo(trajectoryFollowerTask.getConcreteProxy()->robot_pose);
 
     return TrajectoryFollower::connect();
