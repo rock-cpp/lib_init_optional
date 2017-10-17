@@ -6,7 +6,7 @@ namespace init
 
     
 PoseWatchdog::PoseWatchdog(PositionProvider &posProv, MLSProvider& mapProvider, const std::string &taskname)
-    : Base("PoseWatchdog")
+    : Base("PoseWatchdog"), MotionControl2DProvider("PoseWatchdog")
     , posProv(posProv)
     , mapProvider(mapProvider)
     , watchdogTask(this, taskname)
@@ -28,7 +28,7 @@ InputProxyPort<std::vector<trajectory_follower::SubTrajectory>>& PoseWatchdog::g
 }
 
 
-OutputProxyPort< base::commands::Motion2D >& PoseWatchdog::getOverrideMotionCommand()
+OutputProxyPort<base::commands::Motion2D>& PoseWatchdog::getCommand2DPort()
 {
     return watchdogTask.getConcreteProxy()->motion_command_override;
 }

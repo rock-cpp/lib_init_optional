@@ -4,11 +4,13 @@
 #include <lib_init/MLSProvider.hpp>
 #include <ugv_nav4d/proxies/PoseWatchdog.hpp>
 #include <trajectory_follower/SubTrajectory.hpp>
+#include <lib_init/MotionControl2DProvider.hpp>
+#include <base/commands/Motion2D.hpp>
 
 namespace init
 { 
 
-class PoseWatchdog : public Base {
+class PoseWatchdog : public MotionControl2DProvider {
 protected:
     PositionProvider &posProv; //provides the pose that should be watched
     MLSProvider& mapProvider;
@@ -19,7 +21,7 @@ public:
     PoseWatchdog(PositionProvider &poseProvider, MLSProvider& mapProvider, const std::string &taskname);
     virtual bool connect();
     virtual InputProxyPort<std::vector<trajectory_follower::SubTrajectory>> &getTrajectoryIn();
-    virtual OutputProxyPort<base::commands::Motion2D> &getOverrideMotionCommand();
+    virtual OutputProxyPort<base::commands::Motion2D> &getCommand2DPort() override;
 };
 
 

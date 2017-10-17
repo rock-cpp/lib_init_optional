@@ -5,16 +5,18 @@
 namespace init
 {
 
-SafetyController::SafetyController(MotionControl2D& motionControl, std::vector<MotionControl2DProvider*> dependencies,
+SafetyController::SafetyController(MotionControl2D& motionControl, std::map<int, MotionControl2DProvider*> safetyInputs,
                                    const std::string& taskName)
     : Base("SafetyController"),
       MotionControl2D("SafetyController"),
       motionControl(motionControl),
+      safetyInputs(safetyInputs),
       safetyControlTask(this, taskName)
 {
     registerDependency(motionControl);
-    for(MotionControl2DProvider* control : dependencies)
-        registerDependency(*control);
+    
+    for(auto pair : safetyInputs)
+        registerDependency(*pair.second);
 }
 
  
@@ -22,6 +24,17 @@ SafetyController::SafetyController(MotionControl2D& motionControl, std::vector<M
 bool SafetyController::connect()
 {
     safetyControlTask.getConcreteProxy()->motion_command.connectTo(motionControl.getCommand2DPort());
+    
+    for(auto pair : safetyInputs)
+    {
+        const int prio = pair.first;
+        MotionControl2DProvider* input = pair.second;
+        const std::string name = input->getName() + "_override_input";
+        
+        RTT::base::PortInterface* inputPort = addOverridePort(name, prio);
+        input->getCommand2DPort().getPortInterface()->connectTo(inputPort);
+    }
+    
     return init::Base::connect();
 }
 

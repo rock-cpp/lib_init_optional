@@ -9,7 +9,6 @@ namespace init
 
 class TrajectoryFollowerWithSafeGuard : public TrajectoryFollower {
 protected:
-    SafetyController &safetyController;
     PoseWatchdog &poseWatchdog;
     
 public:
