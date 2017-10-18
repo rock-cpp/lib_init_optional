@@ -2,7 +2,7 @@
 
 #include <lib_init/DepthMapProvider.hpp>
 #include <orocos_cpp_base/ProxyPort.hpp>
-#include <lib_init/Simulator.hpp>
+#include "Simulator.hpp"
 #include <base/samples/DepthMap.hpp>
 #include <mars/proxies/RotatingLaserRangeFinder.hpp>
 
