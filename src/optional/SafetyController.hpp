@@ -29,6 +29,8 @@ public:
                      const std::string& taskName);
     virtual ~SafetyController();
     virtual bool connect();
+    
+    void addSafetyInput(int prio, MotionControl2DProvider* task);
     InputProxyPort<base::commands::Motion2D> &getCommand2DPort();
     DependentTask<safety_control::proxies::Task> safetyControlTask;
 };

@@ -19,7 +19,13 @@ SafetyController::SafetyController(MotionControl2D& motionControl, std::map<int,
         registerDependency(*pair.second);
 }
 
- 
+void SafetyController::addSafetyInput(int prio, MotionControl2DProvider* task)
+{
+//     task->registerDependency(this);
+    safetyInputs.insert(std::make_pair(prio, task));
+}
+
+
   
 bool SafetyController::connect()
 {
