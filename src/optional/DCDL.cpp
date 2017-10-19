@@ -31,12 +31,15 @@ bool DCDL::connect()
  
  
  
-DCDLEnsemble::DCDLEnsemble(const std::string taskName, DCDL& dcdl)
+DCDLEnsemble::DCDLEnsemble(const std::string taskName, DCDL& dcdl, PoseProvider &poseProvider)
     : Base("DCDLEnsemble")
+    , MotionControl2DProvider("DCDLEnsemble")
     , dcdl(dcdl)
+    , poseProvider(poseProvider)
     , ensembleClassifierTask(this, taskName)
 {
     registerDependency(dcdl);
+    registerDependency(poseProvider);
 }
 
 
@@ -45,7 +48,13 @@ bool DCDLEnsemble::connect()
     dcdl.trajectoryClassifierTask.getConcreteProxy()->fault_trigger.connectTo(ensembleClassifierTask.getConcreteProxy()->fault_receiver);
     dcdl.imuClassifierTask.getConcreteProxy()->fault_trigger.connectTo(ensembleClassifierTask.getConcreteProxy()->fault_receiver);
     dcdl.differentialClassifierTask.getConcreteProxy()->fault_trigger.connectTo(ensembleClassifierTask.getConcreteProxy()->fault_receiver);
+    poseProvider.getPositionSamples().connectTo(ensembleClassifierTask.getConcreteProxy()->robot_pose);
     return init::Base::connect();
+}
+
+OutputProxyPort< base::commands::Motion2D >& DCDLEnsemble::getCommand2DPort()
+{
+    return ensembleClassifierTask.getConcreteProxy()->command_out;
 }
 
  

@@ -6,6 +6,7 @@
 #include <dcdl/proxies/TrajectoryClassifier.hpp>
 #include <dcdl/proxies/EnsembleClassifier.hpp>
 #include <lib_init/IMUDriver.hpp>
+#include <lib_init/MotionControl2DProvider.hpp>
 #include <lib_init/TrajectoryFollower.hpp>
 #include <lib_init/PoseProvider.hpp>
 
@@ -32,15 +33,17 @@ public:
 
 
 
-class DCDLEnsemble : public Base
+class DCDLEnsemble : public MotionControl2DProvider
 {
     DCDL &dcdl;
+    PoseProvider &poseProvider;
     
 public:
-    DCDLEnsemble(const std::string taskName, DCDL &dcdl);
+    DCDLEnsemble(const std::string taskName, DCDL &dcdl, PoseProvider &poseProvider);
     ~DCDLEnsemble() = default;
     
     virtual bool connect();
+    virtual OutputProxyPort<base::commands::Motion2D> &getCommand2DPort();
     DependentTask<dcdl::proxies::EnsembleClassifier> ensembleClassifierTask;
 };
     
