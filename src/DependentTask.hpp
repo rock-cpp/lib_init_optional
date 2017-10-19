@@ -14,6 +14,7 @@ class DependentTaskBase
 protected:
     std::string taskName;
     std::string taskModel;
+    std::string prefix;
     boost::shared_ptr<orocos_cpp::Deployment> deployment;
     std::vector<std::string> config;
 
@@ -23,20 +24,24 @@ public:
     
     virtual ~DependentTaskBase();
     
-    const std::string &getTaskName() const
+    const std::string getTaskName() const
     {
-        return taskName;
+        return prefix + taskName;
     }
 
     const std::string &getModelName() const
     {
         return taskModel;
     }
-
-    void setName(const std::string &newName)
+    
+    void setPrefix(const std::string &name);
+    
+    const std::string &getPrefix() const
     {
-        taskName = newName;
+        return prefix;
     }
+
+    void setName(const std::string &newName);
     
     void setDeployment(const boost::shared_ptr<orocos_cpp::Deployment> &newDeployment);
 
@@ -71,15 +76,19 @@ public:
     virtual RTT::corba::TaskContextProxy* getProxy()
     {
         if(!proxy)
-            proxy = new TASK(taskName);
+            proxy = new TASK(prefix + taskName);
         
+        std::cout << "Got proxy for " << proxy->getName() << " local name " << prefix + taskName << std::endl;
+
         return proxy;
     };
     
     TASK* getConcreteProxy()
     {
         if(!proxy)
-            proxy = new TASK(taskName);
+            proxy = new TASK(prefix + taskName);
+
+        std::cout << "Got proxy for " << proxy->getName() << " local name " << prefix + taskName << std::endl;
         
         return static_cast<TASK *>(proxy);
     };

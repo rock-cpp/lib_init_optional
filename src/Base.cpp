@@ -16,6 +16,27 @@ Base::~Base()
 
 }
 
+void Base::setPrefix(const std::string& newPrefix)
+{
+    if(newPrefix == prefix)
+        return;
+    
+    if(!prefix.empty())
+        throw std::runtime_error("Init::Base::setPrefix : Error, setting prefix twice is not allowed");
+    
+    prefix = newPrefix;
+    
+    for(Base *b : dependencies)
+    {
+        b->setPrefix(prefix);
+    }
+    
+    for(DependentTaskBase *tb: dependendTasks)
+    {
+        tb->setPrefix(prefix);
+    }
+}
+
 void Base::registerDependency(Base& dependency)
 {
     if(&dependency == nullptr)
@@ -110,7 +131,6 @@ bool Base::configure()
         }
 
         std::cout << "init::Base::Configured " << t->getTaskName() << std::endl;
-
     }
     return true;
 }

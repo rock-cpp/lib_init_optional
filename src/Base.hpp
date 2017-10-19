@@ -29,6 +29,9 @@ class Base
 private:
     std::string name;
     
+    ///This property defines, if
+    ///the tasks are prefixed during startup
+    std::string prefix;
 public:
 
     Base(const std::string &name);
@@ -48,8 +51,6 @@ public:
     {
         return dependencies;
     };
-
-    void updateDeploymentForTask(const std::string &taskName, orocos_cpp::Deployment *dpl);
 
     /***
      * Initializes the Proxes, for this Init Object
@@ -102,6 +103,20 @@ public:
     const std::string &getName() {
         return name;
     };
+    
+    const std::string &getPrefix() const {
+        return prefix;
+    };
+
+    /**
+     * This function sets a prefix for the current init object.
+     * This has three effects on all dependencies and this object. 
+     *  - All tasknames are renamed to prefix + name
+     *  - The deplyoments of dependend tasks are modified to spawn tasks with prefix + name
+     *  - Every tasks gets a new connfig attached with the name 'prefix'
+     * */
+    void setPrefix(const std::string &prefix);
+    
 protected:
     void registerTask(DependentTaskBase *task);
     void registerReplayTask(log_replay::ReplayTask *task);

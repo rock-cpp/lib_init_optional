@@ -104,6 +104,10 @@ bool InitHelper::startDeploymentRecursive(init::Base& toStart, std::vector< oroc
         started.push_back(dtb->getDeployment().get());
 
         std::cout << "Init::startDeploymentRecursive : Starting deployment " << dtb->getDeployment()->getName() << "Pointer is " << dtb->getDeployment() << std::endl;
+
+        //this is a convenience feature. 
+        //loading the typekits is not needed, but makes our
+        //life easier, if we use non specialized proxies
         for(const std::string &tk : dtb->getDeployment()->getNeededTypekits())
         {
             helper.loadTypekitAndTransports(tk);

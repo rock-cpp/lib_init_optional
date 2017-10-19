@@ -28,13 +28,52 @@ RTT::corba::TaskContextProxy* DependentTaskBase::getProxy()
     return proxy;
 }
 
+void DependentTaskBase::setName(const std::string& newName)
+{
+    if(proxy)
+        throw std::runtime_error("init::DependentTaskBase::setName : Error name set after proxy was initialized");
+
+    taskName = newName;
+    deployment->renameTask(prefix + taskName, prefix + newName);
+}
+
+void DependentTaskBase::setPrefix(const std::string& newPrefix)
+{
+    if(!prefix.empty())
+        throw std::runtime_error("init::DependentTaskBase::setPrefix : Error prefix already set, double call is not allowed");
+    
+    if(proxy)
+        throw std::runtime_error("init::DependentTaskBase::setPrefix : Error prefix set after proxy was initialized");
+
+    //check if this deployment is shared, and someone else already 
+    //renamed the logger
+    if(deployment->getLoggerName().find(newPrefix) == std::string::npos)
+    {
+        deployment->renameTask(prefix + deployment->getLoggerName(), newPrefix + deployment->getLoggerName());
+    };
+    
+    deployment->renameTask(prefix + taskName, newPrefix + taskName);
+
+    prefix = newPrefix;    
+    
+    //for full second prefix support remove prefix config here...
+    config.push_back(prefix);
+}
 
 void DependentTaskBase::setDeployment(const boost::shared_ptr< orocos_cpp::Deployment >& newDeployment)
 {
+    if(!prefix.empty())
+        throw std::runtime_error("init::DependentTaskBase::setDeployment: error, setting deployment, after setting of prefix is not allowed");
+    
     if(!newDeployment)
         throw std::runtime_error("init::DependentTaskBase::setDeployment: Error, deployment contains nullptr");
     
     deployment = newDeployment;
+    
+    //check if our task name is present in the deployment
+    const auto taskNames = deployment->getTaskNames();
+    if(std::find(taskNames.begin(), taskNames.end(), getTaskName()) == taskNames.end())
+        throw std::runtime_error("init::DependentTaskBase::setDeployment: error, task name " + getTaskName() + " was not found in deployment " + deployment->getName());
 }
 
 void DependentTaskBase::setConfig(const std::vector< std::string >& configs)
