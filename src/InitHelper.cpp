@@ -69,15 +69,25 @@ void InitHelper::activateLogging(const std::vector< std::string >& excludeList)
 void InitHelper::printDependencies(init::Base& toStart, int level)
 {
     for(int i = 0; i < level; i++)
-        std::cout << " ";
+        std::cout << "  ";
     
-    std::cout << toStart.getName() << std::endl;
+    std::cout << toStart.getName() << " - ";
     
+
+    for(const auto &dt: toStart.getDependendTasks())
+    {
+        std::cout << "\t\t" << dt->getModelName() << " : ";
+
+        for (const auto conf: dt->getConfig())
+            std::cout << conf << ", ";
+    }
+
+    std::cout << std::endl;
+    
+
     //start all dependencies
     for(init::Base *dep : toStart.getDependencies())
     {
-
-        
         printDependencies(*dep, level + 1);
         
     }    

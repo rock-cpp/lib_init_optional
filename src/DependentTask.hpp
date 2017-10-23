@@ -78,7 +78,7 @@ public:
         if(!proxy)
             proxy = new TASK(prefix + taskName);
         
-        std::cout << "Got proxy for " << proxy->getName() << " local name " << prefix + taskName << std::endl;
+        std::cout << "Got proxy for " << proxy->getName() << " local name " << prefix + taskName  << "( " << getModelName() << " )" << std::endl;
 
         return proxy;
     };
