@@ -7,7 +7,7 @@
 #include <dcdl/proxies/EnsembleClassifier.hpp>
 #include <lib_init/IMUDriver.hpp>
 #include <lib_init/MotionControl2DProvider.hpp>
-#include <lib_init/TrajectoryFollower.hpp>
+#include "TrajectoryFollower.hpp"
 #include <lib_init/PoseProvider.hpp>
 
 namespace init
