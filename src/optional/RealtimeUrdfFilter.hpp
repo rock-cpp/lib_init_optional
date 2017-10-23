@@ -1,7 +1,7 @@
 #pragma once
 
 #include <lib_init/DistanceImageProvider.hpp>
-#include <lib_init/RobotFrames.hpp>
+#include "RobotFrames.hpp"
 #include <realtime_urdf_filter/proxies/RealtimeURDFFilterTask.hpp>
 
 namespace init {
