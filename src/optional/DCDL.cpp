@@ -4,7 +4,7 @@ namespace init
 {
 
 DCDL::DCDL(const std::string trajClassifierName, const std::string diffClassifierName, const std::string imuClassifierName,
-            TrajectoryFollower &trajectoryFollower, PoseProvider &poseProvider, IMUDriver &imu)
+            TrajectoryFollower &trajectoryFollower, PositionProvider &poseProvider, IMUDriver &imu)
     : Base("DCDL")
     , trajectoryFollower(trajectoryFollower)
     , poseProvider(poseProvider)
@@ -31,7 +31,7 @@ bool DCDL::connect()
  
  
  
-DCDLEnsemble::DCDLEnsemble(const std::string taskName, DCDL& dcdl, PoseProvider &poseProvider)
+DCDLEnsemble::DCDLEnsemble(const std::string taskName, DCDL& dcdl, PositionProvider &poseProvider)
     : Base("DCDLEnsemble")
     , MotionControl2DProvider("DCDLEnsemble")
     , dcdl(dcdl)

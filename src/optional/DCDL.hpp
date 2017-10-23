@@ -8,7 +8,7 @@
 #include <lib_init/IMUDriver.hpp>
 #include <lib_init/MotionControl2DProvider.hpp>
 #include "TrajectoryFollower.hpp"
-#include <lib_init/PoseProvider.hpp>
+#include <lib_init/PositionProvider.hpp>
 
 namespace init
 {
@@ -17,12 +17,12 @@ class DCDL : public Base
 {
     
     TrajectoryFollower &trajectoryFollower;
-    PoseProvider &poseProvider;
+    PositionProvider &poseProvider;
     IMUDriver &imu;
  
 public:
     DCDL(const std::string trajClassifierName, const std::string diffClassifierName, const std::string imuClassifierName,
-         TrajectoryFollower &trajectoryFollower, PoseProvider &poseProvider, IMUDriver &imu);
+         TrajectoryFollower &trajectoryFollower, PositionProvider &poseProvider, IMUDriver &imu);
     ~DCDL() = default;
     
     virtual bool connect();
@@ -36,10 +36,10 @@ public:
 class DCDLEnsemble : public MotionControl2DProvider
 {
     DCDL &dcdl;
-    PoseProvider &poseProvider;
+    PositionProvider &poseProvider;
     
 public:
-    DCDLEnsemble(const std::string taskName, DCDL &dcdl, PoseProvider &poseProvider);
+    DCDLEnsemble(const std::string taskName, DCDL &dcdl, PositionProvider &poseProvider);
     ~DCDLEnsemble() = default;
     
     virtual bool connect();
