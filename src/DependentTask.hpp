@@ -78,8 +78,6 @@ public:
         if(!proxy)
             proxy = new TASK(prefix + taskName);
         
-        std::cout << "Got proxy for " << proxy->getName() << " local name " << prefix + taskName << std::endl;
-
         return proxy;
     };
     
@@ -88,8 +86,6 @@ public:
         if(!proxy)
             proxy = new TASK(prefix + taskName);
 
-        std::cout << "Got proxy for " << proxy->getName() << " local name " << prefix + taskName << std::endl;
-        
         return static_cast<TASK *>(proxy);
     };
     
