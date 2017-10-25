@@ -7,8 +7,9 @@
 #include <dcdl/proxies/EnsembleClassifier.hpp>
 #include <lib_init/IMUDriver.hpp>
 #include <lib_init/MotionControl2DProvider.hpp>
-#include "TrajectoryFollower.hpp"
 #include <lib_init/PositionProvider.hpp>
+#include "TrajectoryFollower.hpp"
+#include "UGVNav4d.hpp"
 
 namespace init
 {
@@ -37,9 +38,11 @@ class DCDLEnsemble : public MotionControl2DProvider
 {
     DCDL &dcdl;
     PositionProvider &poseProvider;
+    UGVNav4d &planner;
+    TrajectoryFollower &trajectoryFollower;
     
 public:
-    DCDLEnsemble(const std::string taskName, DCDL &dcdl, PositionProvider &poseProvider);
+    DCDLEnsemble(const std::string taskName, DCDL &dcdl, PositionProvider &poseProvider, UGVNav4d &planner, TrajectoryFollower &trajectoryFollower);
     ~DCDLEnsemble() = default;
     
     virtual bool connect();
