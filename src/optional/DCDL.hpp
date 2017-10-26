@@ -18,12 +18,13 @@ class DCDL : public Base
 {
     
     TrajectoryFollower &trajectoryFollower;
-    PositionProvider &poseProvider;
+    PositionProvider &slam;
+    PositionProvider &odometry;
     IMUDriver &imu;
  
 public:
     DCDL(const std::string trajClassifierName, const std::string diffClassifierName, const std::string imuClassifierName,
-         TrajectoryFollower &trajectoryFollower, PositionProvider &poseProvider, IMUDriver &imu);
+         TrajectoryFollower &trajectoryFollower, PositionProvider &slam, PositionProvider &odometry, IMUDriver &imu);
     ~DCDL() = default;
     
     virtual bool connect();
