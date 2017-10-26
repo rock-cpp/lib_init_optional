@@ -2,18 +2,18 @@
 
 using namespace init;
 
-LocalTSDFMapper::LocalTSDFMapper(DepthMapProvider* depth_map, PointCloudProvider* point_cloud, MLSProvider* slam, const std::string& mapperTaskName) :
+LocalTSDFMapper::LocalTSDFMapper(DepthMapProvider* depth_map, DistanceImageProvider* distance_image, MLSProvider* slam, const std::string& mapperTaskName) :
     Base("LocalTSDFMapper")
     , MLSPrecalculatedProvider("LocalTSDFMapper")
-    , point_cloud(point_cloud)
+    , distance_image(distance_image)
     , depth_map(depth_map)
     , slam(slam)
     , local_mapper(this, mapperTaskName)
 {
     if(depth_map)
         registerDependency(*depth_map);
-    if(point_cloud)
-        registerDependency(*point_cloud);
+    if(distance_image)
+        registerDependency(*distance_image);
     if(slam)
         registerDependency(*slam);
 }
@@ -27,8 +27,8 @@ bool LocalTSDFMapper::connect()
 {
     if(depth_map)
         depth_map->getDepthMapPort().connectTo(local_mapper.getConcreteProxy()->depth_map);
-    if(point_cloud)
-        point_cloud->getPointCloudPort().connectTo(local_mapper.getConcreteProxy()->pointcloud);
+    if(distance_image)
+        distance_image->getDistanceImagePort().connectTo(local_mapper.getConcreteProxy()->distance_image);
     if(slam)
         slam->getMapPort().connectTo(local_mapper.getConcreteProxy()->global_map);
     return init::Base::connect();

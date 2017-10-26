@@ -1,7 +1,7 @@
 #pragma once
 
 #include <lib_init/MLSProvider.hpp>
-#include <lib_init/PointCloudProvider.hpp>
+#include <lib_init/DistanceImageProvider.hpp>
 #include <lib_init/DepthMapProvider.hpp>
 #include <local_tsdf_mapper/proxies/Task.hpp>
 
@@ -10,14 +10,14 @@ namespace init
 
 class LocalTSDFMapper : public MLSPrecalculatedProvider
 {
-    PointCloudProvider* point_cloud;
+    DistanceImageProvider* distance_image;
     DepthMapProvider* depth_map;
     MLSProvider* slam;
 
 public:
-    LocalTSDFMapper(DepthMapProvider* depth_map, PointCloudProvider* point_cloud, MLSProvider* slam, const std::string &mapperTaskName);
+    LocalTSDFMapper(DepthMapProvider* depth_map, DistanceImageProvider* distance_image, MLSProvider* slam, const std::string &mapperTaskName);
     LocalTSDFMapper(DepthMapProvider* depth_map, MLSProvider* slam, const std::string &mapperTaskName) : LocalTSDFMapper(depth_map, NULL, slam, mapperTaskName) {};
-    LocalTSDFMapper(PointCloudProvider* point_cloud, MLSProvider* slam, const std::string &mapperTaskName) : LocalTSDFMapper(NULL, point_cloud, slam, mapperTaskName) {};
+    LocalTSDFMapper(DistanceImageProvider* distance_image, MLSProvider* slam, const std::string &mapperTaskName) : LocalTSDFMapper(NULL, distance_image, slam, mapperTaskName) {};
     virtual ~LocalTSDFMapper();
 
     virtual bool connect();
