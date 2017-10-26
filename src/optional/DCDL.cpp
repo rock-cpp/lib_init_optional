@@ -53,8 +53,7 @@ bool DCDLEnsemble::connect()
     dcdl.imuClassifierTask.getConcreteProxy()->fault_trigger.connectTo(ensembleClassifierTask.getConcreteProxy()->fault_receiver);
     dcdl.differentialClassifierTask.getConcreteProxy()->fault_trigger.connectTo(ensembleClassifierTask.getConcreteProxy()->fault_receiver);
     poseProvider.getPositionSamples().connectTo(ensembleClassifierTask.getConcreteProxy()->robot_pose);
-    planner.planner.getConcreteProxy()->motionPrims.connectTo(ensembleClassifierTask.getConcreteProxy()->planned_motions);
-    planner.planner.getConcreteProxy()->trajectory.connectTo(ensembleClassifierTask.getConcreteProxy()->planned_trajectories);
+    planner.planner.getConcreteProxy()->traj_with_motions.connectTo(ensembleClassifierTask.getConcreteProxy()->traj_with_motions);
     trajectoryFollower.trajectoryFollowerTask.getConcreteProxy()->current_trajectory.connectTo(ensembleClassifierTask.getConcreteProxy()->cur_trajectory);
     return init::Base::connect();
 }
