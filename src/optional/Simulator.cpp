@@ -10,4 +10,9 @@ Simulator::Simulator(const std::string &simTaskName,const boost::shared_ptr<oroc
     simulator.setDeployment(simDeployment);
 }
 
+void Simulator::setupMLSSimulation(const base::samples::RigidBodyState &robotPose, const envire::core::SpatioTemporal<maps::grid::MLSMapKalman> &mlsKalman)
+{
+	simulator.getConcreteProxy()->setupMLSSimulation(robotPose, mlsKalman);
+}
+
 }
