@@ -37,7 +37,7 @@ class StartCommon
     smurf::Robot *robot;
     std::vector<std::string> logExcludeList;
 public:
-    StartCommon(int argc, char **argv);
+    StartCommon(int argc, char **argv, std::string prefix = "");
 
     template< class Startup>
     int run(smurf::Robot *robot, const std::function<state_machine::State *(Startup &start, std::vector<init::Base *> &toInit)> &ownstuff)

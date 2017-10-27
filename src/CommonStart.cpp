@@ -24,11 +24,11 @@
 #include <logger/Logger.hpp>
 #include <rtt/transports/corba/CorbaDispatcher.hpp>
 
-StartCommon::StartCommon(int argc, char** argv)
+StartCommon::StartCommon(int argc, char** argv, std::string prefix)
 {
     RTT::corba::TaskContextServer::InitOrb(argc, argv);
     
-    OrocosHelpers::initClientTask("taskManagement");
+    OrocosHelpers::initClientTask(prefix + "taskManagement");
     
     orocos_cpp::PluginHelper::loadTypekitAndTransports("state_machine_tk");
         
