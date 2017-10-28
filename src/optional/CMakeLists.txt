@@ -104,6 +104,7 @@ optional_init(mars-proxies
         SimLaserDriver.cpp
         Simulator.cpp
         SimVelodyneDriver.cpp
+        SimDistanceImageDriver.cpp
     HEADERS
         SimCameraDriver.hpp
         SimDepthMapDriver.hpp
@@ -113,6 +114,7 @@ optional_init(mars-proxies
         SimLaserDriver.hpp
         Simulator.hpp
         SimVelodyneDriver.hpp
+        SimDistanceImageDriver.hpp
 )
 
 optional_init(manipulator_motion_planner-proxies
