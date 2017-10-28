@@ -10,14 +10,15 @@ namespace init
 
 class LocalTSDFMapper : public MLSPrecalculatedProvider
 {
-    DistanceImageProvider* distance_image;
+    DistanceImageProvider* distance_image1;
+    DistanceImageProvider* distance_image2;
     DepthMapProvider* depth_map;
     MLSProvider* slam;
 
 public:
-    LocalTSDFMapper(DepthMapProvider* depth_map, DistanceImageProvider* distance_image, MLSProvider* slam, const std::string &mapperTaskName);
-    LocalTSDFMapper(DepthMapProvider* depth_map, MLSProvider* slam, const std::string &mapperTaskName) : LocalTSDFMapper(depth_map, NULL, slam, mapperTaskName) {};
-    LocalTSDFMapper(DistanceImageProvider* distance_image, MLSProvider* slam, const std::string &mapperTaskName) : LocalTSDFMapper(NULL, distance_image, slam, mapperTaskName) {};
+    LocalTSDFMapper(DepthMapProvider* depth_map, DistanceImageProvider* distance_image1, DistanceImageProvider* distance_image2, MLSProvider* slam, const std::string &mapperTaskName);
+    LocalTSDFMapper(DepthMapProvider* depth_map, MLSProvider* slam, const std::string &mapperTaskName) : LocalTSDFMapper(depth_map, nullptr, nullptr, slam, mapperTaskName) {}
+    LocalTSDFMapper(DistanceImageProvider* distance_image, MLSProvider* slam, const std::string &mapperTaskName) : LocalTSDFMapper(nullptr, distance_image, nullptr, slam, mapperTaskName) {}
     virtual ~LocalTSDFMapper();
 
     virtual bool connect();
