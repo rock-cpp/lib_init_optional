@@ -48,6 +48,13 @@ optional_init(hbridge-proxies
         HBridge.hpp    
 )
 
+optional_init(encoder_ichaus-proxies
+    SOURCES
+        EncoderIcHaus.cpp
+    HEADERS
+        EncoderIcHaus.hpp
+)
+
 optional_init(hokuyo-proxies
     SOURCES
         HokuyoLaserDriver.cpp
