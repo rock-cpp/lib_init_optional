@@ -139,6 +139,13 @@ optional_init(ndlcom_force_torque_sensor-proxies
         NDLComForceTorqueSensor.hpp
 )
 
+optional_init(ndlcom_lipo_watcher-proxies 
+    SOURCES
+        NDLComLipoWatcher.cpp
+    HEADERS
+        NDLComLipoWatcher.hpp
+)
+
 optional_init(ndlcom_device_driver-proxies
     SOURCES
         NDLComJointDriver.cpp
