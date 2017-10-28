@@ -13,7 +13,7 @@ namespace init
         Canbus &canbus;
 
     public:
-        EncoderIcHaus(init::Canbus& canbus, const std::string& task_name);
+        EncoderIcHaus(const std::string& task_name, init::Canbus& canbus);
         virtual bool connect();
         virtual OutputProxyPort< base::samples::Joints >& getStatusSamples();
 
