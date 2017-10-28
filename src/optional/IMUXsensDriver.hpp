@@ -12,6 +12,7 @@ class IMUXsensDriver : public IMUDriver
         IMUXsensDriver(const std::string imuTaskName);
         virtual OutputProxyPort< base::samples::RigidBodyState > getOrientationSamples();
         virtual OutputProxyPort< base::samples::IMUSensors > getSensorSamples();
+        bool estimate_bias(uint16_t seconds);
 
         DependentTask<imu_xsens::proxies::Task> imuTask;
 };

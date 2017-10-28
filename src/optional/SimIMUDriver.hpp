@@ -18,6 +18,8 @@ public:
     
     virtual OutputProxyPort< base::samples::RigidBodyState >& getPositionSamples();
     
+    bool estimate_bias(uint16_t seconds) {return true;} // Does nothing for simulated IMU
+
     DependentTask<mars::proxies::IMU> imuTask;
 };
 

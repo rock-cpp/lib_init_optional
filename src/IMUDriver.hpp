@@ -13,6 +13,7 @@ namespace init
         virtual ~IMUDriver() {};
         virtual OutputProxyPort<base::samples::RigidBodyState> getOrientationSamples() = 0;
         virtual OutputProxyPort<base::samples::IMUSensors> getSensorSamples() = 0;    
+        virtual bool estimate_bias(uint16_t seconds) = 0;
     };
     
 }

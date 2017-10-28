@@ -13,3 +13,9 @@ OutputProxyPort< base::samples::IMUSensors > init::IMUXsensDriver::getSensorSamp
 {
     return imuTask.getConcreteProxy()->calibrated_sensors;
 }
+
+
+bool init::IMUXsensDriver::estimate_bias(uint16_t seconds)
+{
+    return imuTask.getConcreteProxy()->estimate_bias(seconds);
+}
