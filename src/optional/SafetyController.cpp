@@ -21,8 +21,8 @@ SafetyController::SafetyController(MotionControl2D& motionControl, std::map<int,
 
 void SafetyController::addSafetyInput(int prio, MotionControl2DProvider* task)
 {
-//     task->registerDependency(this);
     safetyInputs.insert(std::make_pair(prio, task));
+    registerDependency(*task);
 }
 
 
@@ -61,7 +61,6 @@ RTT::base::PortInterface* SafetyController::addOverridePort(const std::string& p
         throw std::runtime_error("Failed to add port to safety_control. [nullptr] returned");
     return port;
 }
-
 
 SafetyController::~SafetyController()
 {}
