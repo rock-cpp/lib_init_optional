@@ -155,6 +155,13 @@ optional_init(ndlcom_lipo_watcher-proxies
         NDLComLipoWatcher.hpp
 )
 
+optional_init(ndlcom_cpmb_watcher-proxies 
+    SOURCES
+        NDLComCpmbWatcher.cpp
+    HEADERS
+        NDLComCpmbWatcher.hpp
+)
+
 optional_init(ndlcom_device_driver-proxies
     SOURCES
         NDLComJointDriver.cpp
