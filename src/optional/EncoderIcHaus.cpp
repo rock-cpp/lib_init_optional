@@ -5,7 +5,7 @@ init::EncoderIcHaus::EncoderIcHaus(const std::string& task_name, init::Canbus& c
     , canbus(canbus)
     , encoder_task(this, task_name)
 {
-    canbus.watch(encoder_task.getTaskName(), 0, 0);
+    canbus.watch(encoder_task.getTaskName(), 10, 15);
     registerDependency(canbus);
 }
 
