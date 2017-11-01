@@ -15,4 +15,13 @@ void Simulator::setupMLSSimulation(const base::samples::RigidBodyState &robotPos
 	simulator.getConcreteProxy()->setupMLSSimulation(robotPose, mlsKalman);
 }
 
+
+void Simulator::startSimulation() {
+	simulator.getConcreteProxy()->startSimulation();
+}
+
+void Simulator::stopSimulation() {
+	simulator.getConcreteProxy()->stopSimulation();
+}
+
 }
