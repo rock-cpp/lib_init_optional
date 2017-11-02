@@ -18,7 +18,7 @@ init::ContactPointOdometry::~ContactPointOdometry()
 
 bool init::ContactPointOdometry::connect()
 {
-    bodyContacts.getBodyContactStates().connectTo(contactPointOdometry.getConcreteProxy()->contact_samples);
+    bodyContacts.getBodyContactStates().connectTo(contactPointOdometry.getConcreteProxy()->contact_samples, RTT::ConnPolicy::buffer(100));
     return init::Base::connect();
 }
 
