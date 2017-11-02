@@ -57,6 +57,7 @@ rock_library(lib_init
         MapProvider.cpp
         PointCloudProvider.cpp
         states/Init.cpp
+        TransformerBroadcaster.cpp
         ${SRC_EXTRA}
         
         log_replay/CommonReplay.cpp
@@ -91,6 +92,7 @@ rock_library(lib_init
         TrajectoryControl.hpp
         states/Init.hpp
         TraversabilityMapProvider.hpp
+        TransformerBroadcaster.hpp
 #         ${HDR_EXTRA}
         log_replay/CommonReplay.hpp
         log_replay/DepthMapProvider.hpp
@@ -110,6 +112,7 @@ rock_library(lib_init
         logger-tasks-gnulinux
         state_machine
         state_machine_viz
+        transformer-proxies
         lib_config
         rock_replay
         ${PKG_CONFIG_EXTRA}

@@ -23,6 +23,7 @@
 #include <orocos_cpp/LoggingHelper.hpp>
 #include <logger/Logger.hpp>
 #include <rtt/transports/corba/CorbaDispatcher.hpp>
+#include "TransformerBroadcaster.hpp"
 
 StartCommon::StartCommon(int argc, char** argv, std::string prefix)
 {
@@ -77,7 +78,11 @@ void StartCommon::setLoggingExcludes(const std::vector< std::string >& excludeLi
 
 int StartCommon::runCommon(state_machine::State *initialState, const std::vector< init::Base* >& toInit)
 {
-    init::Container all(toInit); 
+    std::vector< init::Base* > toInitCpy(toInit);
+    init::TransformerBroadcaster *broadcaster = new init::TransformerBroadcaster("transformer_broadcaster", *robot);
+    toInitCpy.push_back(broadcaster);
+    
+    init::Container all(toInitCpy); 
     
     //various init transitions
     Init initializer(*transformerHelper, *configHelper, all, initialState);
