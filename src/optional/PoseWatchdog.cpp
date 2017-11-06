@@ -15,6 +15,15 @@ PoseWatchdog::PoseWatchdog(PositionProvider &posProv, MLSProvider& mapProvider, 
     registerDependency(mapProvider);
 }
 
+PoseWatchdog::PoseWatchdog(Simulator &provider, const std::string &taskname)
+    : Base("PoseWatchdog"), MotionControl2DProvider("PoseWatchdog")
+    , posProv(provider)
+    , mapProvider(provider)
+    , watchdogTask(this, taskname)
+{
+    registerDependency(provider);
+}
+
 bool PoseWatchdog::connect()
 {
     posProv.getPositionSamples().connectTo(watchdogTask.getConcreteProxy()->robot_pose);

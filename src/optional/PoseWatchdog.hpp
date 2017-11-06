@@ -2,6 +2,7 @@
 
 #include <lib_init/PositionProvider.hpp>
 #include <lib_init/MLSProvider.hpp>
+#include <lib_init/Simulator.hpp>
 #include <ugv_nav4d/proxies/PoseWatchdog.hpp>
 #include <trajectory_follower/SubTrajectory.hpp>
 #include <lib_init/MotionControl2DProvider.hpp>
@@ -19,6 +20,9 @@ public:
     DependentTask< ugv_nav4d::proxies::PoseWatchdog > watchdogTask;
     
     PoseWatchdog(PositionProvider &poseProvider, MLSProvider& mapProvider, const std::string &taskname);
+
+    PoseWatchdog(Simulator &provider, const std::string &taskname);
+
     virtual bool connect();
     virtual InputProxyPort<std::vector<trajectory_follower::SubTrajectory>> &getTrajectoryIn();
     virtual OutputProxyPort<base::commands::Motion2D> &getCommand2DPort() override;

@@ -9,10 +9,13 @@
 
 #include <base/Pose.hpp>
 
+#include <lib_init/PositionProvider.hpp>
+#include <lib_init/MLSProvider.hpp>
+
 namespace init
 {
 
-class Simulator : public Base
+class Simulator : public PositionProvider , public MLSProvider
 {
 protected:
 public:
@@ -25,5 +28,13 @@ public:
 
     virtual void startSimulation();
     virtual void stopSimulation();  
+
+    virtual bool connect();
+    
+    virtual OutputProxyPort< base::samples::RigidBodyState >& getPositionSamples();
+
+    virtual OutputProxyPort<envire::core::SpatioTemporal< maps::grid::MLSMapKalman> >& getMapPort();
+    
+    virtual bool generateMap();    
 };
 }
