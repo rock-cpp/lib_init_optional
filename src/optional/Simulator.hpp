@@ -12,6 +12,8 @@
 #include <lib_init/PositionProvider.hpp>
 #include <lib_init/MLSProvider.hpp>
 
+#include <orocos/mars/sceneType.hpp>
+
 namespace init
 {
 
@@ -36,5 +38,9 @@ public:
     virtual OutputProxyPort<envire::core::SpatioTemporal< maps::grid::MLSMapKalman> >& getMapPort();
     
     virtual bool generateMap();    
+
+    mars::SerializedScene serializePositions();
+    bool loadSerializedPositions(mars::SerializedScene scene);
+
 };
 }

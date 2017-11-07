@@ -52,8 +52,18 @@ OutputProxyPort< envire::core::SpatioTemporal< maps::grid::MLSMapKalman > >& Sim
 
 bool Simulator::generateMap()
 {
-    //simulator.getConcreteProxy()->getMLSMap();
+    std::cout << "init::Simulator::generateMap()" << std::endl;    
+    simulator.getConcreteProxy()->getMLSMap();
     return true;
+}
+
+
+mars::SerializedScene Simulator::serializePositions() {
+    return simulator.getConcreteProxy()->serializePositions();
+}
+
+bool Simulator::loadSerializedPositions(mars::SerializedScene scene) {
+    return simulator.getConcreteProxy()->loadSerializedPositions(scene);
 }
 
 }
