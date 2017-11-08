@@ -11,9 +11,6 @@ Simulator::Simulator(const std::string &simTaskName,const boost::shared_ptr<oroc
     , MLSProvider("Simulator")	
 	, simulator(this, simTaskName)
 {
-    std::cout << "INIT SIMULATOR: " << (simDeployment.get()) << std::endl;
-
-
     simulator.setDeployment(simDeployment);
 }
 
@@ -39,20 +36,16 @@ bool Simulator::connect()
 
 OutputProxyPort< base::samples::RigidBodyState >& Simulator::getPositionSamples()
 {
-    std::cout << "init::Simulator::getPositionSamples()" << std::endl;
     return simulator.getConcreteProxy()->frame_pose;
 }
 
 OutputProxyPort< envire::core::SpatioTemporal< maps::grid::MLSMapKalman > >& Simulator::getMapPort()
 {
-    std::cout << "init::Simulator::getMapPort()" << std::endl;    
     return simulator.getConcreteProxy()->mls_map;
-    //return OutputProxyPort< envire::core::SpatioTemporal< maps::grid::MLSMapKalman > >();
 }
 
 bool Simulator::generateMap()
-{
-    std::cout << "init::Simulator::generateMap()" << std::endl;    
+{ 
     simulator.getConcreteProxy()->getMLSMap();
     return true;
 }
