@@ -1,9 +1,18 @@
 #pragma once
 
 #include <string>
-#include <orocos_cpp/Deployment.hpp>
+#include <vector>
 #include <boost/shared_ptr.hpp>
-#include <rtt/transports/corba/TaskContextProxy.hpp>
+
+namespace RTT {
+    namespace corba {
+        class TaskContextProxy;
+    }
+}
+
+namespace orocos_cpp {
+    class Deployment;
+}
 
 namespace init {
 

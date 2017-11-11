@@ -2,6 +2,7 @@
 #include <lib_init/PositionProvider.hpp>
 #include <lib_init/DepthMapProvider.hpp>
 #include <localization/proxies/VelodyneInMLS.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init
 {

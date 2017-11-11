@@ -4,6 +4,7 @@
 #include <lib_init/JointDriver.hpp>
 #include <lib_init/TrajectoryControl.hpp>
 #include <base/JointsTrajectory.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace trajectory_generation {
     namespace proxies {

@@ -4,6 +4,8 @@
 #include "Base.hpp"
 #include <base/samples/Frame.hpp>
 
+FW_DECLARE_TYPE(RTT::extras::ReadOnlyPointer< base::samples::frame::Frame >);
+
 namespace init
 {
 

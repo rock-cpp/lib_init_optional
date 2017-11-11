@@ -4,6 +4,7 @@
 #include <lib_init/JointDriver.hpp>
 #include <lib_init/MotionControl2D.hpp>
 #include <skid4_control/proxies/SimpleController.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init
 {

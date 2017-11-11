@@ -5,6 +5,7 @@
 #include <lib_init/MotionControl2D.hpp>
 
 #include <trajectory_follower/proxies/Task.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init
 {

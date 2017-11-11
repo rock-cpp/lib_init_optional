@@ -5,6 +5,8 @@
 #include <envire/core/EventTypes.hpp>
 #include <rtt/extras/ReadOnlyPointer.hpp>
 
+FW_DECLARE_TYPE(RTT::extras::ReadOnlyPointer< envire::BinaryEvents >)
+
 namespace init {
 
 class TraversabilityMapProvider : public Base

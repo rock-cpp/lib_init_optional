@@ -4,6 +4,7 @@
 #include <base/samples/DepthMap.hpp>
 #include <orocos_cpp_base/ProxyPort.hpp>
 #include <velodyne_lidar/proxies/LaserScanner.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init
 {

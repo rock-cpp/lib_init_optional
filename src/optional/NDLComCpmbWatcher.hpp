@@ -3,6 +3,7 @@
 #include <lib_init/Base.hpp>
 #include <ndlcom_cpmb_watcher/proxies/Task.hpp>
 #include "NDLComSerial.hpp"
+#include <lib_init/DependentTask.hpp>
 
 namespace init
 {

@@ -1,8 +1,18 @@
 #pragma once
-#include "Base.hpp"
-#include <orocos_cpp/TransformerHelper.hpp>
+#include <vector>
+#include <string>
 
 class ReplayHandler;
+
+namespace orocos_cpp {
+    class Deployment;
+    class TransformerHelper;
+    class ConfigurationHelper;
+}
+
+namespace init {
+    class Base;
+}
 
 class InitHelper
 {

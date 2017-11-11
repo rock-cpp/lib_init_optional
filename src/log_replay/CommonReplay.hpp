@@ -3,6 +3,11 @@
 #include "../Base.hpp"
 #include <functional>
 
+namespace smurf
+{
+    class Robot;
+}
+
 namespace log_replay
 {
 

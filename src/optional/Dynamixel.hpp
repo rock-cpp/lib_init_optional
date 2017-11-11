@@ -2,6 +2,7 @@
 
 #include <lib_init/JointDriver.hpp>
 #include <servo_dynamixel/proxies/Task.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init 
 {

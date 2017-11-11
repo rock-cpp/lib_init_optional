@@ -8,6 +8,8 @@
 #include <rock_replay/ReplayGUI.h>
 #include <typelib/pluginmanager.hh>
 #include <thread>
+#include <orocos_cpp/ConfigurationHelper.hpp>
+#include <orocos_cpp/TransformerHelper.hpp>
 
 namespace log_replay
 {

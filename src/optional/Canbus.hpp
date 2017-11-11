@@ -1,8 +1,7 @@
 #pragma once
 
 #include <lib_init/Base.hpp>
-
-#include <orocos_cpp_base/ProxyPort.hpp>
+#include <lib_init/DependentTask.hpp>
 #include <canbus/proxies/Task.hpp>
 
 namespace canbus {

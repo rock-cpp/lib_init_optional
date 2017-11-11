@@ -4,6 +4,7 @@
 #include <odometry/proxies/ContactPointTask.hpp>
 #include "BodyContactsProvider.hpp"
 #include <lib_init/IMUDriver.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init
 {

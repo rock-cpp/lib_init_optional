@@ -4,7 +4,9 @@
 #include <orocos_cpp_base/ProxyPort.hpp>
 #include "Base.hpp"
 
-extern template class OutputProxyPort< ::base::samples::Pointcloud >;
+FW_DECLARE_TYPE(base::samples::Pointcloud)
+
+FW_DECLARE_TYPE(base::samples::Pointcloud)
 
 namespace init 
 {

@@ -10,6 +10,7 @@
 #include <lib_init/PositionProvider.hpp>
 #include "TrajectoryFollower.hpp"
 #include "UGVNav4d.hpp"
+#include <lib_init/DependentTask.hpp>
 
 namespace init
 {

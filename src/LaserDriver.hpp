@@ -4,6 +4,8 @@
 #include <base/samples/LaserScan.hpp>
 #include <lib_init/Base.hpp>
 
+FW_DECLARE_TYPE(base::samples::LaserScan)
+
 namespace init
 {
 

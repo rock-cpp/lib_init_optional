@@ -24,6 +24,8 @@
 #include <logger/Logger.hpp>
 #include <rtt/transports/corba/CorbaDispatcher.hpp>
 #include "TransformerBroadcaster.hpp"
+#include <orocos_cpp/TransformerHelper.hpp>
+#include <orocos_cpp/ConfigurationHelper.hpp>
 
 StartCommon::StartCommon(int argc, char** argv, std::string prefix)
 {

@@ -4,6 +4,7 @@
 #include <lib_init/DistanceImageProvider.hpp>
 #include <lib_init/PointCloudProvider.hpp>
 #include <local_tsdf_mapper/proxies/Task.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init
 {

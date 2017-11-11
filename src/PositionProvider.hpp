@@ -2,6 +2,9 @@
 
 #include "Base.hpp"
 #include <orocos_cpp_base/ProxyPort.hpp>
+#include <base/samples/RigidBodyState.hpp>
+
+FW_DECLARE_TYPE(base::samples::RigidBodyState)
 
 namespace init {
 

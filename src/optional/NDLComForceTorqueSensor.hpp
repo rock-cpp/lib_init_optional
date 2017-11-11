@@ -4,6 +4,7 @@
 #include <ndlcom_force_torque_sensor/proxies/Task.hpp>
 #include "NDLComSerial.hpp"
 #include <lib_init/ForceTorqueSensor.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init
 {

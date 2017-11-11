@@ -3,6 +3,7 @@
 #include "Canbus.hpp"
 #include <lib_init/Base.hpp>
 #include <encoder_ichaus/proxies/Task.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init 
 {

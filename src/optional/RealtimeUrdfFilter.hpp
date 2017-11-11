@@ -3,6 +3,7 @@
 #include <lib_init/DistanceImageProvider.hpp>
 #include "RobotFrames.hpp"
 #include <realtime_urdf_filter/proxies/RealtimeURDFFilterTask.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init {
 

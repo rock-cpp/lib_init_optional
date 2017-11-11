@@ -4,6 +4,10 @@
 #include <orocos_cpp_base/ProxyPort.hpp>
 #include <base/samples/RigidBodyState.hpp>
 #include <base/samples/IMUSensors.hpp>
+
+FW_DECLARE_TYPE(base::samples::RigidBodyState)
+FW_DECLARE_TYPE(base::samples::IMUSensors)
+
 namespace init
 {
     class IMUDriver : public virtual Base

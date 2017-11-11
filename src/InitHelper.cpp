@@ -5,6 +5,10 @@
 #include "log_replay/ReplayTask.hpp"
 #include "log_replay/ReplayPort.hpp"
 #include <rock_replay/ReplayHandler.hpp>
+#include <orocos_cpp/TransformerHelper.hpp>
+#include <orocos_cpp/ConfigurationHelper.hpp>
+#include "DependentTask.hpp"
+#include "Base.hpp"
 
 InitHelper::InitHelper(orocos_cpp::TransformerHelper& trHelper, orocos_cpp::ConfigurationHelper& confHelper) :
     trHelper(trHelper),

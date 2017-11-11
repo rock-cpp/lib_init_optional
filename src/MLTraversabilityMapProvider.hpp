@@ -5,6 +5,9 @@
 #include <rtt/extras/ReadOnlyPointer.hpp>
 #include <maps/grid/TraversabilityMap3d.hpp>
 #include <envire_core/items/SpatioTemporal.hpp>
+
+FW_DECLARE_TYPE(envire::core::SpatioTemporal<maps::grid::TraversabilityBaseMap3d>)
+
 namespace init
 {
 

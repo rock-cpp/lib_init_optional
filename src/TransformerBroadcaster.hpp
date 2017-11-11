@@ -3,6 +3,7 @@
 #include "Base.hpp"
 #include <transformer/proxies/Task.hpp>
 #include <smurf/Robot.hpp>
+#include "DependentTask.hpp"
 
 namespace init {
 

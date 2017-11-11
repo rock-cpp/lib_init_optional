@@ -4,6 +4,8 @@
 #include <base/samples/Joints.hpp>
 #include <orocos_cpp_base/ProxyPort.hpp>
 
+FW_DECLARE_TYPE(base::samples::Joints)
+
 namespace init {
     class TrajectoryControl : public Base
     {

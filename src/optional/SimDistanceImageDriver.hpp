@@ -2,7 +2,7 @@
 
 #include <lib_init/DistanceImageProvider.hpp>
 #include <mars/proxies/DepthCamera.hpp>
-
+#include <lib_init/DependentTask.hpp>
 
 namespace init
 {

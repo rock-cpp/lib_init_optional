@@ -2,6 +2,7 @@
 
 #include <lib_init/MLSProvider.hpp>
 #include <envire_exporters/proxies/MLSMapKalmanExporter.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init {
 

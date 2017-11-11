@@ -5,6 +5,9 @@
 #include <orocos_cpp_base/ProxyPort.hpp>
 #include "Base.hpp"
 
+FW_DECLARE_TYPE(base::samples::Joints)
+FW_DECLARE_TYPE(base::commands::Joints)
+
 namespace init
 {
 
