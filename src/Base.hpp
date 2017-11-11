@@ -3,14 +3,6 @@
 #include <string>
 #include <vector>
 
-#define FW_DECLARE_TYPE(type) \
-    extern template class RTT::InputPort<type>; \
-    extern template class RTT::OutputPort<type>; \
-    extern template class OutputProxyPort<type>; \
-    extern template class InputProxyPort<type>; \
-    extern template class RTT::base::ChannelElement<type>;
-
-
 namespace orocos_cpp {
     class TransformerHelper;
     class ConfigurationHelper;
