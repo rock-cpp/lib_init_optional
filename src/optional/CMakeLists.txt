@@ -233,8 +233,10 @@ optional_init(serial_ndlcom-proxies
 
 optional_init(skid4_control-proxies
     SOURCES
+        Skid4SafeControl.cpp
         Skid4MotionControl.cpp
     HEADERS
+        Skid4SafeControl.hpp
         Skid4MotionControl.hpp
 )
 

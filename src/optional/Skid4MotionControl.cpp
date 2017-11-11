@@ -4,8 +4,8 @@ namespace init
 {
 
 Skid4MotionControl::Skid4MotionControl(const std::string &controlTaskName, JointDriver &dispatcher) : 
-    Base("MotionControl"),
-    MotionControl2D("MotionControl"), 
+    Base("Skid4MotionControl"),
+    MotionControl2D("Skid4MotionControl"), 
     dispatcher(dispatcher),
     motionTask(new DependentTask<skid4_control::proxies::SimpleController>(this, controlTaskName))
 {
