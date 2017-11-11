@@ -33,8 +33,9 @@ StartCommon::StartCommon(int argc, char** argv, std::string prefix)
     
     orocos_cpp::PluginHelper::loadTypekitAndTransports("state_machine_tk");
         
-    loggingActive = false;
+    loggingActive = true;
     simulationActive = false;
+    std::cout << "Logging enabled by default" << std::endl;
 
     for (int i = 0; i<argc; i++)
     {
@@ -44,10 +45,10 @@ StartCommon::StartCommon(int argc, char** argv, std::string prefix)
             std::cout << "Simulation enabled" << std::endl;
         }
 
-        if(strcmp(argv[i], "log") == 0)
+        if(strcmp(argv[i], "nolog") == 0)
         {
-            loggingActive = true;
-            std::cout << "Logging enabled" << std::endl;
+            loggingActive = false;
+            std::cout << "Logging disabled" << std::endl;
         }
     }
 
