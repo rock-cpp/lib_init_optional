@@ -29,6 +29,8 @@ public:
     /** Calling this operator is optional*/
     virtual void setupMLSSimulation(const base::samples::RigidBodyState &robotPose, const envire::core::SpatioTemporal<maps::grid::MLSMapKalman> &mlsKalman);  
 
+    virtual void setupMLSPrecalculatedSimulation(const base::samples::RigidBodyState &robotPose, const envire::core::SpatioTemporal<maps::grid::MLSMapPrecalculated> &mlsPrecalculated);  
+
     virtual void startSimulation();
     virtual void stopSimulation();  
 
