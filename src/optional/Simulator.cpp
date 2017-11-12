@@ -19,6 +19,11 @@ void Simulator::setupMLSSimulation(const base::samples::RigidBodyState &robotPos
 	simulator.getConcreteProxy()->setupMLSSimulation(robotPose, mlsKalman);
 }
 
+void Simulator::setupMLSPrecalculatedSimulation(const base::samples::RigidBodyState &robotPose, const envire::core::SpatioTemporal<maps::grid::MLSMapPrecalculated> &mlsPrecalculated)
+{
+	simulator.getConcreteProxy()->setupMLSPrecSimulation(robotPose, mlsPrecalculated);
+}
+
 
 void Simulator::startSimulation() {
 	simulator.getConcreteProxy()->startSimulation();
