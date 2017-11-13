@@ -54,5 +54,5 @@ bool init::RealtimeUrdfFilter::start()
 
 OutputProxyPort< base::samples::DistanceImage >& init::RealtimeUrdfFilter::getDistanceImagePort()
 {
-    return filterTask.getConcreteProxy()->output_depth;
+    return filterTask.getConcreteProxy()->output_depth_left;
 }

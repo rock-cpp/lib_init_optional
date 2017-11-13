@@ -9,6 +9,7 @@ LocalTSDFMapper::LocalTSDFMapper(PointCloudProvider* point_cloud, DistanceImageP
     , distance_image2(distance_image2)
     , point_cloud(point_cloud)
     , slam(slam)
+    , filter(nullptr)
     , local_mapper(this, mapperTaskName)
 {
     if(point_cloud)
@@ -20,6 +21,30 @@ LocalTSDFMapper::LocalTSDFMapper(PointCloudProvider* point_cloud, DistanceImageP
     if(slam)
         registerDependency(*slam);
 }
+
+LocalTSDFMapper::LocalTSDFMapper(PointCloudProvider* point_cloud, RealtimeUrdfFilter* filter, MLSProvider* slam, const std::string& mapperTaskName): 
+    Base("LocalTSDFMapper")
+    , MLSPrecalculatedProvider("LocalTSDFMapper")
+    , distance_image1(nullptr)
+    , distance_image2(nullptr)
+    , point_cloud(point_cloud)
+    , slam(slam)
+    , filter(filter)
+    , local_mapper(this, mapperTaskName)
+{
+    if(point_cloud)
+        registerDependency(*point_cloud);
+    if(distance_image1)
+        registerDependency(*distance_image1);
+    if(distance_image2)
+        registerDependency(*distance_image2);
+    if(slam)
+        registerDependency(*slam);
+
+    if(filter)
+        registerDependency(*filter);
+}
+
 
 LocalTSDFMapper::~LocalTSDFMapper()
 {
@@ -36,6 +61,11 @@ bool LocalTSDFMapper::connect()
         distance_image2->getDistanceImagePort().connectTo(local_mapper.getConcreteProxy()->distance_image2);
     if(slam)
         slam->getMapPort().connectTo(local_mapper.getConcreteProxy()->global_map);
+    if(filter)
+    {
+        filter->filterTask.getConcreteProxy()->output_depth_left.connectTo(local_mapper.getConcreteProxy()->distance_image1);
+        filter->filterTask.getConcreteProxy()->output_depth_right.connectTo(local_mapper.getConcreteProxy()->distance_image2);
+    }
     return init::Base::connect();
 }
 
