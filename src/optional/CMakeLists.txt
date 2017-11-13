@@ -9,7 +9,7 @@ optional_init(camera_usb-proxies
 
 optional_init(canbus-proxies 
     SOURCES
-        Canbus.cpp    
+        Canbus.cpp   
     HEADERS
         Canbus.hpp
 )

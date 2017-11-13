@@ -4,7 +4,7 @@
 #include <lib_init/JointDriver.hpp>
 #include <lib_init/Base.hpp>
 #include "NDLComSerial.hpp"
-#include <ndlcom_device_driver/proxies/NDLComJointDriverBaseTask.hpp>
+#include <ndlcom_device_driver/proxies/NDLComJointDriverBaseTaskForward.hpp>
 
 namespace init
 {

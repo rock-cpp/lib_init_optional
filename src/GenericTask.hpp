@@ -9,7 +9,7 @@ template<class T>
 class GenericTask : public Base
 {
 public:
-    GenericTask(const std::string& taskName) : Base(taskName), task(this, taskName)
+    GenericTask(const std::string& taskName) : Base(taskName), task(DependentTask<T>::getInstance(this, taskName))
     {
     }
     

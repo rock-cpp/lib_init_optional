@@ -1,6 +1,8 @@
 #include "IMUXsensDriver.hpp"
+#include <imu_xsens/proxies/Task.hpp>
 
-init::IMUXsensDriver::IMUXsensDriver(const std::string imuTaskName) : Base("IMUXsensDriver"), IMUDriver("IMUXsensDriver"), imuTask(this, imuTaskName)
+init::IMUXsensDriver::IMUXsensDriver(const std::string imuTaskName) : Base("IMUXsensDriver"), IMUDriver("IMUXsensDriver")
+    , imuTask(DependentTask<imu_xsens::proxies::Task>::getInstance(this, imuTaskName))
 {
 }
 

@@ -3,6 +3,7 @@
 #include <lib_init/DependentTask.hpp>
 #include <lib_init/Base.hpp>
 #include <lib_init/PositionProvider.hpp>
+#include <simple_pose_integrator/proxies/TaskForward.hpp>
 
 namespace simple_pose_integrator {
      namespace proxies {

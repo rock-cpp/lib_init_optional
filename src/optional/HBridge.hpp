@@ -3,8 +3,8 @@
 #include <lib_init/Base.hpp>
 #include "Canbus.hpp"
 
-#include <hbridge/proxies/CommandWriter.hpp>
-#include <hbridge/proxies/SensorReader.hpp>
+#include <hbridge/proxies/CommandWriterForward.hpp>
+#include <hbridge/proxies/SensorReaderForward.hpp>
 #include <lib_init/JointDriver.hpp>
 
 namespace init 

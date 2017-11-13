@@ -1,11 +1,12 @@
 #include "LogTagger.hpp"
+#include <tagger/proxies/Tagger.hpp>
 
 namespace init
 {
  
 LogTagger::LogTagger(const std::string& name)
     : Base("LogTagger")
-    , taggerTask(this, name)
+    , taggerTask(DependentTask<tagger::proxies::Tagger>::getInstance(this, name))
 {
 }
     

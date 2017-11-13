@@ -2,7 +2,7 @@
 
 #include <lib_init/Base.hpp>
 #include <lib_init/DependentTask.hpp>
-#include <tagger/proxies/Tagger.hpp>
+#include <tagger/proxies/TaggerForward.hpp>
 
 namespace init
 {        

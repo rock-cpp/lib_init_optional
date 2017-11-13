@@ -1,10 +1,10 @@
 #pragma once
 
 #include <lib_init/Base.hpp>
-#include <dcdl/proxies/DifferentialClassifier.hpp>
-#include <dcdl/proxies/IMUClassifier.hpp>
-#include <dcdl/proxies/TrajectoryClassifier.hpp>
-#include <dcdl/proxies/EnsembleClassifier.hpp>
+#include <dcdl/proxies/DifferentialClassifierForward.hpp>
+#include <dcdl/proxies/IMUClassifierForward.hpp>
+#include <dcdl/proxies/TrajectoryClassifierForward.hpp>
+#include <dcdl/proxies/EnsembleClassifierForward.hpp>
 #include <lib_init/IMUDriver.hpp>
 #include <lib_init/MotionControl2DProvider.hpp>
 #include <lib_init/PositionProvider.hpp>

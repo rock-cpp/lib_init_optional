@@ -2,7 +2,7 @@
 
 #include <lib_init/Base.hpp>
 #include <orocos_cpp/Deployment.hpp>
-#include <mars/proxies/Task.hpp>
+#include <mars/proxies/TaskForward.hpp>
 
 #include <envire_core/items/SpatioTemporal.hpp>
 #include <maps/grid/MLSMap.hpp>

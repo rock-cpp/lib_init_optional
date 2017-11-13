@@ -1,5 +1,4 @@
 #include "PoseProvider.hpp"
-
 #include <simple_pose_integrator/proxies/Task.hpp>
 
 namespace init
@@ -9,7 +8,7 @@ PoseProvider::PoseProvider(PositionProvider &irregular_pose_provider, const std:
     : Base("PoseProvider")
     , PositionProvider("PoseProvider")
     , irregular_pose_provider(irregular_pose_provider)
-    , poseProviderTask(this, poseProviderTaskName)
+    , poseProviderTask(DependentTask< simple_pose_integrator::proxies::Task >::getInstance(this, poseProviderTaskName))
 {
     registerDependency(irregular_pose_provider);
 }

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <lib_init/Base.hpp>
-#include <ndlcom_cpmb_watcher/proxies/Task.hpp>
+#include <ndlcom_cpmb_watcher/proxies/TaskForward.hpp>
 #include "NDLComSerial.hpp"
 #include <lib_init/DependentTask.hpp>
 

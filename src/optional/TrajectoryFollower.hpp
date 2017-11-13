@@ -4,7 +4,7 @@
 #include <lib_init/PositionProvider.hpp>
 #include <lib_init/MotionControl2D.hpp>
 
-#include <trajectory_follower/proxies/Task.hpp>
+#include <trajectory_follower/proxies/TaskForward.hpp>
 #include <lib_init/DependentTask.hpp>
 
 namespace init

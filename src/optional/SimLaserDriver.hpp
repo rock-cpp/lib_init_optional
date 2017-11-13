@@ -1,7 +1,7 @@
 #pragma once
 
 #include <lib_init/LaserDriver.hpp>
-#include <mars/proxies/LaserRangeFinder.hpp>
+#include <mars/proxies/LaserRangeFinderForward.hpp>
 #include "Simulator.hpp"
 
 namespace init

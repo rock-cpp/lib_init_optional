@@ -11,7 +11,7 @@ SafetyController::SafetyController(MotionControl2D& motionControl, std::map<int,
       MotionControl2D("SafetyController"),
       motionControl(motionControl),
       safetyInputs(safetyInputs),
-      safetyControlTask(this, taskName)
+      safetyControlTask(DependentTask<safety_control::proxies::Task>::getInstance(this, taskName))
 {
     registerDependency(motionControl);
     

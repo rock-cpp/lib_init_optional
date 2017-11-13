@@ -1,11 +1,12 @@
 #include "VelodyneDriver.hpp"
+#include <velodyne_lidar/proxies/LaserScanner.hpp>
 
 
 namespace init
 {
 
 VelodyneDriver::VelodyneDriver(const std::string &velodyneTaskName) : DepthMapProvider("VelodyneDriver"),
-    velodyneTask(this, velodyneTaskName)
+    velodyneTask(DependentTask< velodyne_lidar::proxies::LaserScanner >::getInstance(this, velodyneTaskName))
 {
 
 }

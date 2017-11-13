@@ -2,7 +2,7 @@
 
 #include <lib_init/JointDriver.hpp>
 #include "NDLComSerial.hpp"
-#include <ndlcom_aila_joints/proxies/AILAJointTask.hpp>
+#include <ndlcom_aila_joints/proxies/AILAJointTaskForward.hpp>
 
 
 namespace init

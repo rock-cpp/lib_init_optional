@@ -1,7 +1,7 @@
 #pragma once
 
 #include <lib_init/Base.hpp>
-#include <controldev/proxies/GenericRawToMotion2D.hpp>
+#include <controldev/proxies/GenericRawToMotion2DForward.hpp>
 #include <lib_init/DependentTask.hpp>
 
 namespace init {

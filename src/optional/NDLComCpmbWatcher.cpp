@@ -1,5 +1,5 @@
 #include "NDLComCpmbWatcher.hpp"
-
+#include <ndlcom_cpmb_watcher/proxies/Task.hpp>
 #include <serial_ndlcom/proxies/Task.hpp>
 
 namespace init
@@ -8,7 +8,7 @@ namespace init
 NDLComCpmbWatcher::NDLComCpmbWatcher(NDLComSerial &ndlcomSerial, const std::string &taskname)
      : Base("NDLComCpmbWatcher")
      , ndlcomSerial(ndlcomSerial)
-     , watcherTask(this, taskname)
+     , watcherTask(DependentTask<ndlcom_cpmb_watcher::proxies::Task>::getInstance(this, taskname))
 {
     registerDependency(ndlcomSerial);
 }

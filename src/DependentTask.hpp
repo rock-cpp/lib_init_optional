@@ -86,7 +86,7 @@ template <class TASK>
 class DependentTaskPimplImpl : public DependentTaskPimplBase
 {
 public:
-    DependentTaskPimplImpl();
+    DependentTaskPimplImpl() {};
     virtual ~DependentTaskPimplImpl() {};
     virtual const std::string &getModelName()
     {
@@ -95,7 +95,7 @@ public:
     
     virtual RTT::corba::TaskContextProxy* createProxy(const std::string &name)
     {
-        return TASK(name);
+        return new TASK(name);
     }
 };
 

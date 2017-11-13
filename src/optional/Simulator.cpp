@@ -9,7 +9,7 @@ Simulator::Simulator(const std::string &simTaskName,const boost::shared_ptr<oroc
 	: Base("Simulator")
     , PositionProvider("Simulator")
     , MLSProvider("Simulator")	
-	, simulator(this, simTaskName)
+	, simulator(DependentTask<mars::proxies::Task>::getInstance(this, simTaskName))
 {
     simulator.setDeployment(simDeployment);
 }

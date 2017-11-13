@@ -2,7 +2,7 @@
 
 #include <lib_init/CameraDriver.hpp>
 #include "Simulator.hpp"
-#include <mars/proxies/Camera.hpp>
+#include <mars/proxies/CameraForward.hpp>
 
 
 namespace init

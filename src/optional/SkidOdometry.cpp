@@ -1,11 +1,12 @@
 #include "SkidOdometry.hpp"
+#include <odometry/proxies/Skid.hpp>
 
 init::SkidOdometry::SkidOdometry(const std::string& odometryName, init::JointDriver& jointDispatcher, init::IMUDriver& imu)
     : Base("SkidOdometry")
     , PositionProvider("SkidOdometry")
     , joints(jointDispatcher)
     , imu(imu)
-    , skidOdometry(this, odometryName)
+    , skidOdometry(DependentTask<odometry::proxies::Skid>::getInstance(this, odometryName))
 {
     registerDependency(jointDispatcher);
     registerDependency(imu);

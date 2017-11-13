@@ -2,8 +2,14 @@
 
 #include "Canbus.hpp"
 #include <lib_init/Base.hpp>
-#include <encoder_ichaus/proxies/Task.hpp>
+#include <encoder_ichaus/proxies/TaskForward.hpp>
 #include <lib_init/DependentTask.hpp>
+
+namespace base {
+    namespace samples {
+        class Joints;
+    }
+}
 
 namespace init 
 {

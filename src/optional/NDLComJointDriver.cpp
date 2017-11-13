@@ -1,5 +1,6 @@
 #include "NDLComJointDriver.hpp"
 #include <orocos_cpp/Spawner.hpp>
+#include <ndlcom_device_driver/proxies/NDLComJointDriverBaseTask.hpp>
 
 #include <serial_ndlcom/proxies/Task.hpp>
 #include <ndlcom_device_driver/proxies/NDLComJointDriverBaseTask.hpp>
@@ -10,7 +11,7 @@ namespace init
 NDLComJointDriver::NDLComJointDriver(NDLComSerial &serial, const std::string &jointTaskName) 
     : JointDriver("NDLComJointDriver")
     , serial(serial)
-    , jointDriver(this, jointTaskName)
+    , jointDriver(DependentTask<ndlcom_device_driver::proxies::NDLComJointDriverBaseTask>::getInstance(this, jointTaskName))
 {
     registerDependency(serial);
 }

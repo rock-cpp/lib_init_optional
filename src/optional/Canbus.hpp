@@ -2,7 +2,9 @@
 
 #include <lib_init/Base.hpp>
 #include <lib_init/DependentTask.hpp>
-#include <canbus/proxies/Task.hpp>
+#include <canbus/proxies/TaskForward.hpp>
+#include <orocos_cpp_base/ProxyPort.hpp>
+
 
 namespace canbus {
     class Message;

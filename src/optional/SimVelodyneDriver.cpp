@@ -1,10 +1,11 @@
 #include "SimVelodyneDriver.hpp"
+#include <mars/proxies/RotatingLaserRangeFinder.hpp>
 
 namespace init
 {
 
 SimVelodyneDriver::SimVelodyneDriver(Simulator &sim, const std::string& velodyneTaskName) : PointCloudProvider("SimVelodyneDriver"),
-    velodyneTask(this, velodyneTaskName)
+    velodyneTask(DependentTask<mars::proxies::RotatingLaserRangeFinder>::getInstance(this, velodyneTaskName))
 {
     velodyneTask.setDeployment(sim.simulator.getDeployment());
     registerDependency(sim);

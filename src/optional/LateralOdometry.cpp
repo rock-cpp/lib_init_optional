@@ -1,11 +1,12 @@
 #include "LateralOdometry.hpp"
+#include <odometry/proxies/LatOdom.hpp>
 
 init::LateralOdometry::LateralOdometry(const std::string& odometryName, init::JointDriver& jointDispatcher, init::IMUDriver& imu)
     : Base("LateralOdometry")
     , PositionProvider("LateralOdometry")
     , joints(jointDispatcher)
     , imu(imu)
-    , lateralOdometry(this, odometryName)
+    , lateralOdometry(DependentTask<odometry::proxies::LatOdom>::getInstance(this, odometryName))
 {
     registerDependency(jointDispatcher);
     registerDependency(imu);

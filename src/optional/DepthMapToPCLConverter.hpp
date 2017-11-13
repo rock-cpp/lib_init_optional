@@ -2,7 +2,7 @@
 
 #include <lib_init/PointCloudProvider.hpp>
 #include <lib_init/DepthMapProvider.hpp>
-#include <depth_map_preprocessing/proxies/PointcloudConverter.hpp>
+#include <depth_map_preprocessing/proxies/PointcloudConverterForward.hpp>
 #include <lib_init/DependentTask.hpp>
 
 namespace init 

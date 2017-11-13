@@ -1,10 +1,11 @@
 #include "UGVNav4d.hpp"
+#include <ugv_nav4d/proxies/PathPlanner.hpp>
 
 
 init::UGVNav4d::UGVNav4d(init::MLSProvider& mlsprovider, const std::string& taskName): 
      Base("UGVNav4d"), MLTraversabilityMapProvider("UGVNav4d")
     , mlsprovider(mlsprovider)
-    , planner(this, taskName)
+    , planner(DependentTask<ugv_nav4d::proxies::PathPlanner>::getInstance(this, taskName))
 {
 
 }

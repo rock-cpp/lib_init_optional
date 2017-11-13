@@ -1,5 +1,6 @@
 #include "TrajectoryFollowerWithSafeGuard.hpp"
 #include <safety_control/proxies/Task.hpp>
+#include <trajectory_follower/proxies/Task.hpp>
 
 namespace init
 {

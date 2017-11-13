@@ -1,9 +1,10 @@
 #include "OutlierFilter.hpp"
+#include <depth_map_preprocessing/proxies/OutlierFilter.hpp>
 
 init::OutlierFilter::OutlierFilter(const std::string& taskName, DepthMapProvider &inputp): 
     DepthMapProvider(taskName), 
     input(inputp),
-    filterTask(this, taskName)
+    filterTask(DependentTask< depth_map_preprocessing::proxies::OutlierFilter >::getInstance(this, taskName))
 {
     registerDependency(input);
 }

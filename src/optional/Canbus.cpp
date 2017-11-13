@@ -1,4 +1,5 @@
 #include "Canbus.hpp"
+#include <canbus/proxies/Task.hpp>
 
 
 init::Canbus::Canbus(const std::string& canbusName) : Base("CanBus"), 

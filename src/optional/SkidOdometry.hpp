@@ -1,7 +1,7 @@
 #pragma once
 
 #include <lib_init/PositionProvider.hpp>
-#include <odometry/proxies/Skid.hpp>
+#include <odometry/proxies/SkidForward.hpp>
 #include <lib_init/JointDriver.hpp>
 #include <lib_init/IMUDriver.hpp>
 #include <lib_init/DependentTask.hpp>

@@ -1,11 +1,13 @@
 #include "RealtimeUrdfFilter.hpp"
+#include <realtime_urdf_filter/proxies/RealtimeURDFFilterTask.hpp>
+#include <robot_frames/proxies/Task.hpp>
 
 init::RealtimeUrdfFilter::RealtimeUrdfFilter(const std::string& taskName, init::DistanceImageProvider& distImage, init::RobotFrames &frame): 
     DistanceImageProvider("RealtimeUrdfFilter"),
     frame(frame),
     distImageLeft(&distImage),
     distImageRight(nullptr),
-    filterTask(this, taskName)
+    filterTask(DependentTask<realtime_urdf_filter::proxies::RealtimeURDFFilterTask>::getInstance(this, taskName))
 {
     registerDependency(distImage);
     registerDependency(frame);
@@ -16,7 +18,7 @@ init::RealtimeUrdfFilter::RealtimeUrdfFilter(const std::string& taskName, init::
     frame(frame),
     distImageLeft(&distImageLeft),
     distImageRight(&distImageRight),
-    filterTask(this, taskName)
+    filterTask(DependentTask<realtime_urdf_filter::proxies::RealtimeURDFFilterTask>::getInstance(this, taskName))
 {
     registerDependency(distImageLeft);
     registerDependency(distImageRight);

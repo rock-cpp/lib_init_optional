@@ -1,9 +1,10 @@
 #include "DepthMapToPCLConverter.hpp"
+#include <depth_map_preprocessing/proxies/PointcloudConverter.hpp>
 
 init::DepthMapToPCLConverter::DepthMapToPCLConverter(init::DepthMapProvider& velodyne, const std::string &converterTaskName):
     PointCloudProvider("DepthMapToPCLConverter"), 
     velodyne(velodyne), 
-    converter(this, converterTaskName)
+    converter(DependentTask<depth_map_preprocessing::proxies::PointcloudConverter>::getInstance(this, converterTaskName))
 {
     registerDependency(velodyne);
 }

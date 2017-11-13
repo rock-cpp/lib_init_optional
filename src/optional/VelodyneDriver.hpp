@@ -3,7 +3,7 @@
 #include <lib_init/DepthMapProvider.hpp>
 #include <base/samples/DepthMap.hpp>
 #include <orocos_cpp_base/ProxyPort.hpp>
-#include <velodyne_lidar/proxies/LaserScanner.hpp>
+#include <velodyne_lidar/proxies/LaserScannerForward.hpp>
 #include <lib_init/DependentTask.hpp>
 
 namespace init

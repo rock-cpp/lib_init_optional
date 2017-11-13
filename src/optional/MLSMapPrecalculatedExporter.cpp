@@ -1,11 +1,12 @@
 #include "MLSMapPrecalculatedExporter.hpp"
 
 #include "MLSMapKalmanExporter.hpp"
+#include <envire_exporters/proxies/MLSMapPrecalculatedExporter.hpp>
 
 init::MLSMapPrecalculatedExporter::MLSMapPrecalculatedExporter(const std::string& taskName): 
     Base("MLSMapPrecalculatedExporter")
     ,MLSPrecalculatedProvider("MLSMapPrecalculatedExporter")
-    , exporter(this, taskName)
+    , exporter(DependentTask<envire_exporters::proxies::MLSMapPrecalculatedExporter>::getInstance(this, taskName))
 {
 
 }

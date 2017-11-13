@@ -1,4 +1,6 @@
 #include "LocalTSDFMapper.hpp"
+#include <local_tsdf_mapper/proxies/Task.hpp>
+#include <realtime_urdf_filter/proxies/RealtimeURDFFilterTask.hpp>
 
 using namespace init;
 
@@ -10,7 +12,7 @@ LocalTSDFMapper::LocalTSDFMapper(PointCloudProvider* point_cloud, DistanceImageP
     , point_cloud(point_cloud)
     , slam(slam)
     , filter(nullptr)
-    , local_mapper(this, mapperTaskName)
+    , local_mapper(DependentTask<local_tsdf_mapper::proxies::Task>::getInstance(this, mapperTaskName))
 {
     if(point_cloud)
         registerDependency(*point_cloud);
@@ -30,7 +32,7 @@ LocalTSDFMapper::LocalTSDFMapper(PointCloudProvider* point_cloud, RealtimeUrdfFi
     , point_cloud(point_cloud)
     , slam(slam)
     , filter(filter)
-    , local_mapper(this, mapperTaskName)
+    , local_mapper(DependentTask<local_tsdf_mapper::proxies::Task>::getInstance(this, mapperTaskName))
 {
     if(point_cloud)
         registerDependency(*point_cloud);

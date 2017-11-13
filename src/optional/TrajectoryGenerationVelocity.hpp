@@ -7,12 +7,8 @@
 #include <trajectory_generation/trajectory_generationTypes.hpp>
 #include <orocos_cpp_base/ProxyPort.hpp>
 #include <lib_init/DependentTask.hpp>
+#include <trajectory_generation/proxies/RMLVelocityTaskForward.hpp>
 
-namespace trajectory_generation {
-    namespace proxies {
-        class RMLVelocityTask;
-    }
-}
 
 namespace init
 {

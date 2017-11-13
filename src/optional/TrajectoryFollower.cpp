@@ -1,5 +1,5 @@
 #include "TrajectoryFollower.hpp"
-
+#include <trajectory_follower/proxies/Task.hpp>
 
 
 namespace init
@@ -10,7 +10,7 @@ TrajectoryFollower::TrajectoryFollower(PositionProvider &posProv, MotionControl2
     : Base("TrajectoryFollower")
     , posProv(posProv)
     , motionController(motionController)
-    , trajectoryFollowerTask(this, trajectoryFollowerTaskName)
+    , trajectoryFollowerTask(DependentTask< trajectory_follower::proxies::Task >::getInstance(this, trajectoryFollowerTaskName))
 {
     registerDependency(posProv);
     registerDependency(motionController);

@@ -1,10 +1,11 @@
 #include "Localization.hpp"
+#include <localization/proxies/VelodyneInMLS.hpp>
 
 init::Localization::Localization(const std::string taskName, init::DepthMapProvider& provider): 
     Base("Localization"),
     PositionProvider("Localization"), 
     provider(provider),
-    localizer(this, taskName)
+    localizer(DependentTask<localization::proxies::VelodyneInMLS>::getInstance(this, taskName))
 {
     registerDependency(provider);
 }
