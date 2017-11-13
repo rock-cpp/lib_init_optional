@@ -3,16 +3,32 @@
 init::RealtimeUrdfFilter::RealtimeUrdfFilter(const std::string& taskName, init::DistanceImageProvider& distImage, init::RobotFrames &frame): 
     DistanceImageProvider("RealtimeUrdfFilter"),
     frame(frame),
-    distImage(distImage),
+    distImageLeft(&distImage),
+    distImageRight(nullptr),
     filterTask(this, taskName)
 {
     registerDependency(distImage);
     registerDependency(frame);
 }
 
+init::RealtimeUrdfFilter::RealtimeUrdfFilter(const std::string& taskName, init::DistanceImageProvider& distImageLeft, init::DistanceImageProvider& distImageRight, init::RobotFrames &frame): 
+    DistanceImageProvider("RealtimeUrdfFilter"),
+    frame(frame),
+    distImageLeft(&distImageLeft),
+    distImageRight(&distImageRight),
+    filterTask(this, taskName)
+{
+    registerDependency(distImageLeft);
+    registerDependency(distImageRight);
+    registerDependency(frame);
+}
+
 bool init::RealtimeUrdfFilter::connect()
 {
-    distImage.getDistanceImagePort().connectTo(filterTask.getConcreteProxy()->input_depth, RTT::ConnPolicy::buffer(10));
+    distImageLeft->getDistanceImagePort().connectTo(filterTask.getConcreteProxy()->input_depth_left, RTT::ConnPolicy::buffer(10));
+    if(distImageRight)
+        distImageRight->getDistanceImagePort().connectTo(filterTask.getConcreteProxy()->input_depth_right, RTT::ConnPolicy::buffer(10));
+        
     return init::Base::connect();
 }
 

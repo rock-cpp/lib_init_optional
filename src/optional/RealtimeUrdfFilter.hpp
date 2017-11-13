@@ -10,9 +10,11 @@ namespace init {
 class RealtimeUrdfFilter : public init::DistanceImageProvider
 {
     init::RobotFrames &frame;
-    init::DistanceImageProvider &distImage;
+    init::DistanceImageProvider *distImageLeft;
+    init::DistanceImageProvider *distImageRight;
 public:
     RealtimeUrdfFilter(const std::string &taskName, init::DistanceImageProvider &distImage, init::RobotFrames &frames);
+    RealtimeUrdfFilter(const std::string &taskName, init::DistanceImageProvider &distImageLeft, init::DistanceImageProvider &distImageRight, init::RobotFrames &frames);
 
     virtual bool connect();
     virtual bool start();
