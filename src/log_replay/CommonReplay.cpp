@@ -33,7 +33,7 @@ CommonReplay::CommonReplay(int argc, char** argv) : argc(argc), argv(argv)
 }
 
 
-int CommonReplay::runCommon(const smurf::Robot &robot, const std::vector< init::Base* >& toInit, std::function<void (void)> hook)
+int CommonReplay::runCommon(const smurf::Robot &robot, const std::vector< init::Base* >& toInit, std::function<void (void)> hook, std::function<void (void)> afterInitHook)
 {
     Typelib::PluginManager::self manager;
     ReplayHandler *replay = new ReplayHandler();
@@ -56,6 +56,10 @@ int CommonReplay::runCommon(const smurf::Robot &robot, const std::vector< init::
     
     //note, the gui takes ownership of the replay handler
     gui.initReplayHandler(replay, "CommonReplay");
+
+    if(afterInitHook)
+        afterInitHook();
+    
     
     gui.updateTaskView();
     gui.show();    
