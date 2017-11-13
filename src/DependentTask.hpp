@@ -104,7 +104,9 @@ class DependentTask : public DependentTaskBase
 {
     DependentTaskPimplBase *pimpl;
 public:    
-    DependentTask(Base *parent, const std::string &taskName, DependentTaskPimplBase *pimpl) : DependentTaskBase(parent, taskName, pimpl->getModelName())
+    DependentTask(Base *parent, const std::string &taskName, DependentTaskPimplBase *pimpl) : 
+        DependentTaskBase(parent, taskName, pimpl->getModelName()),
+        pimpl(pimpl)
     {
     }
     
