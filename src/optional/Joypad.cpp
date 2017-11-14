@@ -1,4 +1,6 @@
 #include "Joypad.hpp"
+#include <controldev/proxies/JoystickTask.hpp>
+#include <controldev/proxies/GenericRawToMotion2D.hpp>
 
 namespace init 
 {
@@ -7,7 +9,7 @@ Joypad::Joypad(const std::string& taskName, GenericRawToMotion2D &genericRawToMo
     : Base(taskName),
       MotionControl2DProvider(taskName),
       genericRawToMotion2DConverter(genericRawToMotion2DConverter),
-      joypad(this, taskName)
+      joypad(DependentTask<controldev::proxies::JoystickTask>::getInstance(this, taskName))
 {
 	registerDependency(genericRawToMotion2DConverter);
 }

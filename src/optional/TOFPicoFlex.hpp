@@ -2,7 +2,7 @@
 
 #include <lib_init/Base.hpp>
 #include <lib_init/DependentTask.hpp>
-#include <tofcamera_picoflex/proxies/Task.hpp>
+#include <tofcamera_picoflex/proxies/TaskForward.hpp>
 #include <lib_init/DistanceImageProvider.hpp>
 
 namespace init 

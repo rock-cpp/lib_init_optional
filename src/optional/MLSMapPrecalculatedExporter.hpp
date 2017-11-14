@@ -2,7 +2,8 @@
 
 
 #include <lib_init/MLSProvider.hpp>
-#include <envire_exporters/proxies/MLSMapPrecalculatedExporter.hpp>
+#include <envire_exporters/proxies/MLSMapPrecalculatedExporterForward.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init {
 

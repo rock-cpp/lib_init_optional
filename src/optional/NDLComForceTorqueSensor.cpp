@@ -1,5 +1,5 @@
 #include "NDLComForceTorqueSensor.hpp"
-
+#include <ndlcom_force_torque_sensor/proxies/Task.hpp>
 #include <serial_ndlcom/proxies/Task.hpp>
 
 namespace init
@@ -8,7 +8,7 @@ namespace init
 NDLComForceTorqueSensor::NDLComForceTorqueSensor(NDLComSerial &ndlcomSerial, const std::string &forceTorqueSensorTaskName)
      : ForceTorqueSensor("ForceTorqueSensor")
      , ndlcomSerial(ndlcomSerial)
-     , forceTorqueSensorTask(this, forceTorqueSensorTaskName)
+     , forceTorqueSensorTask(DependentTask< ndlcom_force_torque_sensor::proxies::Task >::getInstance(this, forceTorqueSensorTaskName))
 {
     registerDependency(ndlcomSerial);
 }

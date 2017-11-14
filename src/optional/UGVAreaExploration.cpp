@@ -1,5 +1,6 @@
 #include "UGVAreaExploration.hpp"
 #include "../DependentTask.hpp"
+#include <ugv_nav4d/proxies/AreaExploration.hpp>
 
 namespace init 
 {
@@ -8,7 +9,7 @@ UGVAreaExploration::UGVAreaExploration(MLSProvider& mlsprovider, PositionProvide
     Base("UGVAreaExploration"),
     mlsprovider(mlsprovider),
     poseProv(poseProv),
-    explorationPlanner(this, taskName)
+    explorationPlanner(DependentTask<ugv_nav4d::proxies::AreaExploration>::getInstance(this, taskName))
 {
     registerDependency(mlsprovider);
     registerDependency(poseProv);

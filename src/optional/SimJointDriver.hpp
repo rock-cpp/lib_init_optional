@@ -2,7 +2,7 @@
 
 #include <lib_init/JointDriver.hpp>
 #include "Simulator.hpp"
-#include <mars/proxies/Joints.hpp>
+#include <mars/proxies/JointsForward.hpp>
 
 namespace init
 {

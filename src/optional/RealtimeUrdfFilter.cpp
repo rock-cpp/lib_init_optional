@@ -1,18 +1,36 @@
 #include "RealtimeUrdfFilter.hpp"
+#include <realtime_urdf_filter/proxies/RealtimeURDFFilterTask.hpp>
+#include <robot_frames/proxies/Task.hpp>
 
 init::RealtimeUrdfFilter::RealtimeUrdfFilter(const std::string& taskName, init::DistanceImageProvider& distImage, init::RobotFrames &frame): 
     DistanceImageProvider("RealtimeUrdfFilter"),
     frame(frame),
-    distImage(distImage),
-    filterTask(this, taskName)
+    distImageLeft(&distImage),
+    distImageRight(nullptr),
+    filterTask(DependentTask<realtime_urdf_filter::proxies::RealtimeURDFFilterTask>::getInstance(this, taskName))
 {
     registerDependency(distImage);
     registerDependency(frame);
 }
 
+init::RealtimeUrdfFilter::RealtimeUrdfFilter(const std::string& taskName, init::DistanceImageProvider& distImageLeft, init::DistanceImageProvider& distImageRight, init::RobotFrames &frame): 
+    DistanceImageProvider("RealtimeUrdfFilter"),
+    frame(frame),
+    distImageLeft(&distImageLeft),
+    distImageRight(&distImageRight),
+    filterTask(DependentTask<realtime_urdf_filter::proxies::RealtimeURDFFilterTask>::getInstance(this, taskName))
+{
+    registerDependency(distImageLeft);
+    registerDependency(distImageRight);
+    registerDependency(frame);
+}
+
 bool init::RealtimeUrdfFilter::connect()
 {
-    distImage.getDistanceImagePort().connectTo(filterTask.getConcreteProxy()->input_depth, RTT::ConnPolicy::buffer(10));
+    distImageLeft->getDistanceImagePort().connectTo(filterTask.getConcreteProxy()->input_depth_left, RTT::ConnPolicy::buffer(10));
+    if(distImageRight)
+        distImageRight->getDistanceImagePort().connectTo(filterTask.getConcreteProxy()->input_depth_right, RTT::ConnPolicy::buffer(10));
+        
     return init::Base::connect();
 }
 
@@ -38,5 +56,5 @@ bool init::RealtimeUrdfFilter::start()
 
 OutputProxyPort< base::samples::DistanceImage >& init::RealtimeUrdfFilter::getDistanceImagePort()
 {
-    return filterTask.getConcreteProxy()->output_depth;
+    return filterTask.getConcreteProxy()->output_depth_left;
 }

@@ -1,4 +1,5 @@
 #include "PoseWatchdog.hpp"
+#include <ugv_nav4d/proxies/PoseWatchdog.hpp>
 #include <iostream>
 
 namespace init
@@ -9,7 +10,7 @@ PoseWatchdog::PoseWatchdog(PositionProvider &posProv, MLSProvider& mapProvider, 
     : Base("PoseWatchdog"), MotionControl2DProvider("PoseWatchdog")
     , posProv(posProv)
     , mapProvider(mapProvider)
-    , watchdogTask(this, taskname)
+    , watchdogTask(DependentTask< ugv_nav4d::proxies::PoseWatchdog >::getInstance(this, taskname))
 {
     registerDependency(posProv);
     registerDependency(mapProvider);
@@ -19,7 +20,7 @@ PoseWatchdog::PoseWatchdog(Simulator &provider, const std::string &taskname)
     : Base("PoseWatchdog"), MotionControl2DProvider("PoseWatchdog")
     , posProv(provider)
     , mapProvider(provider)
-    , watchdogTask(this, taskname)
+    , watchdogTask(DependentTask< ugv_nav4d::proxies::PoseWatchdog >::getInstance(this, taskname))
 {
     registerDependency(provider);
 }

@@ -1,6 +1,8 @@
 #include "SimIMUDriver.hpp"
+#include <mars/proxies/IMU.hpp>
 
-init::SimIMUDriver::SimIMUDriver(const std::string &imuTaskName, init::Simulator& sim) : Base("SimIMUDriver"), IMUDriver("SimIMUDriver"), PositionProvider("SimIMUDriver"), imuTask(this, imuTaskName)
+init::SimIMUDriver::SimIMUDriver(const std::string &imuTaskName, init::Simulator& sim) : Base("SimIMUDriver"), IMUDriver("SimIMUDriver"), PositionProvider("SimIMUDriver")
+    , imuTask(DependentTask<mars::proxies::IMU>::getInstance(this, imuTaskName))
 {
     imuTask.setDeployment(sim.simulator.getDeployment());
     registerDependency(sim);

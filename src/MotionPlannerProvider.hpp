@@ -4,6 +4,8 @@
 #include <orocos_cpp_base/ProxyPort.hpp>
 #include <base/Trajectory.hpp>
 
+FW_DECLARE_TYPE(std::vector<base::Trajectory>)
+
 namespace init {
 
 class MotionPlannerProvider : public Base

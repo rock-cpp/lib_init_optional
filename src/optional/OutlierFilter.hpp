@@ -2,7 +2,8 @@
 #include <lib_init/DepthMapProvider.hpp>
 #include <base/samples/DepthMap.hpp>
 #include <orocos_cpp_base/ProxyPort.hpp>
-#include <depth_map_preprocessing/proxies/OutlierFilter.hpp>
+#include <depth_map_preprocessing/proxies/OutlierFilterForward.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init
 {

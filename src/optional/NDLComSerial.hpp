@@ -2,7 +2,7 @@
 
 #include <lib_init/DependentTask.hpp>
 #include <lib_init/Base.hpp>
-#include <serial_ndlcom/proxies/Task.hpp>
+#include <serial_ndlcom/proxies/TaskForward.hpp>
 
 namespace init
 {

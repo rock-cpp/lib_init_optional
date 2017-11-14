@@ -1,9 +1,10 @@
 #include "EncoderIcHaus.hpp"
+#include <encoder_ichaus/proxies/Task.hpp>
 
 init::EncoderIcHaus::EncoderIcHaus(const std::string& task_name, init::Canbus& canbus)
     : Base("EncoderIcHaus")
     , canbus(canbus)
-    , encoder_task(this, task_name)
+    , encoder_task(DependentTask<encoder_ichaus::proxies::Task>::getInstance(this, task_name))
 {
     canbus.watch(encoder_task.getTaskName(), 10, 15);
     registerDependency(canbus);

@@ -1,6 +1,7 @@
 #include "AILAJointDriver.hpp"
 #include <orocos_cpp/Spawner.hpp>
 #include <serial_ndlcom/proxies/Task.hpp>
+#include <ndlcom_aila_joints/proxies/AILAJointTask.hpp>
 
 namespace init
 {
@@ -8,7 +9,7 @@ namespace init
 AILAJointDriver::AILAJointDriver(init::NDLComSerial& ndlcomSerial, const std::string &AILAJointsTaskName) 
     : JointDriver("AILAJointDriver")
     , ndlcomSerial(ndlcomSerial)
-    , jointTask(this, AILAJointsTaskName)
+    , jointTask(this, AILAJointsTaskName, new DependentTaskPimplImpl<ndlcom_aila_joints::proxies::AILAJointTask>)
 {
     registerDependency(ndlcomSerial);
 }

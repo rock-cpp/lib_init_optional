@@ -3,10 +3,11 @@
 #include <lib_init/PositionProvider.hpp>
 #include <lib_init/MLSProvider.hpp>
 #include "Simulator.hpp"
-#include <ugv_nav4d/proxies/PoseWatchdog.hpp>
+#include <ugv_nav4d/proxies/PoseWatchdogForward.hpp>
 #include <trajectory_follower/SubTrajectory.hpp>
 #include <lib_init/MotionControl2DProvider.hpp>
 #include <base/commands/Motion2D.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init
 { 

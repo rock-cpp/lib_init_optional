@@ -1,11 +1,12 @@
 #include "ContactPointOdometry.hpp"
+#include <odometry/proxies/ContactPointTask.hpp>
 
 init::ContactPointOdometry::ContactPointOdometry(const std::string& odometryName, init::BodyContactsProvider& bodyContacts, init::IMUDriver& imu)
     : Base("ContactPointOdometry")
     , PositionProvider("ContactPointOdometry")
     , bodyContacts(bodyContacts)
     , imu(imu)
-    , contactPointOdometry(this, odometryName)
+    , contactPointOdometry(DependentTask<odometry::proxies::ContactPointTask>::getInstance(this, odometryName))
 {
     registerDependency(bodyContacts);
     registerDependency(imu);

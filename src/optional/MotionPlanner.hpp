@@ -1,9 +1,9 @@
 #pragma once
 
-#include <lib_init/DependentTask.hpp>
 #include <lib_init/MotionPlannerProvider.hpp>
 #include "PoseProvider.hpp"
 #include <lib_init/TraversabilityMapProvider.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace motion_planning_libraries {
      namespace proxies {

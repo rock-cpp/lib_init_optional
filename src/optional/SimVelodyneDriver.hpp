@@ -4,7 +4,7 @@
 #include <orocos_cpp_base/ProxyPort.hpp>
 #include "Simulator.hpp"
 #include <base/samples/Pointcloud.hpp>
-#include <mars/proxies/RotatingLaserRangeFinder.hpp>
+#include <mars/proxies/RotatingLaserRangeFinderForward.hpp>
 
 namespace init
 {

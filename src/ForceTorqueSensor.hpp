@@ -4,6 +4,8 @@
 #include <base/samples/Wrenches.hpp>
 #include <orocos_cpp_base/ProxyPort.hpp>
 
+FW_DECLARE_TYPE(base::samples::Wrenches)
+
 namespace init
 {
 

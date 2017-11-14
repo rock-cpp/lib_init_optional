@@ -2,6 +2,9 @@
 #include <rtt/transports/corba/TaskContextProxy.hpp>
 #include "DependentTask.hpp"
 #include "log_replay/ReplayTask.hpp"
+#include <orocos_cpp/TransformerHelper.hpp>
+#include <orocos_cpp/ConfigurationHelper.hpp>
+#include <orocos_cpp/Deployment.hpp>
 
 namespace init
 {

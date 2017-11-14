@@ -1,9 +1,10 @@
 #pragma once
 
 #include <lib_init/Base.hpp>
-#include <ndlcom_force_torque_sensor/proxies/Task.hpp>
+#include <ndlcom_force_torque_sensor/proxies/TaskForward.hpp>
 #include "NDLComSerial.hpp"
 #include <lib_init/ForceTorqueSensor.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init
 {

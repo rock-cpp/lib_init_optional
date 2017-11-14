@@ -4,6 +4,8 @@
 #include <base/samples/DistanceImage.hpp>
 #include <lib_init/Base.hpp>
 
+FW_DECLARE_TYPE(base::samples::DistanceImage)
+
 namespace init
 {
 

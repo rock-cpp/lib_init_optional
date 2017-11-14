@@ -1,9 +1,10 @@
 #include "MLSMapKalmanExporter.hpp"
+#include <envire_exporters/proxies/MLSMapKalmanExporter.hpp>
 
 init::MLSMapKalmanExporter::MLSMapKalmanExporter(const std::string& taskName): 
     Base("MLSMapKalmanExporter")
     ,MLSProvider("MLSMapKalmanExporter")
-    , exporter(this, taskName)
+    , exporter(DependentTask<envire_exporters::proxies::MLSMapKalmanExporter>::getInstance(this, taskName))
 {
 
 }

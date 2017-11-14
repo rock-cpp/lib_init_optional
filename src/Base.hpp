@@ -1,10 +1,13 @@
 #pragma once
 
-#include <orocos_cpp/TransformerHelper.hpp>
-#include <orocos_cpp/ConfigurationHelper.hpp>
-#include <orocos_cpp/Deployment.hpp>
-#include "DependentTask.hpp"
+#include <string>
+#include <vector>
 
+namespace orocos_cpp {
+    class TransformerHelper;
+    class ConfigurationHelper;
+}
+    
 namespace RTT {
 namespace corba {
 class TaskContextProxy;

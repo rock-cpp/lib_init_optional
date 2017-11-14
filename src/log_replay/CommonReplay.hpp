@@ -3,6 +3,11 @@
 #include "../Base.hpp"
 #include <functional>
 
+namespace smurf
+{
+    class Robot;
+}
+
 namespace log_replay
 {
 
@@ -15,7 +20,7 @@ class CommonReplay
 public:
     CommonReplay(int argc, char **argv);
     
-    int runCommon(const smurf::Robot &robot, const std::vector< init::Base* >& toInit, std::function<void (void)> hook = std::function<void (void)>());
+    int runCommon(const smurf::Robot &robot, const std::vector< init::Base* >& toInit, std::function<void (void)> threadHook = std::function<void (void)>(), std::function<void (void)> afterInithook = std::function<void (void)>());
     
 
     void setLoggingExcludes(const std::vector<std::string> &excludeList);    

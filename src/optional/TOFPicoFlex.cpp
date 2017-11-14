@@ -1,11 +1,12 @@
 #include "TOFPicoFlex.hpp"
+#include <tofcamera_picoflex/proxies/Task.hpp>
 
 namespace init 
 {
 
 TOFPicoFlex::TOFPicoFlex(const std::string& taskName): 
     DistanceImageProvider("TOFPicoFlex"),
-    driver(this, taskName)
+    driver(DependentTask<tofcamera_picoflex::proxies::Task>::getInstance(this, taskName))
 {
 
 }

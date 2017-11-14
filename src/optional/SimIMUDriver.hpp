@@ -4,7 +4,7 @@
 #include <lib_init/PositionProvider.hpp>
 #include "Simulator.hpp"
 
-#include <mars/proxies/IMU.hpp>
+#include <mars/proxies/IMUForward.hpp>
 
 namespace init 
 {

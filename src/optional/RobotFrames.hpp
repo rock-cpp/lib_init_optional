@@ -1,7 +1,8 @@
 #pragma once
 
 #include <lib_init/JointDriver.hpp>
-#include <robot_frames/proxies/Task.hpp>
+#include <robot_frames/proxies/TaskForward.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init {
 

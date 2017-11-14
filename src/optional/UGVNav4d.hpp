@@ -2,7 +2,7 @@
 
 #include <lib_init/Base.hpp>
 #include <lib_init/DependentTask.hpp>
-#include <ugv_nav4d/proxies/PathPlanner.hpp>
+#include <ugv_nav4d/proxies/PathPlannerForward.hpp>
 #include <lib_init/MLSProvider.hpp>
 #include <lib_init/MLTraversabilityMapProvider.hpp>
 

@@ -1,11 +1,13 @@
 #include "HBridge.hpp"
+#include <hbridge/proxies/CommandWriter.hpp>
+#include <hbridge/proxies/SensorReader.hpp>
 
 
 init::HBridge::HBridge(const std::string& sensorReaderName, const std::string& commandWriterName, init::Canbus& canbus)
     : JointDriver("HBridge")
     , canbus(canbus)
-    , sensorReader(this, sensorReaderName)
-    , commandWriter(this, commandWriterName)
+    , sensorReader(DependentTask<hbridge::proxies::SensorReader>::getInstance(this, sensorReaderName))
+    , commandWriter(DependentTask<hbridge::proxies::CommandWriter>::getInstance(this, commandWriterName))
 {
     canbus.watch(sensorReader.getTaskName(), 0, 0);
     canbus.watch(commandWriter.getTaskName(), 0, 0);

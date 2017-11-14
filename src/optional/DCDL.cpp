@@ -1,4 +1,10 @@
 #include "DCDL.hpp"
+#include <dcdl/proxies/DifferentialClassifier.hpp>
+#include <dcdl/proxies/IMUClassifier.hpp>
+#include <dcdl/proxies/TrajectoryClassifier.hpp>
+#include <dcdl/proxies/EnsembleClassifier.hpp>
+#include <trajectory_follower/proxies/Task.hpp>
+#include <ugv_nav4d/proxies/PathPlanner.hpp>
 
 namespace init
 {
@@ -10,9 +16,9 @@ DCDL::DCDL(const std::string trajClassifierName, const std::string diffClassifie
     , slam(slam)
     , odometry(odometry)
     , imu(imu)
-    , trajectoryClassifierTask(this, trajClassifierName)
-    , differentialClassifierTask(this, diffClassifierName)
-    , imuClassifierTask(this, imuClassifierName)
+    , trajectoryClassifierTask(DependentTask<dcdl::proxies::TrajectoryClassifier>::getInstance(this, trajClassifierName))
+    , differentialClassifierTask(DependentTask<dcdl::proxies::DifferentialClassifier>::getInstance(this, diffClassifierName))
+    , imuClassifierTask(DependentTask<dcdl::proxies::IMUClassifier>::getInstance(this, imuClassifierName))
 {
     registerDependency(trajectoryFollower);
     registerDependency(slam);
@@ -40,7 +46,7 @@ DCDLEnsemble::DCDLEnsemble(const std::string taskName, DCDL& dcdl, PositionProvi
     , poseProvider(poseProvider)
     , planner(planner)
     , trajectoryFollower(trajectoryFollower)
-    , ensembleClassifierTask(this, taskName)
+    , ensembleClassifierTask(DependentTask<dcdl::proxies::EnsembleClassifier>::getInstance(this, taskName))
 {
     registerDependency(dcdl);
     registerDependency(poseProvider);

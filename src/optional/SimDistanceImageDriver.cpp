@@ -1,4 +1,5 @@
 #include "SimDistanceImageDriver.hpp"
+#include <mars/proxies/DepthCamera.hpp>
 
 #include "Simulator.hpp"
 
@@ -7,7 +8,7 @@ namespace init
 {
 
 SimDistanceImageDriver::SimDistanceImageDriver(Simulator& sim, const std::string& distanceImageTaskName) : DistanceImageProvider("SimDistanceImageDriver"),
-        distanceImageTask(this, distanceImageTaskName)
+        distanceImageTask(DependentTask<mars::proxies::DepthCamera>::getInstance(this, distanceImageTaskName))
 {
     distanceImageTask.setDeployment(sim.simulator.getDeployment());
     registerDependency(sim);

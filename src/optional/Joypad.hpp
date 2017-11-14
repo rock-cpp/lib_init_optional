@@ -1,10 +1,11 @@
 #pragma once
 
 #include "GenericRawToMotion2D.hpp"
-#include <controldev/proxies/JoystickTask.hpp>
+#include <controldev/proxies/JoystickTaskForward.hpp>
 #include <base/commands/Motion2D.hpp>
 #include <lib_init/MotionControl2D.hpp>
 #include <lib_init/MotionControl2DProvider.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init {
     

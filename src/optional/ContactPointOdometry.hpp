@@ -1,9 +1,10 @@
 #pragma once
 
 #include <lib_init/PositionProvider.hpp>
-#include <odometry/proxies/ContactPointTask.hpp>
+#include <odometry/proxies/ContactPointTaskForward.hpp>
 #include "BodyContactsProvider.hpp"
 #include <lib_init/IMUDriver.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init
 {

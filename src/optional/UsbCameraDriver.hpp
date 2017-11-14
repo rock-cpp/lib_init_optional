@@ -1,7 +1,8 @@
 #pragma once
 
 #include <lib_init/CameraDriver.hpp>
-#include <camera_usb/proxies/Task.hpp>
+#include <camera_usb/proxies/TaskForward.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace camera_usb {
  namespace proxies {

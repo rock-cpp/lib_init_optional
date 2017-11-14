@@ -2,7 +2,7 @@
 
 #include <lib_init/Base.hpp>
 #include <orocos_cpp/Deployment.hpp>
-#include <mars/proxies/Task.hpp>
+#include <mars/proxies/TaskForward.hpp>
 
 #include <envire_core/items/SpatioTemporal.hpp>
 #include <maps/grid/MLSMap.hpp>
@@ -13,6 +13,7 @@
 #include <lib_init/MLSProvider.hpp>
 
 #include <orocos/mars/sceneType.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init
 {
@@ -27,6 +28,8 @@ public:
 
     /** Calling this operator is optional*/
     virtual void setupMLSSimulation(const base::samples::RigidBodyState &robotPose, const envire::core::SpatioTemporal<maps::grid::MLSMapKalman> &mlsKalman);  
+
+    virtual void setupMLSPrecalculatedSimulation(const base::samples::RigidBodyState &robotPose, const envire::core::SpatioTemporal<maps::grid::MLSMapPrecalculated> &mlsPrecalculated);  
 
     virtual void startSimulation();
     virtual void stopSimulation();  

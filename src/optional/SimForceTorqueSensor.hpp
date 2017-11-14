@@ -2,7 +2,7 @@
 
 #include <lib_init/ForceTorqueSensor.hpp>
 #include "Simulator.hpp"
-#include <mars/proxies/ForceTorque6DOF.hpp>
+#include <mars/proxies/ForceTorque6DOFForward.hpp>
 namespace init {
 
 class SimForceTorqueSensor : public ForceTorqueSensor

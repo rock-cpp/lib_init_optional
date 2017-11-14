@@ -2,9 +2,13 @@
 
 #include <lib_init/Base.hpp>
 #include <orocos_cpp_base/ProxyPort.hpp>
-#include <rtt/extras/ReadOnlyPointer.hpp>
 #include <maps/grid/MLSMap.hpp>
 #include <envire_core/items/SpatioTemporal.hpp>
+
+FW_DECLARE_TYPE(envire::core::SpatioTemporal<maps::grid::MLSMapKalman >)
+FW_DECLARE_TYPE(envire::core::SpatioTemporal<maps::grid::MLSMapSloped >)
+FW_DECLARE_TYPE(envire::core::SpatioTemporal<maps::grid::MLSMapPrecalculated >)
+
 namespace init
 {
 

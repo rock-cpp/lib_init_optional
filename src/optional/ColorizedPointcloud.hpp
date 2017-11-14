@@ -3,6 +3,7 @@
 #include "TiltScan.hpp"
 #include <lib_init/CameraDriver.hpp>
 #include <base/samples/Pointcloud.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace projection {
      namespace proxies {

@@ -1,8 +1,8 @@
 #pragma once
 
 #include <lib_init/DistanceImageProvider.hpp>
-#include <mars/proxies/DepthCamera.hpp>
-
+#include <mars/proxies/DepthCameraForward.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init
 {

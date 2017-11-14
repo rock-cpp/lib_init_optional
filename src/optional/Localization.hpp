@@ -1,7 +1,8 @@
 #pragma once
 #include <lib_init/PositionProvider.hpp>
 #include <lib_init/DepthMapProvider.hpp>
-#include <localization/proxies/VelodyneInMLS.hpp>
+#include <localization/proxies/VelodyneInMLSForward.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init
 {

@@ -4,6 +4,8 @@
 #include <base/samples/CommandSamples.hpp>
 #include <lib_init/Base.hpp>
 
+FW_DECLARE_TYPE(base::commands::Motion2D)
+
 namespace init
 {
 

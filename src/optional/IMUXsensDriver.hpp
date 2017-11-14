@@ -1,7 +1,8 @@
 #pragma once
 
 #include <lib_init/IMUDriver.hpp>
-#include <imu_xsens/proxies/Task.hpp>
+#include <imu_xsens/proxies/TaskForward.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init
 {

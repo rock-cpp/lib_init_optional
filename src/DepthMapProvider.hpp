@@ -4,6 +4,8 @@
 #include <base/samples/DepthMap.hpp>
 #include <lib_init/Base.hpp>
 
+FW_DECLARE_TYPE(base::samples::DepthMap)
+
 namespace init
 {
 

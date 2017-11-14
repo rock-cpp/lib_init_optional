@@ -1,7 +1,8 @@
 #pragma once
 
 #include <lib_init/MLSProvider.hpp>
-#include <envire_exporters/proxies/MLSMapKalmanExporter.hpp>
+#include <envire_exporters/proxies/MLSMapKalmanExporterForward.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init {
 

@@ -1,6 +1,8 @@
 #include "DependentTask.hpp"
 #include "Base.hpp"
 #include <stdexcept>
+#include <orocos_cpp/Deployment.hpp>
+#include <rtt/transports/corba/TaskContextProxy.hpp>
 
 namespace init 
 {

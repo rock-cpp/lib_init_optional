@@ -1,9 +1,11 @@
 #include "UsbCameraDriver.hpp"
+#include <camera_usb/proxies/Task.hpp>
 
 namespace init
 {
 
-UsbCameraDriver::UsbCameraDriver(const std::string& taskName): CameraDriver("UsbCameraDriver"), cameraTask(this, taskName)
+UsbCameraDriver::UsbCameraDriver(const std::string& taskName): CameraDriver("UsbCameraDriver")
+    , cameraTask(DependentTask<camera_usb::proxies::Task>::getInstance(this, taskName))
 {
     
 }

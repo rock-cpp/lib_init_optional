@@ -2,7 +2,8 @@
 
 #include <lib_init/PositionProvider.hpp>
 #include <lib_init/PointCloudProvider.hpp>
-#include <slam3d/proxies/PointcloudMapper.hpp>
+#include <slam3d/proxies/PointcloudMapperForward.hpp>
+#include <lib_init/DependentTask.hpp>
 
 namespace init
 {

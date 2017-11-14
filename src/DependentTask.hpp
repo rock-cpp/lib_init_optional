@@ -1,9 +1,18 @@
 #pragma once
 
 #include <string>
-#include <orocos_cpp/Deployment.hpp>
+#include <vector>
 #include <boost/shared_ptr.hpp>
-#include <rtt/transports/corba/TaskContextProxy.hpp>
+
+namespace RTT {
+    namespace corba {
+        class TaskContextProxy;
+    }
+}
+
+namespace orocos_cpp {
+    class Deployment;
+}
 
 namespace init {
 
@@ -65,30 +74,63 @@ public:
     
 };
     
+class DependentTaskPimplBase
+{
+public:
+    virtual ~DependentTaskPimplBase() {};
+    virtual const std::string &getModelName() = 0;
+    virtual RTT::corba::TaskContextProxy* createProxy(const std::string &name) = 0;;
+};
+
+template <class TASK>
+class DependentTaskPimplImpl : public DependentTaskPimplBase
+{
+public:
+    DependentTaskPimplImpl() {};
+    virtual ~DependentTaskPimplImpl() {};
+    virtual const std::string &getModelName()
+    {
+        return TASK::ModelName;
+    }
+    
+    virtual RTT::corba::TaskContextProxy* createProxy(const std::string &name)
+    {
+        return new TASK(name);
+    }
+};
+
 template <class TASK>
 class DependentTask : public DependentTaskBase
 {
-public:
-    DependentTask(Base *parent, const std::string &taskName) : DependentTaskBase(parent, taskName, TASK::ModelName)
+    DependentTaskPimplBase *pimpl;
+public:    
+    DependentTask(Base *parent, const std::string &taskName, DependentTaskPimplBase *pimpl) : 
+        DependentTaskBase(parent, taskName, pimpl->getModelName()),
+        pimpl(pimpl)
     {
     }
     
     virtual RTT::corba::TaskContextProxy* getProxy()
     {
         if(!proxy)
-            proxy = new TASK(prefix + taskName);
+            proxy = pimpl->createProxy(prefix + taskName);
         
         //std::cout << "Got proxy for " << proxy->getName() << " local name " << prefix + taskName  << "( " << getModelName() << " )" << std::endl;
 
         return proxy;
     };
     
+    static DependentTask<TASK> getInstance(Base *parent, const std::string &taskName)
+    {
+        return DependentTask(parent, taskName, new DependentTaskPimplImpl<TASK>());
+    }
+    
     TASK* getConcreteProxy()
     {
         if(!proxy)
-            proxy = new TASK(prefix + taskName);
+            getProxy();
 
-        return static_cast<TASK *>(proxy);
+        return dynamic_cast<TASK *>(proxy);
     };
     
     

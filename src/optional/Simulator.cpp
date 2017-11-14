@@ -9,7 +9,7 @@ Simulator::Simulator(const std::string &simTaskName,const boost::shared_ptr<oroc
 	: Base("Simulator")
     , PositionProvider("Simulator")
     , MLSProvider("Simulator")	
-	, simulator(this, simTaskName)
+	, simulator(DependentTask<mars::proxies::Task>::getInstance(this, simTaskName))
 {
     simulator.setDeployment(simDeployment);
 }
@@ -17,6 +17,11 @@ Simulator::Simulator(const std::string &simTaskName,const boost::shared_ptr<oroc
 void Simulator::setupMLSSimulation(const base::samples::RigidBodyState &robotPose, const envire::core::SpatioTemporal<maps::grid::MLSMapKalman> &mlsKalman)
 {
 	simulator.getConcreteProxy()->setupMLSSimulation(robotPose, mlsKalman);
+}
+
+void Simulator::setupMLSPrecalculatedSimulation(const base::samples::RigidBodyState &robotPose, const envire::core::SpatioTemporal<maps::grid::MLSMapPrecalculated> &mlsPrecalculated)
+{
+	simulator.getConcreteProxy()->setupMLSPrecSimulation(robotPose, mlsPrecalculated);
 }
 
 
