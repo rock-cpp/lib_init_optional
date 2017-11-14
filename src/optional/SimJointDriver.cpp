@@ -20,4 +20,9 @@ OutputProxyPort< base::samples::Joints >& SimJointDriver::getStatusPort()
 {
     return jointTask.getConcreteProxy()->joints_status;
 }
+
+void SimJointDriver::setJoints(const base::samples::Joints &jointsStatus)
+{
+	jointTask.getConcreteProxy()->setJoints(jointsStatus);
+}
 }

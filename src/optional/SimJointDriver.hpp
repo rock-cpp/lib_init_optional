@@ -15,6 +15,8 @@ public:
     virtual OutputProxyPort<base::samples::Joints> &getStatusPort();
     virtual InputProxyPort<base::commands::Joints> &getCommandPort();
 
+    virtual void setJoints(const base::samples::Joints &jointsStatus); 
+
     DependentTask<mars::proxies::Joints> jointTask;
 };
 }
