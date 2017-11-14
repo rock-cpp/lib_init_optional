@@ -23,5 +23,26 @@ OutputProxyPort< envire::core::SpatioTemporal< maps::grid::MLSMapKalman > >& MLS
 }
 
 
+// MLSMapPrecalculated stuff 
+
+MLSPrecalculatedProvider::MLSPrecalculatedProvider(const std::string& taskName, const std::string& portName)
+    : init::Base("ReplayMLSPrecalculatedProvider")
+    , init::MLSPrecalculatedProvider("ReplayMLSPrecalculatedProvider")
+    , task(this, taskName)
+    , port(task, portName)
+{
+
+}
+
+bool MLSPrecalculatedProvider::generateMap()
+{
+    return false;
+}
+
+OutputProxyPort< envire::core::SpatioTemporal< maps::grid::MLSMapPrecalculated > >& MLSPrecalculatedProvider::getMapPort()
+{
+    return port.getPort();
+}
+
     
 }

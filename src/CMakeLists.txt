@@ -64,6 +64,7 @@ rock_library(lib_init
         log_replay/DepthMapProvider.cpp
         log_replay/DistanceImageProvider.cpp
         log_replay/ForceTorqueSensor.cpp
+        log_replay/GenericRawToMotion2D.cpp
         log_replay/IMUDriver.cpp
         log_replay/JointDriver.cpp
         log_replay/MLSProvider.cpp
@@ -100,6 +101,7 @@ rock_library(lib_init
         log_replay/DepthMapProvider.hpp
         log_replay/DistanceImageProvider.hpp
         log_replay/ForceTorqueSensor.hpp
+        log_replay/GenericRawToMotion2D.hpp
         log_replay/IMUDriver.hpp
         log_replay/JointDriver.hpp
         log_replay/MLSProvider.hpp
