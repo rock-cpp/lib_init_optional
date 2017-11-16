@@ -10,7 +10,7 @@ MotionPlanner::MotionPlanner(PoseProvider &poseProvider, TraversabilityMapProvid
     : MotionPlannerProvider("MotionPlanner")
     , poseProvider(poseProvider)
     , travMapProvider(travMapProvider)
-    , motionPlanningTask(this, motionPlanningTaskName)
+    , motionPlanningTask(DependentTask<motion_planning_libraries::proxies::Task>::getInstance(this, motionPlanningTaskName))
 {
     registerDependency(poseProvider);
     registerDependency(travMapProvider);

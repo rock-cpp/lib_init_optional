@@ -9,7 +9,7 @@ namespace init
 TraversabilitySimple::TraversabilitySimple(MapProvider& slam, const std::string& traversabilityTaskName)
     : TraversabilityMapProvider("TraversabilitySimple")
     , slam(slam)
-    , traversabilityTask(this, traversabilityTaskName)
+    , traversabilityTask(DependentTask<traversability::proxies::Simple>::getInstance(this, traversabilityTaskName))
 {
     registerDependency(slam);
 }

@@ -2,6 +2,7 @@
 
 #include <graph_slam/proxies/VelodyneSLAM.hpp>
 #include <velodyne_lidar/proxies/LaserScanner.hpp>
+#include <mars/proxies/RotatingLaserRangeFinder.hpp>
 
 namespace init
 {
@@ -13,7 +14,7 @@ VelodyneSlam::VelodyneSlam(VelodyneDriver &vd, PositionProvider &odometry, const
     , velodyne(&vd)
     , simVelodyne(nullptr)
     , odometry(odometry)
-    , velodyneSlamTask(this, velodyneSlamTaskName)
+    , velodyneSlamTask(DependentTask<graph_slam::proxies::VelodyneSLAM>::getInstance(this, velodyneSlamTaskName))
 {
     registerDependency(*velodyne);
     registerDependency(odometry);
@@ -26,7 +27,7 @@ VelodyneSlam::VelodyneSlam(SimVelodyneDriver& vd, PositionProvider &odometry, co
     , velodyne(nullptr)
     , simVelodyne(&vd)
     , odometry(odometry)
-    , velodyneSlamTask(this, velodyneSlamTaskName)
+    , velodyneSlamTask(DependentTask<graph_slam::proxies::VelodyneSLAM>::getInstance(this, velodyneSlamTaskName))
 {
     registerDependency(*simVelodyne);
     registerDependency(odometry);
