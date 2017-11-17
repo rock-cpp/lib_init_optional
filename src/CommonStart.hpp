@@ -39,6 +39,11 @@ class StartCommon
 public:
     StartCommon(int argc, char **argv, std::string prefix = "");
 
+    orocos_cpp::ConfigurationHelper* getConfigurationHelper()
+    {
+        return configHelper;
+    }
+
     template< class Startup>
     int run(smurf::Robot *robot, const std::function<state_machine::State *(Startup &start, std::vector<init::Base *> &toInit)> &ownstuff)
     {
