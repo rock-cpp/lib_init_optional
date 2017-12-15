@@ -72,6 +72,7 @@ rock_library(lib_init
         log_replay/ReplayPort.cpp
         log_replay/PointCloudProvider.cpp
         log_replay/PositionProvider.cpp
+        log_replay/TrajectoryFollower.cpp
     HEADERS
         Base.hpp
         CameraDriver.hpp
@@ -109,6 +110,7 @@ rock_library(lib_init
         log_replay/ReplayPort.hpp
         log_replay/PointCloudProvider.hpp
         log_replay/PositionProvider.hpp
+        log_replay/TrajectoryFollower.hpp
     DEPS_PKGCONFIG
         base-lib
         orocos_cpp_base

@@ -22,7 +22,7 @@ SafetyController::SafetyController(MotionControl2D& motionControl, std::map<int,
 void SafetyController::addSafetyInput(int prio, MotionControl2DProvider* task)
 {
     safetyInputs.insert(std::make_pair(prio, task));
-    registerDependency(*task);
+//    registerDependency(*task);
 }
 
 

@@ -11,6 +11,7 @@
 #include "TrajectoryFollower.hpp"
 #include "UGVNav4d.hpp"
 #include <lib_init/DependentTask.hpp>
+#include <lib_init/log_replay/TrajectoryFollower.hpp>
 
 namespace init
 {
@@ -27,6 +28,25 @@ public:
     DCDL(const std::string trajClassifierName, const std::string diffClassifierName, const std::string imuClassifierName,
          TrajectoryFollower &trajectoryFollower, PositionProvider &slam, PositionProvider &odometry, IMUDriver &imu);
     ~DCDL() = default;
+    
+    virtual bool connect();
+    DependentTask<dcdl::proxies::TrajectoryClassifier> trajectoryClassifierTask;
+    DependentTask<dcdl::proxies::DifferentialClassifier> differentialClassifierTask;    
+    DependentTask<dcdl::proxies::IMUClassifier> imuClassifierTask;
+};
+
+class DCDLReplay : public Base
+{
+    
+    log_replay::TrajectoryFollower &trajectoryFollower;
+    PositionProvider &slam;
+    PositionProvider &odometry;
+    IMUDriver &imu;
+ 
+public:
+    DCDLReplay(const std::string trajClassifierName, const std::string diffClassifierName, const std::string imuClassifierName,
+         log_replay::TrajectoryFollower &trajectoryFollower, PositionProvider &slam, PositionProvider &odometry, IMUDriver &imu);
+    ~DCDLReplay() = default;
     
     virtual bool connect();
     DependentTask<dcdl::proxies::TrajectoryClassifier> trajectoryClassifierTask;

@@ -36,6 +36,36 @@ bool DCDL::connect()
     return init::Base::connect();
 }
 
+
+
+
+DCDLReplay::DCDLReplay(const std::string trajClassifierName, const std::string diffClassifierName, const std::string imuClassifierName,
+            log_replay::TrajectoryFollower &trajectoryFollower, PositionProvider &slam, PositionProvider &odometry, IMUDriver &imu)
+    : Base("DCDL")
+    , trajectoryFollower(trajectoryFollower)
+    , slam(slam)
+    , odometry(odometry)
+    , imu(imu)
+    , trajectoryClassifierTask(DependentTask<dcdl::proxies::TrajectoryClassifier>::getInstance(this, trajClassifierName))
+    , differentialClassifierTask(DependentTask<dcdl::proxies::DifferentialClassifier>::getInstance(this, diffClassifierName))
+    , imuClassifierTask(DependentTask<dcdl::proxies::IMUClassifier>::getInstance(this, imuClassifierName))
+{
+    registerDependency(trajectoryFollower);
+    registerDependency(slam);
+    registerDependency(odometry);
+    registerDependency(imu);
+}
+
+
+bool DCDLReplay::connect()
+{
+    trajectoryFollower.getFollowerData().connectTo(trajectoryClassifierTask.getConcreteProxy()->follower_data);
+    slam.getPositionSamples().connectTo(differentialClassifierTask.getConcreteProxy()->slam_pose);
+    odometry.getPositionSamples().connectTo(differentialClassifierTask.getConcreteProxy()->odometry_pose);
+    imu.getSensorSamples().connectTo(imuClassifierTask.getConcreteProxy()->imu_sensors);
+    return init::Base::connect();
+}
+
  
  
  
