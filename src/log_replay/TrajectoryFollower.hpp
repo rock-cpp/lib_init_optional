@@ -1,6 +1,6 @@
 #pragma once
 
-#include <lib_init/TrajectoryFollower.hpp>
+#include <lib_init/Base.hpp>
 #include <trajectory_follower/TrajectoryFollowerTypes.hpp>
 #include "ReplayPort.hpp"
 #include "ReplayTask.hpp"
