@@ -15,6 +15,8 @@ private:
 public:
     AILAJointDriver(init::NDLComSerial&, const std::string &AILAJointsTaskName);
     
+    virtual ~AILAJointDriver();
+    
     virtual bool connect();
     virtual bool start();
 

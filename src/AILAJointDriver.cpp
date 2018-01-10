@@ -14,6 +14,10 @@ AILAJointDriver::AILAJointDriver(init::NDLComSerial& ndlcomSerial, const std::st
     registerDependency(ndlcomSerial);
 }
 
+AILAJointDriver::~AILAJointDriver()
+{
+}
+
 bool AILAJointDriver::connect()
 {
     ndlcomSerial.serial_ndlcom.getConcreteProxy()->ndlcom_message_out.connectTo(jointTask.getConcreteProxy()->ndlcom_message_in, RTT::ConnPolicy::buffer(200));

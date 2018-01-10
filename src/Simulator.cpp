@@ -26,11 +26,11 @@ void Simulator::setupMLSPrecalculatedSimulation(const base::samples::RigidBodySt
 
 
 void Simulator::startSimulation() {
-	simulator.getConcreteProxy()->startSimulation();
+// 	simulator.getConcreteProxy()->startSimulation();
 }
 
 void Simulator::stopSimulation() {
-	simulator.getConcreteProxy()->stopSimulation();
+// 	simulator.getConcreteProxy()->stopSimulation();
 }
 
 

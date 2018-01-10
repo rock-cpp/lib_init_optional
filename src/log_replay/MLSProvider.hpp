@@ -1,7 +1,7 @@
 #pragma once
 #include <lib_init/MLSProvider.hpp>
-#include "ReplayPort.hpp"
-#include "ReplayTask.hpp"
+#include <lib_init/log_replay/ReplayPort.hpp>
+#include <lib_init/log_replay/ReplayTask.hpp>
 
 namespace log_replay
 {

@@ -1,5 +1,5 @@
 #include "UGVAreaExploration.hpp"
-#include "../DependentTask.hpp"
+#include <lib_init/DependentTask.hpp>
 #include <ugv_nav4d/proxies/AreaExploration.hpp>
 
 namespace init 
