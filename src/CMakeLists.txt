@@ -373,11 +373,15 @@ rock_library(lib_init_optional
         ${SRC_EXTRA}
         log_replay/MLSProvider.cpp
     HEADERS
-        log_replay/MLSProvider.hpp
 #         ${HDR_EXTRA}
     DEPS_PKGCONFIG
         lib_init
         ${PKG_CONFIG_EXTRA}
 )
 
+install(
+FILES 
+    log_replay/MLSProvider.hpp
+DESTINATION 
+    include/lib_init/log_replay)
 
