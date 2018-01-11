@@ -10,7 +10,7 @@
 #include <base/Pose.hpp>
 
 #include <lib_init/PositionProvider.hpp>
-#include <lib_init/MLSProvider.hpp>
+#include "MLSProvider.hpp"
 
 #include <orocos/mars/sceneType.hpp>
 #include <lib_init/DependentTask.hpp>

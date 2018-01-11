@@ -1,7 +1,7 @@
 #pragma once
 
 #include <lib_init/PositionProvider.hpp>
-#include <lib_init/MLSProvider.hpp>
+#include "MLSProvider.hpp"
 #include "Simulator.hpp"
 #include <ugv_nav4d/proxies/PoseWatchdogForward.hpp>
 #include <trajectory_follower/SubTrajectory.hpp>

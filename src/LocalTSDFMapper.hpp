@@ -1,6 +1,6 @@
 #pragma once
 
-#include <lib_init/MLSProvider.hpp>
+#include "MLSProvider.hpp"
 #include <lib_init/DistanceImageProvider.hpp>
 #include <lib_init/PointCloudProvider.hpp>
 #include <local_tsdf_mapper/proxies/TaskForward.hpp>
