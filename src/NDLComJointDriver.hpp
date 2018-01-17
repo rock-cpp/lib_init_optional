@@ -4,7 +4,7 @@
 #include <lib_init/JointDriver.hpp>
 #include <lib_init/Base.hpp>
 #include "NDLComSerial.hpp"
-#include <ndlcom_device_driver/proxies/NDLComJointDriverBaseTaskForward.hpp>
+#include <ndlcom_device_driver/proxies/JointBaseTaskForward.hpp>
 
 namespace init
 {
@@ -21,7 +21,7 @@ public:
     virtual OutputProxyPort<base::samples::Joints> &getStatusPort();
     virtual InputProxyPort<base::commands::Joints> &getCommandPort();
 
-    DependentTask<ndlcom_device_driver::proxies::NDLComJointDriverBaseTask> jointDriver;
+    DependentTask<ndlcom_device_driver::proxies::JointBaseTask> jointDriver;
 };
 
 }

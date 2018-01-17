@@ -183,12 +183,12 @@ optional_init(motion_planning_libraries-proxies
         MotionPlanner.hpp
 )
 
-optional_init(ndlcom_force_torque_sensor-proxies 
-    SOURCES
-        NDLComForceTorqueSensor.cpp
-    HEADERS
-        NDLComForceTorqueSensor.hpp
-)
+# optional_init(ndlcom_force_torque_sensor-proxies 
+#     SOURCES
+#         NDLComForceTorqueSensor.cpp
+#     HEADERS
+#         NDLComForceTorqueSensor.hpp
+# )
 
 optional_init(ndlcom_lipo_watcher-proxies 
     SOURCES
@@ -218,6 +218,13 @@ optional_init(ndlcom_aila_joints-proxies
         AILAJointDriver.hpp
 )
 
+# optional_init(ndlcom_sherpa_tt_joints-proxies
+#     SOURCES
+#         SherpaTTJointDriver.cpp
+#     HEADERS
+#         SherpaTTJointDriver.hpp
+# )
+
 optional_init(odometry-proxies
     SOURCES
         SkidOdometry.cpp
@@ -243,7 +250,6 @@ optional_init(realtime_urdf_filter-proxies
     HEADERS
         RealtimeUrdfFilter.hpp
 )
-
 
 optional_init(slam3d-proxies
     SOURCES

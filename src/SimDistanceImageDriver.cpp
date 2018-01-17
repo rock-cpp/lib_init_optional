@@ -16,7 +16,7 @@ SimDistanceImageDriver::SimDistanceImageDriver(Simulator& sim, const std::string
 
 OutputProxyPort< base::samples::DistanceImage >& SimDistanceImageDriver::getDistanceImagePort()
 {
-    return distanceImageTask.getConcreteProxy()->distance_image;
+//     return distanceImageTask.getConcreteProxy()->distance_image;
 }
 
 
