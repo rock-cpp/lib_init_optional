@@ -34,11 +34,61 @@ macro(optional_init LIB_NAME)
     endif()
 endmacro()
 
-optional_init(envire_maps    
+macro(init_module)
+    message("INIT_MODULE")
+    pkg_check_modules(LIB_INIT "lib_init")
+    if(LIB_INIT_FOUND)
+        message("LIB_INIT FOUND")
+        #PROJECT_NAME is defined by orogen
+        SET(LIB_NAME ${PROJECT_NAME}-init)
+        SET(ARG_LIST ${LIB_NAME})
+        #parse HEADER and SOURCE
+        cmake_parse_arguments(${LIB_NAME} "" "" "SOURCES;HEADERS" ${ARGN})
+        message("Found ${${ARG_LIST}_SOURCES}")
+#         parse(${ARG_LIST} ${ARGN})
+#     #         message("Found ${LIB_NAME} in version ${${LIB_NAME}_VERSION}")
+#     #         message("Found ${${ARG_LIST}_SOURCES}")
+#         foreach(SOURCE ${${ARG_LIST}_SOURCES})
+#             LIST(APPEND SRC_EXTRA "${CMAKE_CURRENT_SOURCE_DIR}/${SOURCE}" )
+#         endforeach()
+#         SET(SRC_EXTRA ${SRC_EXTRA} PARENT_SCOPE)
+#         foreach(HEADER ${${ARG_LIST}_HEADERS})
+#             install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/${HEADER}" DESTINATION include/lib_init)
+#         endforeach()
+#         LIST(APPEND PKG_CONFIG_EXTRA ${LIB_NAME})
+#         SET(PKG_CONFIG_EXTRA ${PKG_CONFIG_EXTRA} PARENT_SCOPE)    
+# 
+#         rock_library(${LIB_NAME}
+#         SOURCES
+#             ${${ARG_LIST}_SOURCES}
+#         HEADERS
+#     #         ${HDR_EXTRA}
+#         DEPS
+#             ${PROJECT_NAME}-proxies
+#         DEPS_PKGCONFIG
+#             lib_init
+#             ${PKG_CONFIG_EXTRA}
+#         )
+# 
+#         install(
+#         FILES 
+#             log_replay/MLSProvider.hpp
+#         DESTINATION 
+#             include/lib_init/log_replay)
+
+        endif()
+endmacro()
+
+init_module(canbus-proxies 
+    SOURCES
+        Canbus.cpp   
+        Canbus2.cpp   
+        Canbus3.cpp   
+        Canbus4.cpp   
     HEADERS
-        MLSProvider.hpp
-        MLTraversabilityMapProvider.hpp
+        Canbus.hpp
 )
+
 
 optional_init(ctrl_lib-proxies)
 
@@ -334,15 +384,6 @@ optional_init(trajectory_follower-proxies
         TrajectoryFollower.hpp
         TrajectoryFollowerWithSafeGuard.hpp
         PoseWatchdog.hpp
-)
-
-optional_init(ugv_nav4d-proxies 
-    SOURCES
-        UGVAreaExploration.cpp
-        UGVNav4d.cpp    
-    HEADERS
-        UGVAreaExploration.hpp
-        UGVNav4d.hpp    
 )
 
 optional_init(velodyne_lidar-proxies
