@@ -1,6 +1,9 @@
 #include "Dynamixel.hpp"
+#include <servo_dynamixel/proxies/Task.hpp>
 
-init::Dynamixel::Dynamixel(const std::string& taskName) : JointDriver("Dynamixel"), dynamixel(this, taskName)
+init::Dynamixel::Dynamixel(const std::string& taskName) : 
+    JointDriver("Dynamixel"), 
+    dynamixel(DependentTask<servo_dynamixel::proxies::Task>::getInstance(this, taskName))
 {
     
 }

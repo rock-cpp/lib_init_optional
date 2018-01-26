@@ -1,7 +1,7 @@
 #pragma once
 
 #include <lib_init/JointDriver.hpp>
-#include <servo_dynamixel/proxies/Task.hpp>
+#include <servo_dynamixel/proxies/TaskForward.hpp>
 #include <lib_init/DependentTask.hpp>
 
 namespace init 
