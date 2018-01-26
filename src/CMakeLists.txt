@@ -34,11 +34,6 @@ macro(optional_init LIB_NAME)
     endif()
 endmacro()
 
-optional_init(envire_maps    
-    HEADERS
-        MLSProvider.hpp
-        MLTraversabilityMapProvider.hpp
-)
 
 optional_init(ctrl_lib-proxies)
 
@@ -72,15 +67,6 @@ optional_init(depth_map_preprocessing-proxies
     HEADERS
         DepthMapToPCLConverter.hpp
         OutlierFilter.hpp
-)
-
-optional_init(envire_exporters-proxies
-    SOURCES
-        MLSMapKalmanExporter.cpp
-        MLSMapPrecalculatedExporter.cpp
-    HEADERS
-        MLSMapKalmanExporter.hpp
-        MLSMapPrecalculatedExporter.hpp
 )
 
 optional_init(hbridge-proxies 
@@ -336,15 +322,6 @@ optional_init(trajectory_follower-proxies
         PoseWatchdog.hpp
 )
 
-optional_init(ugv_nav4d-proxies 
-    SOURCES
-        UGVAreaExploration.cpp
-        UGVNav4d.cpp    
-    HEADERS
-        UGVAreaExploration.hpp
-        UGVNav4d.hpp    
-)
-
 optional_init(velodyne_lidar-proxies
     SOURCES
         VelodyneDriver.cpp
@@ -377,17 +354,10 @@ optional_init(dcdl-proxies
 rock_library(lib_init_optional
     SOURCES
         ${SRC_EXTRA}
-        log_replay/MLSProvider.cpp
     HEADERS
 #         ${HDR_EXTRA}
     DEPS_PKGCONFIG
         lib_init
         ${PKG_CONFIG_EXTRA}
 )
-
-install(
-FILES 
-    log_replay/MLSProvider.hpp
-DESTINATION 
-    include/lib_init/log_replay)
 
