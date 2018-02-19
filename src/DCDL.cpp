@@ -30,6 +30,7 @@ DCDL::DCDL(const std::string trajClassifierName, const std::string diffClassifie
 bool DCDL::connect()
 {
     trajectoryFollower.trajectoryFollowerTask.getConcreteProxy()->follower_data.connectTo(trajectoryClassifierTask.getConcreteProxy()->follower_data);
+    trajectoryFollower.trajectoryFollowerTask.getConcreteProxy()->state.connectTo(trajectoryClassifierTask.getConcreteProxy()->follower_status);
     slam.getPositionSamples().connectTo(differentialClassifierTask.getConcreteProxy()->slam_pose);
     odometry.getPositionSamples().connectTo(differentialClassifierTask.getConcreteProxy()->odometry_pose);
     imu.getSensorSamples().connectTo(imuClassifierTask.getConcreteProxy()->imu_sensors);
