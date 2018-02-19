@@ -61,6 +61,7 @@ DCDLReplay::DCDLReplay(const std::string trajClassifierName, const std::string d
 bool DCDLReplay::connect()
 {
     trajectoryFollower.getFollowerData().connectTo(trajectoryClassifierTask.getConcreteProxy()->follower_data);
+    trajectoryFollower.getFollowerState().connectTo(trajectoryClassifierTask.getConcreteProxy()->follower_status);
     slam.getPositionSamples().connectTo(differentialClassifierTask.getConcreteProxy()->slam_pose);
     odometry.getPositionSamples().connectTo(differentialClassifierTask.getConcreteProxy()->odometry_pose);
     imu.getSensorSamples().connectTo(imuClassifierTask.getConcreteProxy()->imu_sensors);
