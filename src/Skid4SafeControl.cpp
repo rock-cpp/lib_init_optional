@@ -1,5 +1,4 @@
 #include "Skid4SafeControl.hpp"
-#include <skid4_control/proxies/SafeController.hpp>
 
 namespace init 
 {

@@ -3,7 +3,7 @@
 #include <lib_init/Base.hpp>
 #include <lib_init/JointDriver.hpp>
 #include <lib_init/MotionControl2D.hpp>
-#include <skid4_control/proxies/SafeControllerForward.hpp>
+#include <skid4_control/proxies/SafeController.hpp>
 #include <lib_init/DependentTask.hpp>
 
 namespace init
